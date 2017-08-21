@@ -48,6 +48,11 @@ li.navbar-right {
 	right: 25px;
 }
 
+#next_design {
+	font-style: normal;
+	font-color: #ffffff;
+	cursor: pointer;
+}
 .navbar-default {
 	margin: 0;
 }

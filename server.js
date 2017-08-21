@@ -2,7 +2,7 @@ var http=require('http');
 var express=require('express');
 var jsonfile=require('jsonfile');
 var fs = require('fs');
-var request = require('request');
+// var request = require('request');
 var socketIO = require('socket.io');
 const PORT = process.env.PORT || 8080;
 const path = require('path');
@@ -43,7 +43,7 @@ function saveNewComment(data, category, address, new_comment) {
 
 	logs.push({"time": new Date().getTime(),
 					"user": address,
-					"event": "new comment submitted",
+					"event": "comment submitted",
 					"category": category,
 					"comment": data.comment_text,
 					"design_id": data.design_id});
@@ -113,5 +113,5 @@ io.on('connection', function(socket) {
   						"design_id": data.design_id}); 
   		updateJSON(log_file, logs);	
 	});
-}
+})
 
