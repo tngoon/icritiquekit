@@ -112,6 +112,6 @@ io.on('connection', function(socket) {
   						"category removed": data.category_remove,
   						"design_id": data.design_id}); 
   		updateJSON(log_file, logs);	
-	})
+	});
 }
 

@@ -2,8 +2,8 @@
 $(window).on('load', function() {
 	if(!Cookies.get('modalShown')) {
 		$('#consent-modal').modal('show');
-		$('#consent-modal').load("consent.html");
-		// $('#consent-modal').load("../consent.html");
+		// $('#consent-modal').load("consent.html");
+		$('#consent-modal').load("../consent.html");
 		Cookies.set('modalShown', true, 2);
 	} else {
 		console.log("modal has been shown");
@@ -12,14 +12,14 @@ $(window).on('load', function() {
 
 // load html files in correct divs
 $(function() {
-	$("#navbar-container").load("navbar.html");
-	$("#indicators").load("indicators.html")
-	$('#dynasuggestions').load("dynasuggestions.html")
-	$('#help-modal').load("help.html")
-	// $("#navbar-container").load("../navbar.html");
-	// $("#indicators").load("../indicators.html")
-	// $('#dynasuggestions').load("../dynasuggestions.html")
-	// $('#help-modal').load("../help.html")
+	// $("#navbar-container").load("navbar.html");
+	// $("#indicators").load("indicators.html")
+	// $('#dynasuggestions').load("dynasuggestions.html")
+	// $('#help-modal').load("help.html")
+	$("#navbar-container").load("../navbar.html");
+	$("#indicators").load("../indicators.html");
+	$('#dynasuggestions').load("../dynasuggestions.html");
+	$('#help-modal').load("../help.html");
 
 });
 
@@ -222,8 +222,7 @@ function ShowHideDiv() {
 }
 
 //store comments as JSON
-function storeComments() {
-	var file = 'comments.json'
+function submitComments() {
 	var input = $('#comment-text').val().split(/\n/);
 	var allComments = sessionStorage.getItem("allComments");
 	var Comment = {};
@@ -237,28 +236,30 @@ function storeComments() {
 		obj=JSON.parse(allComments)
 	}
 
-	for (var i=0; i<input.length; i++) {
-		
-		if(/\S/.test(input[i])) {
-			Comment['comment'] = $.trim(input[i]);
+	if(input != "") {
+		for (var i=0; i<input.length; i++) {			
+			if(/\S/.test(input[i])) {
+				Comment['comment'] = $.trim(input[i]);
 
-			if(speccheck.checked && actcheck.checked && justcheck.checked) {
-				Comment['category'] = 111;
-			} else if(speccheck.checked && actcheck.checked) {
-				Comment['category']= 110;
-			} else if(speccheck.checked && justcheck.checked) {
-				Comment['category']= 101;
-			} else if(!speccheck.checked && actcheck.checked && !justcheck.checked) {
-				Comment['category']= 010;
-			} else if(!speccheck.checked && !actcheck.checked && justcheck.checked) {
-				Comment['category']= 101;
-			} else if(!speccheck.checked && actcheck.checked && justcheck.checked) {
-				Comment['category']= 011;
-			} else {
-				Comment['category']= 0;
-			}
+				if(speccheck.checked && actcheck.checked && justcheck.checked) {
+					Comment['category'] = 111;
+				} else if(speccheck.checked && actcheck.checked) {
+					Comment['category']= 110;
+				} else if(speccheck.checked && justcheck.checked) {
+					Comment['category']= 101;
+				} else if(!speccheck.checked && actcheck.checked && !justcheck.checked) {
+					Comment['category']= 010;
+				} else if(!speccheck.checked && !actcheck.checked && justcheck.checked) {
+					Comment['category']= 101;
+				} else if(!speccheck.checked && actcheck.checked && justcheck.checked) {
+					Comment['category']= 011;
+				} else {
+					Comment['category']= 0;
+				}
+			}			
 		}
-		
+	} else if(input == "") {
+		alert("You can't submit an empty comment!");
 	}
 	console.log(Comment.category)
 	obj.push(Comment);
