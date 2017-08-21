@@ -51,6 +51,9 @@ function copyText(x) {
   				$("#actcheck").prop('checked', true);
   				$("#justcheck").prop('checked', true);
   			}
+
+  			socket.emit("suggestion inserted", {comment_id: comment_id, comment_text:comment, design_id:design_id, userid: address});
+
 		});
 	}
 
