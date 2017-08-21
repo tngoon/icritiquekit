@@ -324,12 +324,5 @@ function filterSuggestions() {
 	}
 }
 
-$(function() {
-	$('#specific').click(function () {
-		// $('#speccheck').prop('checked', true);
-		console.log('working');
-	})
-})
-
 
 
