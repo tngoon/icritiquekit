@@ -78,18 +78,26 @@ function checkComments() {
 
 	setTimeout(function() {
 		if (wordlength < 5) {
+			// $("#specific").show();
+			// $("#open-default").hide();
 			spec.style.display = "block";
 			opendefault.style.display = "none";
 		} else if (wordlength > 5) {
+			// $("#speccheck").prop('checked', true);
+			// $("#specific").hide();
+			// $("#open-default").hide();
+			// $("#complete").hide();
 			speccheck.checked = true;
 			spec.style.display = "none";
 			complete.style.display = "none";
 			opendefault.style.display = "none";
 		} else {
+			// $("#speccheck").prop('checked', false);
+			// $("#open-default").hide();
 			opendefault.style.display = "block";
 			speccheck.checked = false;
 		}
-		if(text.match(/(^maybe$|^try$|^should$|^would$|^make$|^use$|^consider$|^remove$|^use$|^add$)/gi)) {
+		if(text.match(/(maybe|try|should|would|make|use|consider|remove|use|add|please)/gi)) {
 			actcheck.checked = true;
 			opendefault.style.display = "none";
 			action.style.display = "none";
@@ -102,7 +110,7 @@ function checkComments() {
 			justify.style.display =  "none";
 			actjust.style.display = "none";
 		}
-	}, 3500);
+	}, 4000);
 
 	//auto-check based on keyword search
 	// if(text.match(/(maybe|try|should|would|make|use|consider|remove|use|add)/gi)) {
@@ -121,7 +129,7 @@ function checkComments() {
 	//show/hide divs based on checkboxes
 	if(speccheck.checked && !actcheck.checked && !justcheck.checked) {
 		opendefault.style.display = "none";
-		action.style.display = "none";
+		action.style.display = "block";
 		actjust.style.display = "block";
 		justify.style.display = "none";
 		submit.classList.remove('btn-danger');
