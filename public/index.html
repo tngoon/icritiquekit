@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CritiqueKit</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="main.css" />
+	<!-- Google Tag Manager -->
+	<!--<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-WD879J3');</script>-->
+	<script src="https://use.fontawesome.com/824b7cc593.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
+	<script src="js/cookies.js"></script>
+	<script src="js/main.js"></script>
+	<!--<script src="/js/cookies.js"></script>-->
+	<!--<script src="../js/googleAnalytics.js"></script>-->
+	<!--<script src="/js/main.js"></script>-->
+
+</head>
+<body>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WD879J3"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	<div id="sidebar" class="stretch">
+		<h3>Feedback:</h3>
+		<div id="comments">
+		<form enctype='application/json'>
+			<textarea name="comment" id="comment-text" onkeyup="checkComments(); filterSuggestions()" placeholder="Type your feedback..."></textarea>
+		</form>
+			<div id="indicators"></div>
+		</div>
+		<!--show submitted comments-->
+		<div id="submitted-comments" class="scroll-box" style="display: none"></div>
+		<div id="complete" style="display:none">
+			<p id="complete-comment"><i>Your comment is complete!<i></p>
+		</div>
+		<div id="dynasuggestions"></div>	
+	</div>
+	<div id="main-container">
+		<div id="navbar-container"></div>
+		<!-- <div class="modal fade" id="consent-modal" tabindex="-1" role="dialog"></div> -->
+		<div class="modal fade" id="consent-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"></div>
+	<iframe src="http://www.cottagelajolla.com/">
+	</div>
+</body>
+</html>

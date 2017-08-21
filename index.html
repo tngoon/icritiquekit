@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--Control version-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CritiqueKit</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="public/main.css" />
+	<script src="https://use.fontawesome.com/824b7cc593.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
+	<script src="js/cookies.js"></script>
+	<script src="js/control.js"></script>
+</head>
+<body>
+	<div id="sidebar" class="stretch">
+		<h3>Feedback:</h3>
+		<div id="comments">
+			<form enctype='application/json'>
+				<textarea name="comment" id="comment-text" placeholder="Type your feedback..."></textarea>
+			</form>
+		</div>
+		<br></br>
+		<!--show submitted comments-->
+		<div id="submitted-comments" style="display:none" class="scroll-box"></div>
+		<div class="comment-btns">
+			<a href="#" id="view-comments" onclick="showComments()"><i class="fa fa-plus"></i> View my comments</a>
+			<!-- <p id="complete-text">Make sure your comment is complete before submitting!</p> -->
+			<button type="button" id="submit-comment" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Make sure your feedback is complete before submitting!" onClick="storeComments()">Submit</button>
+			<button type="button" id="cancel-comment" class="btn btn-default" onClick="window.location.reload()">Cancel</button>
+		</div>
+	</div>
+	<div id="main-container">
+		<nav class="navbar navbar-default navbar-static-top navbar-inverse" style="width: 70%">
+  			<ul class="nav navbar-nav">
+			    <li>
+			      <a href="" id="site_title" style="color: #ffffff; font-style: normal; font-size: 16px">CritiqueKit</a>
+			    </li>
+			  </ul>
+			  <ul class="nav navbar-nav navbar-right">
+			    <li class="navbar-right">
+			      <a id="help-button" data-toggle="modal" data-target='#help2' style="color: #ffffff">
+			        <span class="fa fa-question-circle"></span> Help
+			      </a>
+			    </li>
+			    <li class="navbar-right">
+			      <a id="done-button" data-toggle="modal" data-target='#done2' style="color: #ffffff">
+			        <span class="fa fa-check-circle"></span> I'm done!
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
+			<!--Help Modal link-->
+			<div class="modal fade" id="help2" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			    	<div class="modal-header">
+			    		<h4 class="modal-title">Welcome to CritiqueKit!</h4>
+			    	</div>
+			    	<div class="modal-body">
+			    		<p>In this task, you will be providing feedback for student submissions submitted to the Interaction Design Specialization on Coursera.</p><br>
+				        <p>Some tips: Good feedback is...</p>
+				        <ul style="font-style: normal">
+				          <li><b>Specific:</b> E.g., instead of <i>"looks great!"</i>... try, <i>"Great use of colors and imagery on the site."</i></li><br>
+				          <li><b>Actionable:</b> E.g., instead of <i>"The site is too cramped."</i>... try, <i>"Maybe use a 2-column grid layout instead of a 3-column layout to better space out elements."</i></li><br>
+				          <li><b>Justified:</b> E.g., instead of <i>"I wish the site was a different color."</i>... try, <i>"I wish the site was a different color because the current color is too dark and makes the dark text difficult to read."</i></li>
+				        </ul>
+			    	</div>
+			    	<div class="modal-footer">
+			    		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			    	</div>
+			    </div>
+			  </div>
+			</div>
+			<!--Done Modal link-->
+			<div class="modal fade" id="done2" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			    	<div class="modal-header">
+					  <h4 class="modal-title">I'm done giving feedback</h4>
+					</div>
+					<div class="modal-body">
+					  <p>Are you sure you are finished giving feedback?</p>
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-danger" data-dismiss="modal">No, take me back</button>
+					  <button type="button" class="btn btn-success" data-toggle="modal" id="fin-button">Yes, I'm done</button>
+					</div>
+			    </div>
+			  </div>
+			</div>
+			<script>
+			$("#fin-button").click(function() {
+			  $('#done-modal').modal('hide');
+			  $('#final-modal').modal('show');
+			})
+			</script>
+			<!--Final Modal link-->
+			<div class="modal fade" id="final-modal" tabindex="-1" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h4 class="modal-title">Thanks for using CritiqueKit!</h4>
+			      </div>
+			      <div class="modal-body">
+			         <p>Thank you for participating in this study. Do NOT yet close this window. Please contact your experimenter for further instructions and debriefing.</p>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		<!-- <div class="modal fade" id="consent-modal" tabindex="-1" role="dialog"></div> -->
+		<div class="modal fade" id="consent-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"></div>
+	<iframe src="http://www.cottagelajolla.com/">
+	</div>
+</body>
+</html>
