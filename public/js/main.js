@@ -20,7 +20,17 @@ $(function() {
 $(function() {
 	// socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
 	socket = io();
-})
+
+	// check for cookie
+	if (Cookies.get('critiquekit-cookie') != undefined) {
+		cookie_val = Cookies.get('critiquekit-cookie');
+		socket.emit('set cookie', cookie_val);
+	} else {
+		cookie_val = Math.random().toString(10) + new Date().getTime();
+		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val}, { expires: 7 });
+		socket.emit('set cookie', cookie_val);
+	}
+});
 //form validation to ensure consent form is clicked
 function validateForm() {
 	// if(x.checked) {
@@ -30,20 +40,21 @@ function validateForm() {
 	// }
 	if(document.getElementById("consent_yes").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
-		socket.emit('consent', {userid: userid, consent:true});
-		Cookies.set('critiquekit-cookie', {userid:userid, consent: true});	
+		socket.emit('consent', {cookie_val: cookie_val, consent:true});
+		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: true});	
 		console.log('working');
 	} else if (document.getElementById("consent_no").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
-		socket.emit('consent', {userid:userid, consent:false});
-		Cookies.set('critiquekit-cookie', {userid:userid, consent: false});
+		socket.emit('consent', {cookie_val: cookie_val, consent:false});
+		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: false});
 	}
 }
 
 // copy text of suggestion button to textbox
 function copyText(x) {
 		var currentTxt = document.getElementById("comment-text").value;
-		document.getElementById("comment-text").value = currentTxt + " " + x.innerHTML;
+		var submittedComment = x.innerHTML;
+		document.getElementById("comment-text").value = currentTxt + " " + submittedComment;
 		//if suggestion clicked, move to top of list
 		$("li").click(function() {
   			$(this).parent().prepend($(this));
@@ -60,7 +71,7 @@ function copyText(x) {
   				$("#justcheck").prop('checked', true);
   			}
 
-  			socket.emit("suggestion inserted", {comment_id: comment_id, comment_text:comment, userid: address});
+  			socket.emit("suggestion inserted", {comment_text:submittedComment, cookie_val: cookie_val});
 
 		});
 	}
@@ -255,7 +266,7 @@ function submitComments() {
 	console.log(Comment);
 	sessionStorage.setItem("allComments", JSON.stringify(obj));
 
-	socket.emit('comment submitted', {comment:Comment.comment, category: Comment.category})
+	socket.emit('comment submitted', {comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 }
 
 function resetPage() {
@@ -294,7 +305,7 @@ function showComments() {
 		$("#submitted-comments").append(submitted);
 	}
 
-	socket.emit('showed comments');
+	socket.emit('showed comments', {cookie_val: cookie_val});
 }
 
 //filter suggestions based on what user is typing

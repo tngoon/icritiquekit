@@ -11,7 +11,7 @@ const INDEX = path.join(__dirname, '/public');
 const CONTROL = path.join(__dirname)
 const server = express()
 		.use(express.static(__dirname + '/public'))
-		.listen(PORT, () => console.log('Listening on ${PORT}'));
+		.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 function updateJSON(file, obj) {
 	jsonfile.writeFile(file, obj, {spaces: 4}, function (err) {
@@ -41,7 +41,7 @@ function saveNewComment(data, category, address, new_comment) {
 
 	updateJSON(comments_file, comments);
 
-	logs.push({"time": new Date().getTime(),
+	logs.logs.push({"time": new Date().getTime(),
 					"user": address,
 					"event": "comment submitted",
 					"category": category,
@@ -52,66 +52,60 @@ function saveNewComment(data, category, address, new_comment) {
  
 
 io.on('connection', function(socket) {
-	var address = socket.handshake.address;
+	var address = socket.handshake.headers['x-forwarded-for'];
 	if (address == undefined) address = "local";
 	console.log('New connection from ' + address);
 
 	sockets[address] = socket.id;
+	console.log(sockets);
 
-	socket.on('set cookie', function(address) {
+	socket.on('set cookie', function(cookie_val) {
 		console.log('setting cookie');
-		console.log('address');
-		logs.push({"time": new Date().getTime(),
-						"user": address,
+		console.log(cookie_val);
+		logs.logs.push({"time": new Date().getTime(),
+						"user": cookie_val,
 						"event": "new connection"});
 
 		updateJSON(log_file, logs);
+
+		if (user_data[cookie_val] == undefined) {
+			console.log("starting new save");
+			user_data[cookie_val] = {};
+			user_data[cookie_val]["comments"] = [];
+			updateJSON(user_file, user_data);
+		}
 	});
 
 	socket.on('consent', function(data) {
-		user_data[data.address]["consent"] = data.consent;
+		user_data[data.cookie_val]["consent"] = data.consent;
 		updateJSON(user_file, user_data);
 	});
 
-	socket.on('loaded design', function(data) {
-		logs.push({"time": new Date().getTime(),
-						"user": data.address,
-						"event": "loaded design",
-						"design_id": data.design_id})
-	});
-
 	socket.on('suggestion inserted', function(data) {
-		logs.push({"time": new Date().getTime(),
-						"user": data.address,
+		logs.logs.push({"time": new Date().getTime(),
+						"user": data.cookie_val,
 						"event": "inserted suggestion",
 						"comment ID": data.comment_id,
-						"suggestion text": data.suggestion_text,
-						"comment text": data.comment_text,
-						"selection length": data.suggestion_length,
-						"design_id": data.design_id});
+						"comment text": data.comment_text});
 
 		updateJSON(log_file, logs);
 	});
 
-	socket.on('user category added', function(data) {
-		logs.push({"time": new Date().getTime(),
-					"user": data.address,
-					"event": "added category",
-					"comment_text":  data.comment_text,
-					"category_added": data.category_add,
-					"design_id": data.design_id});
+	socket.on('comment submitted', function(data) {
+
+  		// save to user data
+  		user_data[data.cookie_val].comments.push({"comment": data.comment,
+  									"category": data.category
+  		});
+  		updateJSON(user_file, user_data);
+
+  		logs.logs.push({"time": new Date().getTime(),
+						"user": data.cookie_val,
+						"event": "submitted comment",
+						"comment": data.comment});
 
 		updateJSON(log_file, logs);
 	});
 
-	socket.on('user category removed', function(data) {
-  		logs.push({ "time": new Date().getTime(), 
-  						"user": data.userid,
-  						"event": "removed category", 
-  						"comment text": data.comment_text,
-  						"category removed": data.category_remove,
-  						"design_id": data.design_id}); 
-  		updateJSON(log_file, logs);	
-	});
-})
+});
 
