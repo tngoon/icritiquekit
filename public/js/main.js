@@ -2,7 +2,8 @@
 $(window).on('load', function() {
 	if(!Cookies.get('modalShown')) {
 		$('#consent-modal').modal('show');
-		$('#consent-modal').load("../consent.html");
+		$('#consent-modal').load("/consent.html");
+		// $('#consent-modal').load("../consent.html");
 		Cookies.set('modalShown', true, 2);
 	} else {
 		console.log("modal has been shown");
@@ -11,15 +12,19 @@ $(window).on('load', function() {
 
 $(function() {
 	// load html files in correct divs
-	$("#navbar-container").load("../navbar.html");
-	$("#indicators").load("../indicators.html");
-	$('#dynasuggestions').load("../dynasuggestions.html");
-	$('#help-modal').load("../help.html");
+	$("#navbar-container").load("/navbar.html");
+	$("#indicators").load("/indicators.html");
+	$('#dynasuggestions').load("/dynasuggestions.html");
+	$('#help-modal').load("/help.html");
+	// $("#navbar-container").load("../navbar.html");
+	// $("#indicators").load("../indicators.html");
+	// $('#dynasuggestions').load("../dynasuggestions.html");
+	// $('#help-modal').load("../help.html");
 });
 
 $(function() {
-	socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
-	// socket = io();
+	// socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
+	socket = io();
 
 	// check for cookie
 	if (Cookies.get('critiquekit-cookie') != undefined) {
