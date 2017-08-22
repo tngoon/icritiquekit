@@ -19,8 +19,8 @@ $(function() {
 
 //connect to server
 $(function() {
-	socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
-	// socket = io();
+	//socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
+	socket = io();
 
 	// check for cookie
 	if (Cookies.get('critiquekit-cookie') != undefined) {
@@ -50,7 +50,6 @@ function validateForm() {
 // Categorize and store comments after submitting
 function submitComments() {
 	var input = $('#comment-text').val().split(/\n/);
-	var wordlength = input.split(' ').length;
 	var allComments = localStorage.getItem("allComments");
 	var Comment = {};
 	var obj = [];
@@ -59,24 +58,28 @@ function submitComments() {
 		obj=JSON.parse(allComments)
 	}
 
-	if(input != "") {
-		for (var i=0; i<input.length; i++) {		
+	if(input.length != 0 && input[0] != "") {
+		for (var i=0; i<input.length; i++) {	
+			var wordlength = input[i].split(' ').length;	
 			if(/\S/.test(input[i])) {
 			Comment['comment'] = $.trim(input[i]);
+				var isspecific;
+				var isactionable;
+				var isjustified;
 				if (wordlength > 5) {
-					var  specific == 1;
+					isspecific = 1;
 				} else {
-					var specific == 0;
+					isspecific = 0;
 				}
-				if (input.match(/(maybe|try|should|would|make|use|consider|remove|use|add|please)/gi)) {
-					var isactionable == 1;
+				if (Comment['comment'].match(/(maybe|try|should|would|make|use|consider|remove|use|add|please)/gi)) {
+					isactionable = 1;
 				} else {
-					var isactionable  == 0;
+					isactionable  = 0;
 				} 
-				if (text.match(/(because|so|might|just)/gi)) {
-					var isjustified == 1;
+				if (Comment['comment'].match(/(because|so|might|just)/gi)) {
+					isjustified = 1;
 				} else {
-					var isjustified == 0;
+					isjustified = 0;
 				}
 
 				if (isspecific==1 && isactionable == 1 && isjustified == 1) {
@@ -96,14 +99,14 @@ function submitComments() {
 				}
 			}	
 		}
-	} else if(input == "") {
+	} else {
 		alert("You can't submit an empty comment!");
 	}
 
 	obj.push(Comment);
 	console.log(Comment);
 	console.log(Comment.category)
-	sessionStorage.setItem("allComments", JSON.stringify(obj));
+	localStorage.setItem("allComments", JSON.stringify(obj));
 
 	//reset textbox value to blank
 	$("#comment-text").val('');

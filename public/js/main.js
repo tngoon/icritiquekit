@@ -231,7 +231,7 @@ function submitComments() {
 		obj=JSON.parse(allComments)
 	}
 
-	if(input != "") {
+	if(input.length != 0 && input[0] != "") {
 		for (var i=0; i<input.length; i++) {			
 			if(/\S/.test(input[i])) {
 				Comment['comment'] = $.trim(input[i]);
@@ -253,7 +253,7 @@ function submitComments() {
 				}
 			}			
 		}
-	} else if(input == "") {
+	} else {
 		alert("You can't submit an empty comment!");
 	}
 	console.log(Comment.category)
