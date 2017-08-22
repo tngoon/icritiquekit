@@ -98,8 +98,8 @@ io.on('connection', function(socket) {
 	socket.on('comment submitted', function(data) {
 
   		// save to user data
-  		user_data[data.cookie_val].comments.push({"comment": Comment.comment,
-  									"category": Comment.category
+  		user_data[data.cookie_val].comments.push({"comment": data.comment,
+  									"category": data.category
   		});
   		updateJSON(user_file, user_data);
 
