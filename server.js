@@ -34,7 +34,8 @@ var comments_file = "comments.json";
 var design_data = [];
 var design_file = "design_data.json"
 
-const io = socketIO(server);
+// const io = socketIO(server);
+const io=socketIO.listen(server);
 
 function saveNewComment(data, category, address, new_comment) {
 	comments.push({"comment": new_comment,
