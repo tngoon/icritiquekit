@@ -138,7 +138,7 @@ function showComments() {
 function loadDesign() {
 	document.getElementById("design1").style.display="none";
 	document.getElementById("design2").style.display="block";
-	socket.emit('next design', {condition: "control", cookie_val: cookie_val})
+	console.log('next design');
 }
 
 
