@@ -31,47 +31,7 @@ function validateForm() {
 	}
 }
 
-//check for characteristics of comments
-function checkComments() {
-	var text = $("#comment-text").val();
-	var wordlength = text.split(' ').length;
-	var words = text.split(' ');
-
-	var submit = document.getElementById("submit-comment");
-
-	if(wordlength >5) {
-
-	}
-	setTimeout(function() {
-		if (wordlength < 5) {
-			spec.style.display = "block";
-			opendefault.style.display = "none";
-		} else if (wordlength > 5) {
-			speccheck.checked = true;
-			spec.style.display = "none";
-			complete.style.display = "none";
-			opendefault.style.display = "none";
-		} else {
-			opendefault.style.display = "block";
-			speccheck.checked = false;
-		}
-		if(text.match(/(maybe|try|should|would|make|use|consider|remove|use|add|please)/gi)) {
-			actcheck.checked = true;
-			opendefault.style.display = "none";
-			action.style.display = "none";
-			actjust.style.display = "none";
-		} 
-
-		if(text.match(/(because|so|might|just)/gi)) {
-			justcheck.checked = true;
-			opendefault.style.display = "none";
-			justify.style.display =  "none";
-			actjust.style.display = "none";
-		}
-	}, 4000);
-}
-
-// Store comments after submitting
+// Categorize and store comments after submitting
 function submitComments() {
 	var input = $('#comment-text').val().split(/\n/);
 	var wordlength = input.split(' ').length;
@@ -136,12 +96,14 @@ function submitComments() {
 	$("#submit-comment").className = '';
 	$("#submit-comment").addClass('btn btn-danger');
 
+	//send to server
 	socket.emit('comment submitted',  {condition: "control", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 }
+
 //show submitted comments on click
 function showComments() {
 	$("#submitted-comments").show();
-	// var item = Cookies.getJSON('allComments');
+
 	var item = JSON.parse(localStorage.getItem("allComments"));
 	console.log(item);
 	var submitted = '';
@@ -150,17 +112,13 @@ function showComments() {
 		submitted = 'Comment: ' + item[i].comment + '<hr>'
 		// document.getElementById("submitted-comments").innerHTML = item[i].comment;
 		$("#submitted-comments").append(submitted);
+		socket.emit('showed comments', {condition: "control", cookie_val: cookie_val})
 	}
 }
 
-//form validation to ensure consent form is clicked
-function validateForm(x) {
-	if(x.checked) {
-		document.getElementById("consent-button").classList.remove("disabled");
-	} else {
-		return false;
-	}
+function loadDesign() {
+	document.getElementById("design1").style.display="none";
+	document.getElementById("design2").style.display="block";
 }
-
 
 

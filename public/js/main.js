@@ -31,13 +31,9 @@ $(function() {
 		socket.emit('set cookie', cookie_val);
 	}
 });
+
 //form validation to ensure consent form is clicked
 function validateForm() {
-	// if(x.checked) {
-	// 	document.getElementById("consent-button").classList.remove("disabled");
-	// } else {
-	// 	return false;
-	// }
 	if(document.getElementById("consent_yes").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
 		socket.emit('consent', {cookie_val: cookie_val, consent:true});
@@ -71,13 +67,12 @@ function copyText(x) {
   				$("#justcheck").prop('checked', true);
   			}
 
-  			socket.emit("suggestion inserted", {comment_text:submittedComment, cookie_val: cookie_val});
+  			socket.emit("suggestion inserted", {condition: "critiquekit", comment_text:submittedComment, cookie_val: cookie_val});
 
 		});
 	}
 
-
-
+//check for characteristics of comments
 function checkComments() {
 	var text = $("#comment-text").val();
 	var wordlength = text.split(' ').length;
@@ -129,7 +124,7 @@ function checkComments() {
 	//show/hide divs based on checkboxes
 	if(speccheck.checked && !actcheck.checked && !justcheck.checked) {
 		opendefault.style.display = "none";
-		action.style.display = "block";
+		action.style.display = "none";
 		actjust.style.display = "block";
 		justify.style.display = "none";
 		submit.classList.remove('btn-danger');
@@ -250,7 +245,7 @@ function submitComments() {
 				} else if(!speccheck.checked && actcheck.checked && !justcheck.checked) {
 					Comment['category']= 010;
 				} else if(!speccheck.checked && !actcheck.checked && justcheck.checked) {
-					Comment['category']= 101;
+					Comment['category']= 001;
 				} else if(!speccheck.checked && actcheck.checked && justcheck.checked) {
 					Comment['category']= 011;
 				} else {
@@ -266,7 +261,7 @@ function submitComments() {
 	console.log(Comment);
 	sessionStorage.setItem("allComments", JSON.stringify(obj));
 
-	socket.emit('comment submitted', {comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
+	socket.emit('comment submitted', {condition: "critiquekit", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 }
 
 function resetPage() {
@@ -293,7 +288,7 @@ function showComments() {
 	$("#need-actionable").hide();
 	$("#need-justify").hide();
 	$("#act-justify").hide();
-	// var item = Cookies.getJSON('allComments');
+
 	var item = JSON.parse(sessionStorage.getItem("allComments"));
 	console.log(item);
 	var submitted = '';
@@ -305,7 +300,7 @@ function showComments() {
 		$("#submitted-comments").append(submitted);
 	}
 
-	socket.emit('showed comments', {cookie_val: cookie_val});
+	socket.emit('showed comments', {condition: "critiquekit", cookie_val: cookie_val});
 }
 
 //filter suggestions based on what user is typing
