@@ -24,7 +24,7 @@ $(function() {
 
 	// check for cookie
 	if (Cookies.get('critiquekit-cookie') != undefined) {
-		cookie_val = Cookies.get('critiquekit-cookie');
+		cookie_val = Cookies.get('critiquekit-cookie').cookie_val;
 		socket.emit('set cookie', cookie_val);
 	} else {
 		cookie_val = Math.random().toString(10) + new Date().getTime();
