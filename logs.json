@@ -1,0 +1,58 @@
+{
+    "logs": [
+        {
+            "time": 1503383675248,
+            "user": "{\"cookie_val\":\"{\\\"cookie_val\\\":\\\"0.88006351425340611503383374650\\\"}\",\"consent\":true}",
+            "event": "new connection"
+        },
+        {
+            "time": 1503383675253,
+            "user": "{\"cookie_val\":\"{\\\"cookie_val\\\":\\\"0.88006351425340611503383374650\\\"}\",\"consent\":true}",
+            "event": "new connection"
+        },
+        {
+            "time": 1503383815322,
+            "user": "{\"cookie_val\":\"{\\\"cookie_val\\\":\\\"0.88006351425340611503383374650\\\"}\",\"consent\":true}",
+            "event": "submitted comment",
+            "comment": "Well done on the site overall. It is clear to see what the purpose of the app is. However, there is some redundant information that you should remove."
+        },
+        {
+            "time": 1503383867421,
+            "user": "{\"cookie_val\":\"{\\\"cookie_val\\\":\\\"0.88006351425340611503383374650\\\"}\",\"consent\":true}",
+            "event": "new connection"
+        },
+        {
+            "time": 1503383867440,
+            "user": "{\"cookie_val\":\"{\\\"cookie_val\\\":\\\"0.88006351425340611503383374650\\\"}\",\"consent\":true}",
+            "event": "new connection"
+        },
+        {
+            "time": 1503383869153,
+            "user": "{\"cookie_val\":\"{\\\"cookie_val\\\":\\\"0.88006351425340611503383374650\\\"}\",\"consent\":true}",
+            "event": "inserted suggestion",
+            "comment text": "Important information is easily found."
+        },
+        {
+            "time": 1503383882908,
+            "user": "{\"cookie_val\":\"{\\\"cookie_val\\\":\\\"0.88006351425340611503383374650\\\"}\",\"consent\":true}",
+            "event": "new connection"
+        },
+        {
+            "time": 1503383882933,
+            "user": "{\"cookie_val\":\"{\\\"cookie_val\\\":\\\"0.88006351425340611503383374650\\\"}\",\"consent\":true}",
+            "event": "new connection"
+        },
+        {
+            "time": 1503383884764,
+            "user": "{\"cookie_val\":\"{\\\"cookie_val\\\":\\\"0.88006351425340611503383374650\\\"}\",\"consent\":true}",
+            "event": "inserted suggestion",
+            "comment text": "Page is laid out in a clear and appealing manner."
+        },
+        {
+            "time": 1503383886723,
+            "user": "{\"cookie_val\":\"{\\\"cookie_val\\\":\\\"0.88006351425340611503383374650\\\"}\",\"consent\":true}",
+            "event": "submitted comment",
+            "comment": "Page is laid out in a clear and appealing manner."
+        }
+    ]
+}
