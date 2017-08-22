@@ -14,7 +14,7 @@ const server = express()
 	    	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	    	next();
 		})
-		.use(express.static(__dirname + '/public'), {index: '_'})
+		.use(express.static(__dirname + '/public'))
 		.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 function updateJSON(file, obj) {
