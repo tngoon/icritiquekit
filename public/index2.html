@@ -11,7 +11,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
-	<script src="js/control.js"></script>
+	<!--<script src="js/control.js"></script>-->
 	<script src="/js/socket.io.js"></script>
 	<script src="/js/cookies.js"></script>
 	<script src="/js/control.js"></script>
@@ -29,7 +29,7 @@
 		<div id="submitted-comments" style="display:none" class="scroll-box"></div>
 		<div class="comment-btns">
 			<a href="#" id="view-comments" onclick="showComments()"><i class="fa fa-plus"></i> View my comments</a>
-			<button type="button" id="submit-comment" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Make sure your feedback is complete before submitting!" onClick="submitComments()">Submit</button>
+			<button type="button" id="submit-comment" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Make sure your feedback is complete before submitting!" onclick="submitComments()">Submit</button>
 			<button type="button" id="cancel-comment" class="btn btn-default" onClick="window.location.reload()">Cancel</button>
 		</div>
 	</div>
