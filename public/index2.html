@@ -6,13 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CritiqueKit</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="public/main.css" />
+	<link rel="stylesheet" href="main.css" />
 	<script src="https://use.fontawesome.com/824b7cc593.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
+	<script src="js/socket.io.js"></script>
 	<script src="js/cookies.js"></script>
-	<script src="js/control.js"></script>
+	<script src="js/main.js"></script>
 </head>
 <body>
 	<div id="sidebar" class="stretch">
@@ -50,6 +51,9 @@
 			        <span class="fa fa-check-circle"></span> I'm done!
 			      </a>
 			    </li>
+			    <li class="navbar-right">
+      				<a id="next_design" data-target='#design2' onclick="loadDesign()" style="color: #ffffff">Next Design</a>
+    			</li>
 			  </ul>
 			</nav>
 			<!--Help Modal link-->
@@ -105,7 +109,7 @@
 			        <h4 class="modal-title">Thanks for using CritiqueKit!</h4>
 			      </div>
 			      <div class="modal-body">
-			         <p>Thank you for participating in this study. Do NOT yet close this window. Please contact your experimenter for further instructions and debriefing.</p>
+			         <p>Thank you for participating in this study. Please contact your experimenter for further instructions and debriefing.</p>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -116,6 +120,7 @@
 		<!-- <div class="modal fade" id="consent-modal" tabindex="-1" role="dialog"></div> -->
 		<div class="modal fade" id="consent-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"></div>
 	<iframe src="http://www.cottagelajolla.com/">
+	<iframe id="design2" src="http://phosphenesapp.herokuapp.com/home" style="display:none"></iframe>
 	</div>
 </body>
 </html>
