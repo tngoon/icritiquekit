@@ -19,7 +19,7 @@ $(function() {
 
 $(function() {
 	// socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
-	socket = io();
+	socket = io({transports: ['websocket'], upgrade: false});
 
 	// check for cookie
 	if (Cookies.get('critiquekit-cookie') != undefined) {
@@ -112,14 +112,13 @@ function checkComments() {
 			action.style.display = "none";
 			actjust.style.display = "none";
 		} 
-
 		if(text.match(/(because|so|might|just)/gi)) {
 			justcheck.checked = true;
 			opendefault.style.display = "none";
 			justify.style.display =  "none";
 			actjust.style.display = "none";
 		}
-	}, 4000);
+	}, 3500);
 
 	//show/hide divs based on checkboxes
 	if(speccheck.checked && !actcheck.checked && !justcheck.checked) {
@@ -277,7 +276,6 @@ function resetPage() {
 	$("#actcheck").prop('checked', false);
 	$("#justcheck").prop('checked', false);
 	$("#speccheck").prop('checked', false);
-
 }
 
 //show submitted comments
