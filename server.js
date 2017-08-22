@@ -111,5 +111,16 @@ io.on('connection', function(socket) {
 		updateJSON(log_file, logs);
 	});
 
+	socket.on('next design', function(data) {
+		user_data[data.cookie_val].comments.push[{"condition": 'control'}]
+	});
+
+	updateJSON(user_file, user_data);
+
+	logs.logs.push({"time": new Date().getTime(),
+					"user": data.cookie_val,
+					"event": "clicked next design",
+					"condition": data.condition})
+
 });
 
