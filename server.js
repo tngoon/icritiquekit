@@ -10,6 +10,11 @@ const path = require('path');
 const INDEX = path.join(__dirname, '/public');
 const CONTROL = path.join(__dirname)
 const server = express()
+		.all('/', function(req, res, next) {
+	    	res.header("Access-Control-Allow-Origin", "*");
+	    	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	    next();
+		})
 		.use(express.static(__dirname + '/public'))
 		.listen(PORT, () => console.log(`Listening on ${PORT}`));
 

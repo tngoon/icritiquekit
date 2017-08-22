@@ -17,16 +17,32 @@ $(function() {
 	$('#help-modal').load("public/help.html")
 });
 
+//connect to server
+$(function() {
+	socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
+	// socket = io();
+
+	// check for cookie
+	if (Cookies.get('critiquekit-cookie') != undefined) {
+		cookie_val = Cookies.get('critiquekit-cookie');
+		socket.emit('set cookie', cookie_val);
+	} else {
+		cookie_val = Math.random().toString(10) + new Date().getTime();
+		Cookies.set('critiquekit-cookie', {condition: "control", cookie_val: cookie_val}, { expires: 7 });
+		socket.emit('set cookie', cookie_val);
+	}
+});
+
 //form validation to ensure consent form is clicked
 function validateForm() {
 	if(document.getElementById("consent_yes").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
-		socket.emit('consent', {cookie_val: cookie_val, consent:true});
+		socket.emit('consent', {condition: "control", cookie_val: cookie_val, consent:true});
 		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: true});	
 		console.log('working');
 	} else if (document.getElementById("consent_no").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
-		socket.emit('consent', {cookie_val: cookie_val, consent:false});
+		socket.emit('consent', {condition, "control", cookie_val: cookie_val, consent:false});
 		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: false});
 	}
 }
@@ -97,7 +113,7 @@ function submitComments() {
 	$("#submit-comment").addClass('btn btn-danger');
 
 	//send to server
-	socket.emit('comment submitted',  {condition: "control", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
+	socket.emit('control comment submitted',  {condition: "control", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 }
 
 //show submitted comments on click
@@ -112,7 +128,7 @@ function showComments() {
 		submitted = 'Comment: ' + item[i].comment + '<hr>'
 		// document.getElementById("submitted-comments").innerHTML = item[i].comment;
 		$("#submitted-comments").append(submitted);
-		socket.emit('showed comments', {condition: "control", cookie_val: cookie_val})
+		socket.emit('control showed comments', {condition: "control", cookie_val: cookie_val})
 	}
 }
 
