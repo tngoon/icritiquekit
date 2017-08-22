@@ -2,7 +2,7 @@
 $(window).on('load', function() {
 	if(!Cookies.get('modalShown')) {
 		$('#consent-modal').modal('show');
-		$('#consent-modal').load("public/consent.html");
+		$('#consent-modal').load("../consent.html");
 		Cookies.set('modalShown', true, 2);
 	} else {
 		console.log("modal has been shown");
@@ -14,7 +14,7 @@ $(function() {
 	// $("#navbar-container").load("public/navbar.html");
 	// $("#indicators").load("public/indicators.html")
 	// $('#dynasuggestions').load("public/dynasuggestions.html")
-	$('#help-modal').load("public/help.html")
+	$('#help-modal').load("../help.html")
 });
 
 //connect to server
@@ -42,7 +42,7 @@ function validateForm() {
 		console.log('working');
 	} else if (document.getElementById("consent_no").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
-		socket.emit('consent', {condition, "control", cookie_val: cookie_val, consent:false});
+		socket.emit('consent', {condition: "control", cookie_val: cookie_val, consent:false});
 		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: false});
 	}
 }
