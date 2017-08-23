@@ -19,8 +19,8 @@ $(function() {
 
 
 $(function() {
-	socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
-	//socket = io();
+	// socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
+	socket = io();
 
 	// check for cookie
 	if (Cookies.get('critiquekit-cookie') != undefined) {
@@ -244,22 +244,23 @@ function ShowHideDiv() {
 
 	var checked = [];
 	if(speccheck.checked) {
-		var x == 1;
+		var x = 1;
 	} else {
-		var x == 0;
+		var x = 0
 	}
 	if(actcheck.checked) {
-		var y == 1; 
+		var y = 1;
 	} else {
-		var y == 0;
+		var y = 0;
 	} if(justcheck.checked) {
-		var z == 1;
+		var z = 1;
 	} else {
-		var z == 0;
+		var z = 0;
 	}
 
-	checked.append(x,y,z);
+	checked.push(x,y,z);
 	console.log(checked);
+	socket.emit('category clicked', {condition: "critiquekit", categories: checked, cookie_val: cookie_val})
 }
 
 //store comments as JSON

@@ -118,18 +118,27 @@ io.on('connection', function(socket) {
 						"condition": data.condition,
 						"user": data.cookie_val,
 						"event": "showed comments"});
+		updateJSON(log_file, logs);
 	});
 
 	socket.on('next design', function(data) {
 		logs.logs.push({"time": new Date().getTime(),
 					"condition": data.condition,
 					"user": data.cookie_val,
-					"event": "clicked next design"})
+					"event": "clicked next design"});
+		updateJSON(log_file, logs);
 	});
 
 	socket.on('clicked category', function(data) {
-		user_data[data.cookie_val].["clicked_categories"] = data.checkbox
-	})
+		user_data[data.cookie_val].comments.push({"categories": data.categories});
+		updateJSON(user_file, user_data);
+
+		logs.logs.push({"time": new Date().getTime(),
+						"condition": data.condition,
+						"user": data.cookie_val,
+						"event": "clicked categories",
+						"comment": data.comment});
+	});
 
 });
 
