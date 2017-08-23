@@ -11,9 +11,6 @@ $(window).on('load', function() {
 
 // load html files in correct divs
 $(function() {
-	// $("#navbar-container").load("public/navbar.html");
-	// $("#indicators").load("public/indicators.html")
-	// $('#dynasuggestions').load("public/dynasuggestions.html")
 	$('#help-modal').load("../help.html")
 });
 
@@ -32,6 +29,19 @@ $(function() {
 		socket.emit('set cookie', cookie_val);
 	}
 });
+
+$(function() {
+	$('body').on('click', "#submit-comment", function() {
+		$("#comment-text").val('');
+		$("#submit-comment").className = '';
+		$("#submit-comment").addClass('btn btn-danger');
+	});
+	$('body').on('click', "#cancel-comment", function() {
+		$("#comment-text").val('');
+		$("#submit-comment").className = '';
+		$("#submit-comment").addClass('btn btn-danger');
+	});
+}
 
 //form validation to ensure consent form is clicked
 function validateForm() {
@@ -107,13 +117,6 @@ function submitComments() {
 	console.log(Comment);
 	console.log(Comment.category)
 	localStorage.setItem("allComments", JSON.stringify(obj));
-
-	//reset textbox value to blank
-	$("#comment-text").val('');
-	
-	//reset the Submit button
-	$("#submit-comment").className = '';
-	$("#submit-comment").addClass('btn btn-danger');
 
 	//send to server
 	socket.emit('control comment submitted',  {condition: "control", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
