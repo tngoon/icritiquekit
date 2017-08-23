@@ -47,11 +47,11 @@ $(function() {
 function validateForm() {
 	if(document.getElementById("consent_yes").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
-		socket.emit('consent', {condition: "control", cookie_val: cookie_val, consent:true});
+		socket.emit('consent', {cookie_val: cookie_val, consent:true});
 		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: true});	
 	} else if (document.getElementById("consent_no").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
-		socket.emit('consent', {condition: "control", cookie_val: cookie_val, consent:false});
+		socket.emit('consent', {cookie_val: cookie_val, consent:false});
 		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: false});
 	}
 }
