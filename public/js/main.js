@@ -17,9 +17,10 @@ $(function() {
 	$('#help-modal').load("help.html");
 });
 
+
 $(function() {
 	// socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
-	socket = io({transports: ['websocket'], upgrade: false});
+	socket = io();
 
 	// check for cookie
 	if (Cookies.get('critiquekit-cookie') != undefined) {
@@ -32,13 +33,27 @@ $(function() {
 	}
 });
 
+$(function() {
+	$('body').on('click', "#submit-comment", function() {
+		$("#comment-text").val('');
+		$('input:checkbox').prop('checked', false);
+		$("#open-default").show();
+		$("#complete").hide();
+		$("#need-specific").hide();
+		$("#need-actionable").hide();
+		$("#need-justify").hide();
+		$("#act-justify").hide();
+		$("#submit-comment").className = '';
+		$("#submit-comment").addClass('btn btn-danger');
+	});
+})
+
 //form validation to ensure consent form is clicked
 function validateForm() {
 	if(document.getElementById("consent_yes").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
 		socket.emit('consent', {cookie_val: cookie_val, consent:true});
 		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: true});	
-		console.log('working');
 	} else if (document.getElementById("consent_no").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
 		socket.emit('consent', {cookie_val: cookie_val, consent:false});
@@ -237,6 +252,8 @@ function submitComments() {
 
 				if(speccheck.checked && actcheck.checked && justcheck.checked) {
 					Comment['category'] = 111;
+				} else if(speccheck.checked && !actcheck.checked && !justcheck.checked) {
+					Comment['category'] = 100;
 				} else if(speccheck.checked && actcheck.checked) {
 					Comment['category']= 110;
 				} else if(speccheck.checked && justcheck.checked) {
@@ -261,21 +278,6 @@ function submitComments() {
 	sessionStorage.setItem("allComments", JSON.stringify(obj));
 
 	socket.emit('comment submitted', {condition: "critiquekit", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
-}
-
-function resetPage() {
-	$("#comment-text").val('');
-	$("#open-default").show();
-	$("#complete").hide();
-	$("#need-specific").hide();
-	$("#need-actionable").hide();
-	$("#need-justify").hide();
-	$("#act-justify").hide();
-	$("#submit-comment").className = '';
-	$("#submit-comment").addClass('btn btn-danger');
-	$("#actcheck").prop('checked', false);
-	$("#justcheck").prop('checked', false);
-	$("#speccheck").prop('checked', false);
 }
 
 //show submitted comments

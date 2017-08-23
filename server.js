@@ -104,6 +104,7 @@ io.on('connection', function(socket) {
   		updateJSON(user_file, user_data);
 
   		logs.logs.push({"time": new Date().getTime(),
+  						"condition": data.condition;
 						"user": data.cookie_val,
 						"event": "submitted comment",
 						"comment": data.comment});
