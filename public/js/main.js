@@ -341,11 +341,11 @@ function showComments() {
 
 //filter suggestions based on what user is typing
 function filterSuggestions() {
-	var input = document.getElementById("comment-text");
+	var input = document.getElementById("search-bar");
 	var box = document.getElementById("dynasuggestions");
 	var list = box.getElementsByTagName("li");
 	var filter = input.value.toUpperCase();
-	var words = $("#comment-text").val().split(' ');
+	var words = $("#search-bar").val().split(' ');
 	// var timeout = null;
 
 	for (i=0; i<list.length; i++) {
