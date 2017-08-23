@@ -240,7 +240,26 @@ function ShowHideDiv() {
 		submit.classList.remove('btn-danger');
 		submit.classList.remove('btn-warning');
 		submit.classList.add('btn-success');
-	}	
+	}
+
+	var checked = [];
+	if(speccheck.checked) {
+		var x == 1;
+	} else {
+		var x == 0;
+	}
+	if(actcheck.checked) {
+		var y == 1; 
+	} else {
+		var y == 0;
+	} if(justcheck.checked) {
+		var z == 1;
+	} else {
+		var z == 0;
+	}
+
+	checked.append(x,y,z);
+	console.log(checked);
 }
 
 //store comments as JSON
@@ -340,7 +359,8 @@ function filterSuggestions() {
 function loadDesign() {
 	document.getElementById("design1").style.display="none";
 	document.getElementById("design2").style.display="block";
-	console.log('next design')
+	console.log('next design');
+	socket.emit('next design', {condition:"critiquekit", cookie_val: cookie_val});
 }
 
 

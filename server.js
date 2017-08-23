@@ -67,7 +67,7 @@ io.on('connection', function(socket) {
 		console.log('setting cookie');
 		console.log(cookie_val);
 		logs.logs.push({"time": new Date().getTime(),
-						"user": cookie_val,
+						"user": cookie_val;
 						"event": "new connection"});
 
 		updateJSON(log_file, logs);
@@ -88,6 +88,7 @@ io.on('connection', function(socket) {
 	socket.on('suggestion inserted', function(data) {
 		logs.logs.push({"time": new Date().getTime(),
 						"user": data.cookie_val,
+						"condition": data.condition,
 						"event": "inserted suggestion",
 						"comment ID": data.comment_id,
 						"comment text": data.comment_text});
@@ -111,6 +112,24 @@ io.on('connection', function(socket) {
 
 		updateJSON(log_file, logs);
 	});
+
+	socket.on('showed comments', function(data) {
+		logs.logs.push({"time": new Date().getTime(),
+						"condition": data.condition,
+						"user": data.cookie_val,
+						"event": "showed comments"});
+	});
+
+	socket.on('next design', function(data) {
+		logs.logs.push({"time": new Date().getTime(),
+					"condition": data.condition,
+					"user": data.cookie_val,
+					"event": "clicked next design"})
+	});
+
+	socket.on('clicked category', function(data) {
+		user_data[data.cookie_val].["clicked_categories"] = data.checkbox
+	})
 
 });
 
