@@ -33,6 +33,7 @@ $(function() {
 	}
 });
 
+//reset page w/o reloading when submit and cancel buttons hit
 $(function() {
 	$('body').on('click', "#submit-comment", function() {
 		$("#comment-text").val('');
