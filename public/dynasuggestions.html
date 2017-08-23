@@ -1,12 +1,10 @@
-
-<div id="open-default">
-	<p class="need-suggestion" style="color: #000000">Provide feedback on something specific you found well done and something that could be improved about the design. Need some suggestions?</p>
+<div id="search">
 	<div class="row">
 	  <div class="col-lg-12">
 	    <div class="input-group">
-	      <input type="text" class="form-control SearchBar" id="search-bar" placeholder="Search for feedback suggestions">
+	      <input type="text" class="form-control SearchBar" id="search-bar" placeholder="Search for feedback suggestions" onkeyup="filterSuggestions()">
 	      <span class="input-group-btn">
-	        <button class="btn btn-default SearchButton" type="button" onclick="filterSuggestions()">
+	        <button class="btn btn-default SearchButton" type="button">
 	            <span class=" glyphicon glyphicon-search SearchIcon" ></span>
 	        </button>
 	      </span>
@@ -14,6 +12,9 @@
 	  </div>
 	</div>
 	<br>
+</div>
+<div id="open-default">
+	<p class="need-suggestion" style="color: #000000">Provide feedback on something specific you found well done and something that could be improved about the design. Need some suggestions?</p>
 	<p style="font-size: 14px"><b>Well Done:</b></p>
 	<ul id="welldone" class="base base-scroll">
 		<li><a href="#" onclick="copyText(this)">Important information is easily found.</a></li>
@@ -33,7 +34,6 @@
 
 <div id="need-specific" style="display: none">
 	<p class="warntext">Please make your comment more <b>specific</b>. Need some suggestions?</p>
-	<br>
 	<ul id="specific" class="scroll-box">
 		<li><a href="#" onclick="copyText(this)">I like how the headers stand out on the page.</a></li>
 		<li><a href="#" onclick="copyText(this)">The headers make important information stand out.</a></li>
@@ -51,7 +51,6 @@
 
 <div id="need-actionable" style="display: none">
 	<p class="warntext">Please make your comment <b>actionable</b>. Need some suggestions?</p>
-	<br>
 	<ul id="action" class="scroll-box">
 		<li><a href="#" onclick="copyText(this)">Use a 1 or 2-column layout.</a></li>
 		<li><a href="#" onclick="copyText(this)">Include a filter for the user to sort through information.</a></li>
@@ -73,7 +72,6 @@
 
 <div id="need-justify" style="display: none">
 	<p class="warntext">Please make your comment <b>justified</b>. Need some suggestions?</p>
-	<br>
 	<ul id="justify" class="scroll-box">
 		<li><a href="#" onclick="copyText(this)">The hover is jarring and makes the text hard to read.</a></li>
 		<li><a href="#" onclick="copyText(this)">Information is cramped on the page.</a></li>
@@ -94,7 +92,6 @@
 
 <div id="act-justify" style="display:none">
 	<p class="warntext">Please make your comment <b>actionable and justified</b>. Need some suggestions?</p>
-	<br>
 	<ul id="actjust" class="scroll-box">
 		<li><a href="#" onclick="copyText(this)">The contrast makes this hard to read. Maybe add a shadow.</a></li>
 		<li><a href="#" onclick="copyText(this)">Brighter backgrounds should have darker foregrounds.</a></li>

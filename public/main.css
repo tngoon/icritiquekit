@@ -127,10 +127,13 @@ textarea {
 }
 
 #submitted-comments {
-	background-color: #DCDCDC;
-	font-size: 14px;
-	/*border: 1px solid;*/
+	border: 1px solid #ddd; 
 	padding: 5px;
+    background-color: #f6f6f6;
+    color: black; 
+    display: block; 
+    font-style: normal;
+	font-size: 14px;
 }
 /*
 .hidden {
@@ -201,6 +204,11 @@ li.base {
 .SearchBar {
 	padding: 5px;
 }
+
+.comment-list {
+	list-style-type: none;
+}
+
 /*------------INDICATORS------------*/
 #checkboxes{
 	padding: 10px;

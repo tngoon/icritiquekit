@@ -45,6 +45,7 @@ $(function() {
 		$("#act-justify").hide();
 		$("#submit-comment").className = '';
 		$("#submit-comment").addClass('btn btn-danger');
+		$("#search-bar").val('');
 	});
 })
 
@@ -59,8 +60,10 @@ $(function() {
 		$("#need-justify").hide();
 		$("#act-justify").hide();
 		$("#submitted-comments").hide();
+		$("#search").show();
 		$("#submit-comment").className = '';
 		$("#submit-comment").addClass('btn btn-danger');
+		$("#search-bar").val('');
 	});
 })
 
@@ -324,6 +327,7 @@ function showComments() {
 	$("#need-actionable").hide();
 	$("#need-justify").hide();
 	$("#act-justify").hide();
+	$("#search").hide();
 
 	var item = JSON.parse(sessionStorage.getItem("allComments"));
 	console.log(item);
@@ -333,7 +337,7 @@ function showComments() {
 		console.log(item[i].comment);
 		submitted = item[i].comment + '<hr>'
 		// document.getElementById("submitted-comments").innerHTML = item[i].comment;
-		$("#submitted-comments").append("Comment:" + submitted);
+		$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
 	}
 
 	socket.emit('showed comments', {condition: "critiquekit", cookie_val: cookie_val});
@@ -345,15 +349,16 @@ function filterSuggestions() {
 	var box = document.getElementById("dynasuggestions");
 	var list = box.getElementsByTagName("li");
 	var filter = input.value.toUpperCase();
-	var words = $("#search-bar").val().split(' ');
 	// var timeout = null;
 
 	for (i=0; i<list.length; i++) {
 		a=list[i].getElementsByTagName("a")[0];
-		if (a.innerHTML.toUpperCase().match(words)) {
-			// list[i].style.display= "";
-			list[i].parentNode.insertBefore(list[i], list[i].previousSibling);
-		} 
+		if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+			list[i].style.display= "";
+			// list[i].parentNode.insertBefore(list[i], list[i].previousSibling);
+		} else {
+			list[i].style.display = "none";
+		}
 	}
 }
 
