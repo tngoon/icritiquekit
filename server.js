@@ -100,8 +100,8 @@ io.on('connection', function(socket) {
 
   		// save to user data
   		user_data[data.cookie_val].comments.push({"comment": data.comment,
-  									"category": data.category
-  		});
+  									"category": data.category, 
+  									"condition": data.condition});
   		updateJSON(user_file, user_data);
 
   		logs.logs.push({"time": new Date().getTime(),
@@ -141,4 +141,3 @@ io.on('connection', function(socket) {
 	});
 
 });
-

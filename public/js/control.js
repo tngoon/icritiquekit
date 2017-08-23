@@ -49,7 +49,6 @@ function validateForm() {
 		document.getElementById("consent-button").classList.remove("disabled");
 		socket.emit('consent', {condition: "control", cookie_val: cookie_val, consent:true});
 		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: true});	
-		console.log('working');
 	} else if (document.getElementById("consent_no").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
 		socket.emit('consent', {condition: "control", cookie_val: cookie_val, consent:false});
