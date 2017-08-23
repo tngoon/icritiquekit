@@ -1,8 +1,22 @@
 {
-    "0.96494933423256461503442123896": {
-        "comments": []
-    },
-    "null": {
-        "comments": []
+    "0.046796899285032721503466682543": {
+        "comments": [
+            {
+                "comment": "Text is hard to read on the background.  Brighter backgrounds should have darker foregrounds.",
+                "category": 111
+            },
+            {
+                "categories": [
+                    1,
+                    0,
+                    1
+                ]
+            },
+            {
+                "comment": "The images are nice and large, which is nice to show what this restaurant is all about. This is test comment.",
+                "category": 101
+            }
+        ],
+        "consent": true
     }
 }

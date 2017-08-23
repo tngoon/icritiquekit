@@ -116,7 +116,7 @@ function submitComments() {
 	obj.push(Comment);
 	console.log(Comment);
 	console.log(Comment.category)
-	localStorage.setItem("allComments", JSON.stringify(obj));
+	sessionStorage.setItem("allComments", JSON.stringify(obj));
 
 	//send to server
 	socket.emit('control comment submitted',  {condition: "control", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
@@ -141,7 +141,7 @@ function showComments() {
 function loadDesign() {
 	document.getElementById("design1").style.display="none";
 	document.getElementById("design2").style.display="block";
-	console.log('next design');
+	socket.emit('next design', {condition:"critiquekit", cookie_val: cookie_val});
 }
 
 

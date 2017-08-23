@@ -1,14 +1,62 @@
 {
     "logs": [
         {
-            "time": 1503442124040,
-            "user": "0.96494933423256461503442123896",
+            "time": 1503466682639,
+            "user": "0.046796899285032721503466682543",
             "event": "new connection"
         },
         {
-            "time": 1503442150526,
-            "user": null,
-            "event": "new connection"
+            "time": 1503466702117,
+            "user": "0.046796899285032721503466682543",
+            "condition": "critiquekit",
+            "event": "inserted suggestion",
+            "comment text": "Text is hard to read on the background."
+        },
+        {
+            "time": 1503466713413,
+            "user": "0.046796899285032721503466682543",
+            "condition": "critiquekit",
+            "event": "inserted suggestion",
+            "comment text": "Text is hard to read on the background."
+        },
+        {
+            "time": 1503466713436,
+            "user": "0.046796899285032721503466682543",
+            "condition": "critiquekit",
+            "event": "inserted suggestion",
+            "comment text": "Brighter backgrounds should have darker foregrounds."
+        },
+        {
+            "time": 1503466717661,
+            "condition": "critiquekit",
+            "user": "0.046796899285032721503466682543",
+            "event": "submitted comment",
+            "comment": "Text is hard to read on the background.  Brighter backgrounds should have darker foregrounds."
+        },
+        {
+            "time": 1503466751884,
+            "condition": "critiquekit",
+            "user": "0.046796899285032721503466682543",
+            "event": "clicked categories"
+        },
+        {
+            "time": 1503466753510,
+            "condition": "critiquekit",
+            "user": "0.046796899285032721503466682543",
+            "event": "submitted comment",
+            "comment": "The images are nice and large, which is nice to show what this restaurant is all about. This is test comment."
+        },
+        {
+            "time": 1503466758297,
+            "condition": "critiquekit",
+            "user": "0.046796899285032721503466682543",
+            "event": "showed comments"
+        },
+        {
+            "time": 1503466768548,
+            "condition": "critiquekit",
+            "user": "0.046796899285032721503466682543",
+            "event": "showed comments"
         }
     ]
 }

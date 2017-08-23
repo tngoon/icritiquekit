@@ -67,7 +67,7 @@ io.on('connection', function(socket) {
 		console.log('setting cookie');
 		console.log(cookie_val);
 		logs.logs.push({"time": new Date().getTime(),
-						"user": cookie_val;
+						"user": cookie_val,
 						"event": "new connection"});
 
 		updateJSON(log_file, logs);
@@ -105,7 +105,7 @@ io.on('connection', function(socket) {
   		updateJSON(user_file, user_data);
 
   		logs.logs.push({"time": new Date().getTime(),
-  						"condition": data.condition;
+  						"condition": data.condition,
 						"user": data.cookie_val,
 						"event": "submitted comment",
 						"comment": data.comment});
@@ -129,7 +129,7 @@ io.on('connection', function(socket) {
 		updateJSON(log_file, logs);
 	});
 
-	socket.on('clicked category', function(data) {
+	socket.on('category clicked', function(data) {
 		user_data[data.cookie_val].comments.push({"categories": data.categories});
 		updateJSON(user_file, user_data);
 
@@ -137,7 +137,7 @@ io.on('connection', function(socket) {
 						"condition": data.condition,
 						"user": data.cookie_val,
 						"event": "clicked categories",
-						"comment": data.comment});
+						"categories": data.categories});
 	});
 
 });

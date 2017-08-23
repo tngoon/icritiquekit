@@ -48,7 +48,7 @@ $(function() {
 	});
 
 	$('body').on('click', "#cancel-comment", function() {
-		$("#comment-text").val('');
+		$("#comment-text").reset();
 		$('input:checkbox').prop('checked', false);
 		$("#open-default").show();
 		$("#complete").hide();
@@ -56,6 +56,7 @@ $(function() {
 		$("#need-actionable").hide();
 		$("#need-justify").hide();
 		$("#act-justify").hide();
+		$("#submitted-comments").hide();
 		$("#submit-comment").className = '';
 		$("#submit-comment").addClass('btn btn-danger');
 	});
@@ -360,7 +361,6 @@ function filterSuggestions() {
 function loadDesign() {
 	document.getElementById("design1").style.display="none";
 	document.getElementById("design2").style.display="block";
-	console.log('next design');
 	socket.emit('next design', {condition:"critiquekit", cookie_val: cookie_val});
 }
 
