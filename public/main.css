@@ -198,6 +198,9 @@ li.base {
 	font-size: 16px;
 }
 
+.SearchBar {
+	padding: 5px;
+}
 /*------------INDICATORS------------*/
 #checkboxes{
 	padding: 10px;

@@ -46,9 +46,11 @@ $(function() {
 		$("#submit-comment").className = '';
 		$("#submit-comment").addClass('btn btn-danger');
 	});
+})
 
+$(function() {
 	$('body').on('click', "#cancel-comment", function() {
-		$("#comment-text").reset();
+		$("#comment-text").val('');
 		$('input:checkbox').prop('checked', false);
 		$("#open-default").show();
 		$("#complete").hide();
@@ -331,7 +333,7 @@ function showComments() {
 		console.log(item[i].comment);
 		submitted = item[i].comment + '<hr>'
 		// document.getElementById("submitted-comments").innerHTML = item[i].comment;
-		$("#submitted-comments").append(submitted);
+		$("#submitted-comments").append("Comment:" + submitted);
 	}
 
 	socket.emit('showed comments', {condition: "critiquekit", cookie_val: cookie_val});
@@ -351,10 +353,7 @@ function filterSuggestions() {
 		if (a.innerHTML.toUpperCase().match(words)) {
 			// list[i].style.display= "";
 			list[i].parentNode.insertBefore(list[i], list[i].previousSibling);
-		} else {
-			// list[i].style.display= "";
-			// list[i].parentNode.insertAfter(list[i], list[i].nextSibling);
-		}
+		} 
 	}
 }
 
