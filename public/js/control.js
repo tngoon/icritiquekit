@@ -9,11 +9,6 @@ $(window).on('load', function() {
 	}
 })
 
-// load html files in correct divs
-$(function() {
-	$('#help-modal').load("../help.html")
-});
-
 //connect to server
 $(function() {
 	socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
@@ -41,7 +36,7 @@ $(function() {
 		$("#submit-comment").className = '';
 		$("#submit-comment").addClass('btn btn-danger');
 	});
-}
+})
 
 //form validation to ensure consent form is clicked
 function validateForm() {
