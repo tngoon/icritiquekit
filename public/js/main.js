@@ -46,6 +46,19 @@ $(function() {
 		$("#submit-comment").className = '';
 		$("#submit-comment").addClass('btn btn-danger');
 	});
+
+	$('body').on('click', "#cancel-comment", function() {
+		$("#comment-text").val('');
+		$('input:checkbox').prop('checked', false);
+		$("#open-default").show();
+		$("#complete").hide();
+		$("#need-specific").hide();
+		$("#need-actionable").hide();
+		$("#need-justify").hide();
+		$("#act-justify").hide();
+		$("#submit-comment").className = '';
+		$("#submit-comment").addClass('btn btn-danger');
+	});
 })
 
 //form validation to ensure consent form is clicked
