@@ -1,62 +1,82 @@
 {
     "logs": [
         {
-            "time": 1503466682639,
-            "user": "0.046796899285032721503466682543",
+            "time": 1503521327885,
+            "user": "0.54947977525263751503521327838",
             "event": "new connection"
         },
         {
-            "time": 1503466702117,
-            "user": "0.046796899285032721503466682543",
+            "time": 1503521362249,
+            "user": "0.54947977525263751503521327838",
             "condition": "critiquekit",
             "event": "inserted suggestion",
-            "comment text": "Text is hard to read on the background."
+            "comment text": "The arrows make the image too busy. It might be more useful to use a dot carousel."
         },
         {
-            "time": 1503466713413,
-            "user": "0.046796899285032721503466682543",
+            "time": 1503521378811,
             "condition": "critiquekit",
-            "event": "inserted suggestion",
-            "comment text": "Text is hard to read on the background."
-        },
-        {
-            "time": 1503466713436,
-            "user": "0.046796899285032721503466682543",
-            "condition": "critiquekit",
-            "event": "inserted suggestion",
-            "comment text": "Brighter backgrounds should have darker foregrounds."
-        },
-        {
-            "time": 1503466717661,
-            "condition": "critiquekit",
-            "user": "0.046796899285032721503466682543",
+            "user": "0.54947977525263751503521327838",
             "event": "submitted comment",
-            "comment": "Text is hard to read on the background.  Brighter backgrounds should have darker foregrounds."
+            "comment": "The arrows don't feel very interactable.  The arrows make the image too busy. It might be more useful to use a dot carousel."
         },
         {
-            "time": 1503466751884,
+            "time": 1503521401816,
+            "user": "0.54947977525263751503521327838",
             "condition": "critiquekit",
-            "user": "0.046796899285032721503466682543",
-            "event": "clicked categories"
+            "event": "inserted suggestion",
+            "comment text": "The arrows make the image too busy. It might be more useful to use a dot carousel."
         },
         {
-            "time": 1503466753510,
+            "time": 1503521401822,
+            "user": "0.54947977525263751503521327838",
             "condition": "critiquekit",
-            "user": "0.046796899285032721503466682543",
+            "event": "inserted suggestion",
+            "comment text": "Use a grid layout so information is well laid out on the site."
+        },
+        {
+            "time": 1503521408243,
+            "condition": "critiquekit",
+            "user": "0.54947977525263751503521327838",
             "event": "submitted comment",
-            "comment": "The images are nice and large, which is nice to show what this restaurant is all about. This is test comment."
+            "comment": "The design seems a bit inconsistent.  Use a consistent grid layout so information is well laid out on the site."
         },
         {
-            "time": 1503466758297,
+            "time": 1503521417502,
             "condition": "critiquekit",
-            "user": "0.046796899285032721503466682543",
-            "event": "showed comments"
+            "user": "0.54947977525263751503521327838",
+            "event": "clicked next design"
         },
         {
-            "time": 1503466768548,
+            "time": 1503521417528,
+            "user": "0.54947977525263751503521327838",
             "condition": "critiquekit",
-            "user": "0.046796899285032721503466682543",
-            "event": "showed comments"
+            "event": "inserted suggestion",
+            "comment text": "The arrows make the image too busy. It might be more useful to use a dot carousel."
+        },
+        {
+            "time": 1503521417528,
+            "user": "0.54947977525263751503521327838",
+            "condition": "critiquekit",
+            "event": "inserted suggestion",
+            "comment text": "Use a grid layout so information is well laid out on the site."
+        },
+        {
+            "time": 1503521438042,
+            "condition": "critiquekit",
+            "user": "0.54947977525263751503521327838",
+            "event": "clicked categories",
+            "categories": [
+                1,
+                1,
+                0
+            ]
+        },
+        {
+            "time": 1503521442294,
+            "condition": "critiquekit",
+            "user": "0.54947977525263751503521327838",
+            "event": "submitted comment",
+            "comment": "The images seem a bit large. A grid style layout may be better in in this case."
         }
     ]
 }

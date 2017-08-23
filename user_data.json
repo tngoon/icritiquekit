@@ -1,20 +1,24 @@
 {
-    "0.046796899285032721503466682543": {
+    "0.54947977525263751503521327838": {
         "comments": [
             {
-                "comment": "Text is hard to read on the background.  Brighter backgrounds should have darker foregrounds.",
+                "comment": "The arrows don't feel very interactable.  The arrows make the image too busy. It might be more useful to use a dot carousel.",
+                "category": 111
+            },
+            {
+                "comment": "The design seems a bit inconsistent.  Use a consistent grid layout so information is well laid out on the site.",
                 "category": 111
             },
             {
                 "categories": [
                     1,
-                    0,
-                    1
+                    1,
+                    0
                 ]
             },
             {
-                "comment": "The images are nice and large, which is nice to show what this restaurant is all about. This is test comment.",
-                "category": 101
+                "comment": "The images seem a bit large. A grid style layout may be better in in this case.",
+                "category": 110
             }
         ],
         "consent": true
