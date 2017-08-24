@@ -35,6 +35,12 @@ $(function() {
 	});
 })
 
+$(function() {
+	$('body').on('keydown', "#comment-text", function() {
+		$("#submitted-comments").hide();
+	})
+})
+
 //form validation to ensure consent form is clicked
 function validateForm() {
 	if(document.getElementById("consent_yes").checked) {
@@ -126,9 +132,9 @@ function showComments() {
 		console.log(item[i].comment);
 		submitted = item[i].comment + '<hr>'
 		// document.getElementById("submitted-comments").innerHTML = item[i].comment;
-		$("#submitted-comments").append("Comment: " + submitted);
-		socket.emit('showed comments', {condition: "control", cookie_val: cookie_val})
 	}
+	$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
+	socket.emit('showed comments', {condition: "control", cookie_val: cookie_val})
 }
 
 function loadDesign() {

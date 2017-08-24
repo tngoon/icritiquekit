@@ -48,7 +48,7 @@ $(function() {
 		$("#submit-comment").addClass('btn btn-danger');
 		$("#search-bar").val('');
 	});
-})
+});
 
 $(function() {
 	$('body').on('click', "#cancel-comment", function() {
@@ -66,6 +66,12 @@ $(function() {
 		$("#submit-comment").addClass('btn btn-danger');
 		$("#search-bar").val('');
 	});
+})
+
+$(function() {
+	$('body').on('keydown', "#comment-text", function() {
+		$("#submitted-comments").hide();
+	})
 })
 
 //form validation to ensure consent form is clicked
@@ -308,16 +314,17 @@ function submitComments() {
 				}
 			}			
 		}
-		Comment['condition'] = "critiquekit";
-		obj.push(Comment);
-		console.log(Comment);
-		sessionStorage.setItem("allComments", JSON.stringify(obj));
-
-		socket.emit('comment submitted', {condition:Comment.condition, comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
-
+		
 	} else {
 		alert("You can't submit an empty comment!");
 	}
+
+	Comment['condition'] = "critiquekit";
+	obj.push(Comment);
+	console.log(Comment);
+	sessionStorage.setItem("allComments", JSON.stringify(obj));
+
+	socket.emit('comment submitted', {condition:Comment.condition, comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 }
 
 //show submitted comments
@@ -334,14 +341,16 @@ function showComments() {
 	console.log(item);
 	var submitted = '';
 
+	var item = JSON.parse(sessionStorage.getItem("allComments"));
+	console.log(item);
+	var submitted = '';
 	for(i = 0; i < item.length; i++) {
 		console.log(item[i].comment);
 		submitted = item[i].comment + '<hr>'
 		// document.getElementById("submitted-comments").innerHTML = item[i].comment;
-		$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
 	}
-
-	socket.emit('showed comments', {condition: "critiquekit", cookie_val: cookie_val});
+	$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
+	socket.emit('showed comments', {condition: "control", cookie_val: cookie_val})
 }
 
 //filter suggestions based on what user is typing
