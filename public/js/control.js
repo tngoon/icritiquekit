@@ -12,7 +12,7 @@ $(window).on('load', function() {
 //connect to server
 $(function() {
 	socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
-	// socket = io();
+	socket = io();
 
 	// check for cookie
 	if (Cookies.get('critiquekit-cookie') != undefined) {
@@ -31,7 +31,7 @@ $(function() {
 	});
 	$('body').on('click', "#cancel-comment", function() {
 		$("#comment-text").val('');
-		$("#submited-comments").hide();
+		$("#submitted-comments").hide();
 	});
 })
 
@@ -99,7 +99,9 @@ function submitComments() {
 				} else {
 					Comment['category'] = 0;
 				}
-			}	
+			}
+
+			Comment['condition'] = "control";	
 		}
 
 		obj.push(Comment);
@@ -107,7 +109,7 @@ function submitComments() {
 		sessionStorage.setItem("allComments", JSON.stringify(obj));
 
 		//send to server
-		socket.emit('control comment submitted',  {condition: "control", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
+		socket.emit('comment submitted',  {condition:Comment.condition, comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 	} else {
 		alert("You can't submit an empty comment!");
 	}
@@ -125,7 +127,7 @@ function showComments() {
 		submitted = item[i].comment + '<hr>'
 		// document.getElementById("submitted-comments").innerHTML = item[i].comment;
 		$("#submitted-comments").append("Comment: " + submitted);
-		socket.emit('control showed comments', {condition: "control", cookie_val: cookie_val})
+		socket.emit('showed comments', {condition: "control", cookie_val: cookie_val})
 	}
 }
 
@@ -135,4 +137,7 @@ function loadDesign() {
 	socket.emit('next design', {condition:"critiquekit", cookie_val: cookie_val});
 }
 
+function finishFeedback() {
+	socket.emit('finished study', {condition: "control", cookie_val:cookie_val});
+}
 

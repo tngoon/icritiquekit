@@ -156,7 +156,7 @@ textarea {
 
 .base-scroll {
 	margin: 5px;
-	height: 150px;
+	height: 125px;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }

@@ -9,11 +9,11 @@ const path = require('path');
 
 const INDEX = path.join(__dirname, '/public');
 const server = express()
-		.all('/', function(req, res, next) {
-	    	res.header("Access-Control-Allow-Origin", "*");
-	    	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	    	next();
-		})
+		// .all('/', function(req, res, next) {
+	 //    	res.header("Access-Control-Allow-Origin", "*");
+	 //    	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	 //    	next();
+		// })
 		.use(express.static(__dirname + '/public'))
 		.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
@@ -36,23 +36,23 @@ var design_file = "design_data.json"
 
 const io = socketIO(server);
 
-function saveNewComment(data, category, address, new_comment) {
-	comments.push({"comment": new_comment,
-		"category": category,
-		"length": new_comment.split(" ").length,
-		"user": address,
-		"design_id": design_id});
+// function saveNewComment(data, category, address, new_comment) {
+// 	comments.push({"comment": new_comment,
+// 		"category": category,
+// 		"length": new_comment.split(" ").length,
+// 		"user": address,
+// 		"design_id": design_id});
 
-	updateJSON(comments_file, comments);
+// 	updateJSON(comments_file, comments);
 
-	logs.logs.push({"time": new Date().getTime(),
-					"user": address,
-					"event": "comment submitted",
-					"category": category,
-					"comment": data.comment_text,
-					"design_id": data.design_id});
-	updateJSON(log_file, logs);
-}
+// 	logs.logs.push({"time": new Date().getTime(),
+// 					"user": address,
+// 					"event": "comment submitted",
+// 					"category": category,
+// 					"comment": data.comment_text,
+// 					"design_id": data.design_id});
+// 	updateJSON(log_file, logs);
+// }
  
 
 io.on('connection', function(socket) {
@@ -139,5 +139,11 @@ io.on('connection', function(socket) {
 						"event": "clicked categories",
 						"categories": data.categories});
 	});
+
+	socket.on('finished study', function(data) {
+		logs.logs.push({"time": new Date().getTime(),
+						"condition": data.condition,
+						"user": data.cookie_val})
+	})
 
 });

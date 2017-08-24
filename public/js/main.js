@@ -19,8 +19,8 @@ $(function() {
 
 
 $(function() {
-	socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
-	// socket = io();
+	// socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
+	socket = io();
 
 	// check for cookie
 	if (Cookies.get('critiquekit-cookie') != undefined) {
@@ -178,7 +178,6 @@ function checkComments() {
 		submit.classList.remove('btn-danger');
 		submit.classList.add('btn-warning');
 	} else if(actcheck.checked && speccheck.checked && justcheck.checked) {
-		complete.style.display = "block";
 		opendefault.style.display = "none";
 		action.style.display = "none";
 		actjust.style.display = "none";
@@ -309,12 +308,12 @@ function submitComments() {
 				}
 			}			
 		}
-		console.log(Comment.category)
+		Comment['condition'] = "critiquekit";
 		obj.push(Comment);
 		console.log(Comment);
 		sessionStorage.setItem("allComments", JSON.stringify(obj));
 
-		socket.emit('comment submitted', {condition: "critiquekit", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
+		socket.emit('comment submitted', {condition:Comment.condition, comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 
 	} else {
 		alert("You can't submit an empty comment!");
@@ -368,6 +367,10 @@ function loadDesign() {
 	document.getElementById("design1").style.display="none";
 	document.getElementById("design2").style.display="block";
 	socket.emit('next design', {condition:"critiquekit", cookie_val: cookie_val});
+}
+
+function finishFeedback() {
+	socket.emit('finished study', {condition: "critiquekit", cookie_val:cookie_val});
 }
 
 

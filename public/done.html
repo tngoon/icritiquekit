@@ -6,13 +6,12 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-danger" data-dismiss="modal">No, take me back</button>
-  <button type="button" class="btn btn-success" data-toggle="modal" id="fin-button">Yes, I'm done</button>
+  <button type="button" class="btn btn-success" data-toggle="modal" id="fin-button" onclick="finishFeedback()">Yes, I'm done</button>
 </div>
 
 <script>
 $("#fin-button").click(function() {
   $('#done-modal').modal('hide');
   $('#final-modal').modal('show');
-  localStorage.removeItem("allComments");
 })
 </script>
