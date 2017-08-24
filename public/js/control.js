@@ -12,7 +12,7 @@ $(window).on('load', function() {
 //connect to server
 $(function() {
 	socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
-	socket = io();
+	// socket = io();
 
 	// check for cookie
 	if (Cookies.get('critiquekit-cookie') != undefined) {
