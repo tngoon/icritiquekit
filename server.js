@@ -9,11 +9,11 @@ const path = require('path');
 
 const INDEX = path.join(__dirname, '/public');
 const server = express()
-		.all('/', function(req, res, next) {
-	    	res.header("Access-Control-Allow-Origin", "*");
-	    	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	    	next();
-		})
+		// .all('/', function(req, res, next) {
+	 //    	res.header("Access-Control-Allow-Origin", "*");
+	 //    	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	 //    	next();
+		// })
 		.use(express.static(__dirname + '/public'))
 		.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
