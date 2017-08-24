@@ -348,6 +348,7 @@ function showComments() {
 		console.log(item[i].comment);
 		submitted = item[i].comment + '<hr>'
 		// document.getElementById("submitted-comments").innerHTML = item[i].comment;
+		$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
 	}
 	$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
 	socket.emit('showed comments', {condition: "control", cookie_val: cookie_val})
