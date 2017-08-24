@@ -309,15 +309,16 @@ function submitComments() {
 				}
 			}			
 		}
+		console.log(Comment.category)
+		obj.push(Comment);
+		console.log(Comment);
+		sessionStorage.setItem("allComments", JSON.stringify(obj));
+
+		socket.emit('comment submitted', {condition: "critiquekit", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
+
 	} else {
 		alert("You can't submit an empty comment!");
 	}
-	console.log(Comment.category)
-	obj.push(Comment);
-	console.log(Comment);
-	sessionStorage.setItem("allComments", JSON.stringify(obj));
-
-	socket.emit('comment submitted', {condition: "critiquekit", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 }
 
 //show submitted comments

@@ -28,13 +28,10 @@ $(function() {
 $(function() {
 	$('body').on('click', "#submit-comment", function() {
 		$("#comment-text").val('');
-		$("#submit-comment").className = '';
-		$("#submit-comment").addClass('btn btn-danger');
 	});
 	$('body').on('click', "#cancel-comment", function() {
 		$("#comment-text").val('');
-		$("#submit-comment").className = '';
-		$("#submit-comment").addClass('btn btn-danger');
+		$("#submited-comments").hide();
 	});
 })
 
@@ -54,7 +51,7 @@ function validateForm() {
 // Categorize and store comments after submitting
 function submitComments() {
 	var input = $('#comment-text').val().split(/\n/);
-	var allComments = localStorage.getItem("allComments");
+	var allComments = sessionStorage.getItem("allComments");
 	var Comment = {};
 	var obj = [];
 
@@ -70,6 +67,7 @@ function submitComments() {
 				var isspecific;
 				var isactionable;
 				var isjustified;
+
 				if (wordlength > 5) {
 					isspecific = 1;
 				} else {
@@ -103,31 +101,30 @@ function submitComments() {
 				}
 			}	
 		}
+
+		obj.push(Comment);
+		console.log(Comment);
+		sessionStorage.setItem("allComments", JSON.stringify(obj));
+
+		//send to server
+		socket.emit('control comment submitted',  {condition: "control", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 	} else {
 		alert("You can't submit an empty comment!");
 	}
-
-	obj.push(Comment);
-	console.log(Comment);
-	console.log(Comment.category)
-	sessionStorage.setItem("allComments", JSON.stringify(obj));
-
-	//send to server
-	socket.emit('control comment submitted',  {condition: "control", comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 }
 
 //show submitted comments on click
 function showComments() {
 	$("#submitted-comments").show();
 
-	var item = JSON.parse(localStorage.getItem("allComments"));
+	var item = JSON.parse(sessionStorage.getItem("allComments"));
 	console.log(item);
 	var submitted = '';
 	for(i = 0; i < item.length; i++) {
 		console.log(item[i].comment);
-		submitted = 'Comment: ' + item[i].comment + '<hr>'
+		submitted = item[i].comment + '<hr>'
 		// document.getElementById("submitted-comments").innerHTML = item[i].comment;
-		$("#submitted-comments").append(submitted);
+		$("#submitted-comments").append("Comment: " + submitted);
 		socket.emit('control showed comments', {condition: "control", cookie_val: cookie_val})
 	}
 }
