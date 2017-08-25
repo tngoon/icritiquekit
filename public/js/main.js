@@ -357,7 +357,7 @@ function showComments() {
 	// 	// document.getElementById("submitted-comments").innerHTML = item[i].comment;
 	// 	$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
 	// }
-	socket.emit('showed comments', {condition: "control", cookie_val: cookie_val})
+	socket.emit('showed comments', {condition: "critiquekit", cookie_val: cookie_val})
 }
 
 //filter suggestions based on what user is typing
