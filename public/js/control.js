@@ -114,6 +114,16 @@ function submitComments() {
 		console.log(Comment);
 		sessionStorage.setItem("allComments", JSON.stringify(obj));
 
+		var item = JSON.parse(sessionStorage.getItem("allComments"));
+		console.log(item);
+		var submitted = '';
+
+		for(i = 0; i < item.length; i++) {
+			// console.log(item[i].comment);
+			submitted = item[i].comment + '<hr>';
+		}
+		$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
+
 		//send to server
 		socket.emit('comment submitted',  {condition:Comment.condition, comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 	} else {
@@ -125,15 +135,6 @@ function submitComments() {
 function showComments() {
 	$("#submitted-comments").show();
 
-	var item = JSON.parse(sessionStorage.getItem("allComments"));
-	console.log(item);
-	var submitted = '';
-	for(i = 0; i < item.length; i++) {
-		console.log(item[i].comment);
-		submitted = item[i].comment + '<hr>'
-		// document.getElementById("submitted-comments").innerHTML = item[i].comment;
-		$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
-	}
 	socket.emit('showed comments', {condition: "control", cookie_val: cookie_val})
 }
 

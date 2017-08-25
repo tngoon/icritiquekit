@@ -147,6 +147,8 @@ function checkComments() {
 			opendefault.style.display = "block";
 			speccheck.checked = false;
 		}
+	}, 3500);
+
 		if(text.match(/(maybe|try|should|would|make|use|consider|remove|use|add|please)/gi)) {
 			actcheck.checked = true;
 			opendefault.style.display = "none";
@@ -159,7 +161,6 @@ function checkComments() {
 			justify.style.display =  "none";
 			actjust.style.display = "none";
 		}
-	}, 3500);
 
 	//show/hide divs based on checkboxes
 	if(speccheck.checked && !actcheck.checked && !justcheck.checked) {
@@ -324,6 +325,16 @@ function submitComments() {
 	console.log(Comment);
 	sessionStorage.setItem("allComments", JSON.stringify(obj));
 
+	var item = JSON.parse(sessionStorage.getItem("allComments"));
+		console.log(item);
+		var submitted = '';
+
+		for(i = 0; i < item.length; i++) {
+			// console.log(item[i].comment);
+			submitted = item[i].comment + '<hr>'
+		}
+		$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
+
 	socket.emit('comment submitted', {condition:Comment.condition, comment:Comment.comment, category: Comment.category, cookie_val: cookie_val})
 }
 
@@ -337,20 +348,15 @@ function showComments() {
 	$("#act-justify").hide();
 	$("#search").hide();
 
-	var item = JSON.parse(sessionStorage.getItem("allComments"));
-	console.log(item);
-	var submitted = '';
-
-	var item = JSON.parse(sessionStorage.getItem("allComments"));
-	console.log(item);
-	var submitted = '';
-	for(i = 0; i < item.length; i++) {
-		console.log(item[i].comment);
-		submitted = item[i].comment + '<hr>'
-		// document.getElementById("submitted-comments").innerHTML = item[i].comment;
-		$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
-	}
-	$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
+	// var item = JSON.parse(sessionStorage.getItem("allComments"));
+	// console.log(item);
+	// var submitted = '';
+	// for(i = 0; i < item.length; i++) {
+	// 	console.log(item[i].comment);
+	// 	submitted = item[i].comment + '<hr>'
+	// 	// document.getElementById("submitted-comments").innerHTML = item[i].comment;
+	// 	$("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
+	// }
 	socket.emit('showed comments', {condition: "control", cookie_val: cookie_val})
 }
 
