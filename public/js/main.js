@@ -97,20 +97,19 @@ function copyText(x) {
   		$(this).parent().prepend($(this));
 
   	//check boxes if suggestion checked fits these categories
-  	if ($(this).parent('#specific').length) {
-  		$("#speccheck").prop('checked', true);
-  	} else if ($(this).parent('#action').length) {
-  		$("#actcheck").prop('checked', true);
-  	} else if ($(this).parent('#justify').length) {
-  		$("#justcheck").prop('checked', true);
-  	} else if($(this).parent('#actjust').length) {
-  		$("#actcheck").prop('checked', true);
-  		$("#justcheck").prop('checked', true);
-  	}
-
-  	socket.emit("suggestion inserted", {condition: "critiquekit", comment_text:submittedComment, cookie_val: cookie_val});
-
+	  	if ($(this).parent('#specific').length) {
+	  		$("#speccheck").prop('checked', true);
+	  	} else if ($(this).parent('#action').length) {
+	  		$("#actcheck").prop('checked', true);
+	  	} else if ($(this).parent('#justify').length) {
+	  		$("#justcheck").prop('checked', true);
+	  	} else if($(this).parent('#actjust').length) {
+	  		$("#actcheck").prop('checked', true);
+	  		$("#justcheck").prop('checked', true);
+	  	}
 	});
+	socket.emit("suggestion inserted", {condition: "critiquekit", comment_text:submittedComment, cookie_val: cookie_val});
+
 }
 
 //check for characteristics of comments
