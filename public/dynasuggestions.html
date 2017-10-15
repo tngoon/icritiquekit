@@ -1,18 +1,3 @@
-<div id="search">
-	<div class="row">
-	  <div class="col-lg-12">
-	    <div class="input-group">
-	      <input type="text" class="form-control SearchBar" id="search-bar" placeholder="Search for feedback suggestions" onkeyup="filterSuggestions()">
-	      <span class="input-group-btn">
-	        <button class="btn btn-default SearchButton" type="button">
-	            <span class=" glyphicon glyphicon-search SearchIcon" ></span>
-	        </button>
-	      </span>
-	    </div>
-	  </div>
-	</div>
-	<br>
-</div>
 <div id="open-default">
 	<p class="need-suggestion" style="color: #000000">Provide feedback on something specific you thought was done well or should be improved. Need some suggestions?</p>
 	<p style="font-size: 14px"><b>Well Done:</b></p>
@@ -32,65 +17,56 @@
 	</ul>
 </div>
 
-<div id="need-specific" style="display: none">
+<!-- <div id="need-specific" style="display: none">
 	<p class="warntext">Please make your comment more <b>specific</b>. Need some suggestions?</p>
 	<ul id="specific" class="scroll-box">
-		<li><a href="#" onclick="copyText(this)">I like that the top navigation is simple and static throughout.</a></li>
-		<li><a href="#" onclick="copyText(this)">I like that the prototype contains many features and details about its purpose.</a></li>
+		<li><a href="#" onclick="copyText(this)">Some of the prototype's interface seems limited and missing key interactions.</a></li>
+		<li><a href="#" onclick="copyText(this)">I like that the top navigation is simple throughout.</a></li>
+		<li><a href="#" onclick="copyText(this)">I like that the prototype contains many enough detail to understand its purpose.</a></li>
 		<li><a href="#" onclick="copyText(this)">Good use of grid layout to keep elements aligned.</a></li>
-		<li><a href="#" onclick="copyText(this)">Elements could be spaced out better.</a></li>
 		<li><a href="#" onclick="copyText(this)">User can tell what they can do with the app in this prototype.</a></li>
-		<li><a href="#" onclick="copyText(this)">It is hard to tell what some of the features do or mean.</a></li>
-		<li><a href="#" onclick="copyText(this)">I wish main information was easier to find.</a></li>
-		<li><a href="#" onclick="copyText(this)">I wish there was more info about what each of the sections mean.</a></li>
+		<li><a href="#" onclick="copyText(this)">Good use of filters for relevant details.</a></li>
 		<li><a href="#" onclick="copyText(this)">The page is very busy and contains too much at once.</a></li>	
-		<li><a href="#" onclick="copyText(this)">The prototype does not contain enough detail for a person to understand the purpose.</a></li>
 	</ul>
-</div>
+</div> -->
 
 <div id="need-actionable" style="display: none">
 	<p class="warntext">Please make your comment <b>actionable</b>. Need some suggestions?</p>
 	<ul id="action" class="scroll-box">
 		<li><a href="#" onclick="copyText(this)">Use more white space to better call out and space elements on the page.</a></li>
+		<li><a href="#" onclick="copyText(this)">Reduce the clutter a bit, and this will be a polished prototype.</a></li>
 		<li><a href="#" onclick="copyText(this)">Make sure all features and language are easily understood.</a></li>
 		<li><a href="#" onclick="copyText(this)">The prototype should more directly relate to your specific point of view.</a></li>
-		<li><a href="#" onclick="copyText(this)">Prototype should diverge more to explore different ideas.</a></li>
-		<li><a href="#" onclick="copyText(this)">Make sure all interactions are included in the prototypes</a></li>
-		<li><a href="#" onclick="copyText(this)">Prototype should stand out from other similar apps with a similar purpose.</a></li>
+		<li><a href="#" onclick="copyText(this)">Each prototype should diverge more to explore different ideas.</a></li>
+		<li><a href="#" onclick="copyText(this)">You should include all interactions for all pages, especially from the home page.</a></li>
+		<li><a href="#" onclick="copyText(this)">How do I recover from mistakes? A back button might help.</a></li>
+		<li><a href="#" onclick="copyText(this)">Prototype should stand out from other similar apps with a similar purpose to better relate to your unique point of view.</a></li>
 		<li><a href="#" onclick="copyText(this)">Icons should be immediately recognizable to the user.</a></li>
-		<li><a href="#" onclick="copyText(this)">Space things more consistently.</a></li>
 		<li><a href="#" onclick="copyText(this)">It might be useful to break up the information into separate pages on the prototype.</a></li>
-		<li><a href="#" onclick="copyText(this)">Would like to see more separation between sections.</a></li>
 	</ul>
 </div>
 
 <div id="need-justify" style="display: none">
 	<p class="warntext">Please make your comment <b>justified</b>. Need some suggestions?</p>
 	<ul id="justify" class="scroll-box">
-		<li><a href="#" onclick="copyText(this)">The spacing makes everything seem kinda cramped.</a></li>
-		<li><a href="#" onclick="copyText(this)">The user should be able to know what each of the features mean.</a></li>
+		<li><a href="#" onclick="copyText(this)">In general, the user should be able to know what each of the features mean without much guidance.</a></li>
 		<li><a href="#" onclick="copyText(this)">Because it seems like it's missing important interactions, a functional application would be difficult to implement.</a></li>
-		<li><a href="#" onclick="copyText(this)">Too much text can make the prototype unappealing for a user.</a></li>
-		<li><a href="#" onclick="copyText(this)">Information is not well-aligned and makes the page seem cluttered.</a></li>
-		<li><a href="#" onclick="copyText(this)">More white space will be more aesthetically pleasing.</a></li>
-		<li><a href="#" onclick="copyText(this)">It's not clear what exactly the prototype's functionality is.</a></li>
-		<li><a href="#" onclick="copyText(this)">Navigation through the site should be obvious and consistent.</a></li>
-		<li><a href="#" onclick="copyText(this)">Information should be separated through links or on separate pages.</a></li>
-		<li><a href="#" onclick="copyText(this)">It's not obvious the user what some of the terminology means in the prototype.</a></li>
+		<li><a href="#" onclick="copyText(this)">Interactions should be well-suited to a mobile screen.</a></li>
+		<li><a href="#" onclick="copyText(this)">When items are not well-aligned, the page seems cluttered.</a></li>
+		<li><a href="#" onclick="copyText(this)">Most relevant info should be above the fold (so the user doesn't have to scroll).</a></li>
+		<li><a href="#" onclick="copyText(this)">More important info should have be in larger text to make it stand out more.</a></li>
 	</ul>
 </div>
 
 <div id="act-justify" style="display:none">
 	<p class="warntext">Please make your comment <b>actionable and justified</b>. Need some suggestions?</p>
 	<ul id="actjust" class="scroll-box">
-		<li><a href="#" onclick="copyText(this)">Information seems a bit cramped. Maybe add more space between things.</a></li>
-		<li><a href="#" onclick="copyText(this)">Use white space to create margins around elements so they're well aligned and easier to read.</a></li>
-		<li><a href="#" onclick="copyText(this)">How do I recover from mistakes. A back button might help.</a></li>
+		<li><a href="#" onclick="copyText(this)">Information seems a bit cramped. Maybe use a standard grid layout or add more spacing between items.</a></li>
 		<li><a href="#" onclick="copyText(this)">User should know what each of the aspects of the prototype means. Use clear language and visuals to show this.</a></li>
 		<li><a href="#" onclick="copyText(this)">The navigation should remain consistent throughout the prototype so the user can easily find their way.</a></li>
-		<li><a href="#" onclick="copyText(this)">For a mobile screen, there's a lot of information. It would be better to reduce this or separate it in some way.</a></li>
-		<li><a href="#" onclick="copyText(this)">The functionality of the prototype is not too clear. Maybe a help section would be good. </a></li>
-		<li><a href="#" onclick="copyText(this)">Use a grid layout so information is well laid out on the site.</a></li>
+		<li><a href="#" onclick="copyText(this)">For a mobile screen, there's a lot of information. It would be better to reduce this or better separate it onto separate pages or links.</a></li>
+		<li><a href="#" onclick="copyText(this)">The functionality of the prototype is not too clear. More defined interactions or even a help section are useful.</a></li>
+		<li><a href="#" onclick="copyText(this)">Use a grid layout so information is laid out evenly and in a clean manner.</a></li>
 		<li><a href="#" onclick="copyText(this)">The main page is too textual: think of a more visual representation to show positive interactions.</a></li>
 		<li><a href="#" onclick="copyText(this)">It might be useful to include a search function for users to filter information.</a></li>
 	</ul>
