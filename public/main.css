@@ -149,7 +149,7 @@ textarea {
 	list-style-type: none;
 	padding: 0;
 	margin: 5px;
-	height: 500px;
+	height: 400px;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
