@@ -88,7 +88,7 @@ iframe {
 textarea {
 	width: 100%;
 	font-size: 12px;
-	height: 40px;
+	height: 20vh;
 	margin: auto;
 }
 
@@ -127,11 +127,11 @@ textarea {
 }
 
 #submitted-comments {
-	border: 1px solid #ddd; 
+	border: 1px solid #ddd;
 	padding: 5px;
     background-color: #f6f6f6;
-    color: black; 
-    display: block; 
+    color: black;
+    display: block;
     font-style: normal;
 	font-size: 14px;
 }
@@ -173,21 +173,21 @@ li.base {
 }
 
 #dynasuggestions li a {
-    border: 1px solid #ddd; 
-    margin-top: -1px; 
+    border: 1px solid #ddd;
+    margin-top: -1px;
     background-color: #f6f6f6;
-    padding: 12px; 
-    text-decoration: none; 
-    font-size: 18px; 
-    color: black; 
-    display: block; 
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
     font-style: normal;
 	font-size: 14px;
 }
 
 #dynasuggestions li a:hover {
     background-color: #696969;
-    color: #ffffff; 
+    color: #ffffff;
 }
 
 .warntext {
@@ -222,7 +222,7 @@ li.base {
 	overflow-x: hidden;
 	height: 200px;
 	border: 1px solid;
-	padding: 5px; 
+	padding: 5px;
 }
 .modal-title {
 	font-style: normal;
