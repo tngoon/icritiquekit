@@ -308,9 +308,24 @@ function showComments() {
 	$("#need-actionable").hide();
 	$("#need-justify").hide();
 	$("#act-justify").hide();
-	$("#search").hide();
+
+	// Toggle buttons
+	$("#view-comments").hide();
+	$("#hide-comments").show();
 
 	socket.emit('showed comments', {condition: "critiquekit", cookie_val: cookie_val})
+}
+
+//hide submitted comments
+function hideComments() {
+	$("#submitted-comments").hide();
+	$("#open-default").show();
+
+	// Toggle buttons
+	$("#view-comments").show();
+	$("#hide-comments").hide();
+
+	socket.emit('hid comments', {condition: "critiquekit", cookie_val: cookie_val})
 }
 
 //filter suggestions based on what user is typing

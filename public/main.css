@@ -126,6 +126,11 @@ textarea {
 	margin-left: 10px;
 }
 
+#hide-comments {
+	margin-left: 10px;
+	display: none;
+}
+
 #submitted-comments {
 	border: 1px solid #ddd; 
 	padding: 5px;
