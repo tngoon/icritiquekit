@@ -4,10 +4,17 @@ $(function () {
 });
 </script>
 
+<script>
+function changeText() {
+    showComments()
+    document.getElementById("view-comments").innerHTML = "- Hide My Comments";
+}
+</script>
+
 <div id="checkboxes">
 	<form>
 	    <label class="checkbox-inline" data-toggle="tooltip" data-placement="bottom" title="Feedback should provide sufficient detail about what was done well or what should be improved upon"><input type="checkbox" id="speccheck" onclick="ShowHideDiv()" value="">Is Specific</label>
-	    <label class="checkbox-inline" data-toggle="tooltip" data-placement="bottom" title="Feedback should provide a concrete next step for improvement"><input type="checkbox" id="actcheck" onclick="ShowHideDiv()" value="">Is Actionable</label>      
+	    <label class="checkbox-inline" data-toggle="tooltip" data-placement="bottom" title="Feedback should provide a concrete next step for improvement"><input type="checkbox" id="actcheck" onclick="ShowHideDiv()" value="">Is Actionable</label>
 	    <label class="checkbox-inline" data-toggle="tooltip" data-placement="bottom" title="Feedback should provide a reason for why something is well done or should be improved"><input type="checkbox" id="justcheck" onclick="ShowHideDiv()" value="">Is Justified</label>
 	</form>
 </div>
