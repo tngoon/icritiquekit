@@ -17,9 +17,12 @@ $(function() {
 	$('#help-modal').load("help.html");
 });
 
-$(function() {
-	// socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
-	socket = io();
+$(function () {
+	// Run on server
+	socket = io.connect('http://d.ucsd.edu', {path: '/api/icritiquekit/socket.io', secure: false})
+
+	// Test on localhost
+	//socket = io();
 
 	// check for cookie
 	if (Cookies.get('critiquekit-cookie') != undefined) {
@@ -305,9 +308,24 @@ function showComments() {
 	$("#need-actionable").hide();
 	$("#need-justify").hide();
 	$("#act-justify").hide();
-	$("#search").hide();
+
+	// Toggle buttons
+	$("#view-comments").hide();
+	$("#hide-comments").show();
 
 	socket.emit('showed comments', {condition: "critiquekit", cookie_val: cookie_val})
+}
+
+//hide submitted comments
+function hideComments() {
+	$("#submitted-comments").hide();
+	$("#open-default").show();
+
+	// Toggle buttons
+	$("#view-comments").show();
+	$("#hide-comments").hide();
+
+	socket.emit('hid comments', {condition: "critiquekit", cookie_val: cookie_val})
 }
 
 //filter suggestions based on what user is typing

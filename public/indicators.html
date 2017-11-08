@@ -20,7 +20,8 @@ function changeText() {
 </div>
 
 <div class="comment-btns">
-	<a href="#submitted-comments" id="view-comments" onclick="changeText()">+ View my comments</a>
+	<a href="#" id="view-comments" onclick="showComments()">+ View my comments</a>
+	<a href="#" id="hide-comments" onclick="hideComments()">- Hide my comments</a>
 	<button type="button" id="submit-comment" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Make sure your feedback is complete before submitting!" onClick="submitComments()">Submit</button>
 	<button type="button" id="cancel-comment" class="btn btn-default">Cancel</button>
 </div>
