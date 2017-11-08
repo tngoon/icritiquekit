@@ -46,22 +46,37 @@
         <div class="right-align" style="padding: 0.75rem"> <a class="waves-effect waves-light btn">Submit</a> </div>
       </div>
 
-      <div class="row">
-        <div class="col section">
-          <h5>Justified <input type="checkbox" id="justified-box" checked="checked" onclick="return false;" />
-      <label for="justified-box"></label> </h5>
+        <div class="col s12 section">
+          <h5>Justified  <i class="material-icons">check_box_outline_blank</i> <a class="btn-floating" id="hideJustify"><i class="material-icons" id= "justifyIcon">arrow_drop_up</i></a> </h5>
         </div>
 
-        <div class="col s12">
-          <div class="card-panel teal">
-            <span class="white-text">
-          Justified Suggestions
-        </span>
-          </div>
+        <div class="collection" id="justify_suggestion">
+          <a href="#" class="collection-item">Use more white space to better call out and space elements on the page.</a>
+          <a href="#" class="collection-item">Reduce the clutter a bit, and this will be a polished prototype.</a>
+          <a href="#" class="collection-item">Make sure all features are easily understood.</a>
+          <a href="#" class="collection-item">The prototype should more directly relate to your specific point of view.</a>
+          <a href="#" class="collection-item">Each prototype should diverge more to explore different ideas.</a>
+          <a href="#" class="collection-item">Add some margins around the page elements to give them some padding.</a>
+          <a href="#" class="collection-item">You should include all interactions for all pages, especially from the home page.</a>
+          <a href="#" class="collection-item">Prototype should stand out from other similar apps with a similar purpose to better relate to your unique point of view.</a>
+          <a href="#" class="collection-item">It might be useful to break up the information into separate pages on the prototype.</a>
         </div>
+
+        <script>
+          $(document).ready(function() {
+            $("#hideJustify").click(function() {
+              $("#justify_suggestion").toggle();
+              if ($("#justify_suggestion_suggestion").is(':hidden')) {
+                document.getElementById("justifyIcon").innerHTML = "arrow_drop_down";
+              } else {
+                document.getElementById("justifyIcon").innerHTML = "arrow_drop_up";
+              }
+            });
+          });
+        </script>
 
         <div class="col s12 section">
-          <h5>Actionable  <i class="material-icons">check_box_outline_blank</i> <a class="btn-floating" id="hideAction"><i class="material-icons">arrow_drop_up</i></a> </h5>
+          <h5>Actionable  <i class="material-icons">check_box_outline_blank</i> <a class="btn-floating" id="hideAction"><i class="material-icons" id= "actionIcon">arrow_drop_up</i></a> </h5>
         </div>
 
         <div class="collection" id="action_suggestion">
@@ -80,30 +95,53 @@
           $(document).ready(function() {
             $("#hideAction").click(function() {
               $("#action_suggestion").toggle();
+              if ($("#action_suggestion").is(':hidden')) {
+                document.getElementById("actionIcon").innerHTML = "arrow_drop_down";
+              } else {
+                document.getElementById("actionIcon").innerHTML = "arrow_drop_up";
+              }
             });
           });
         </script>
 
 
         <div class="col s12 section">
-          <h5>Specific <input type="checkbox" id="specific-box" checked="checked" onclick="return false;" />
-      <label for="specific-box"></label> </h5>
+          <h5>Specific  <i class="material-icons">check_box_outline_blank</i> <a class="btn-floating" id="hideSpecific"><i class="material-icons" id= "specificIcon">arrow_drop_up</i></a> </h5>
         </div>
 
-        <div class="col s12">
-          <div class="card-panel teal">
-            <span class="white-text">
-          Specific Suggestions
-        </span>
-          </div>
+        <div class="collection" id="specific_suggestion">
+          <a href="#" class="collection-item">Use more white space to better call out and space elements on the page.</a>
+          <a href="#" class="collection-item">Reduce the clutter a bit, and this will be a polished prototype.</a>
+          <a href="#" class="collection-item">Make sure all features are easily understood.</a>
+          <a href="#" class="collection-item">The prototype should more directly relate to your specific point of view.</a>
+          <a href="#" class="collection-item">Each prototype should diverge more to explore different ideas.</a>
+          <a href="#" class="collection-item">Add some margins around the page elements to give them some padding.</a>
+          <a href="#" class="collection-item">You should include all interactions for all pages, especially from the home page.</a>
+          <a href="#" class="collection-item">Prototype should stand out from other similar apps with a similar purpose to better relate to your unique point of view.</a>
+          <a href="#" class="collection-item">It might be useful to break up the information into separate pages on the prototype.</a>
+        </div>
+
+        <script>
+          $(document).ready(function() {
+            $("#hideSpecific").click(function() {
+              $("#specific_suggestion").toggle();
+              if ($("#specific_suggestion").is(':hidden')) {
+                document.getElementById("specificIcon").innerHTML = "arrow_drop_down";
+              } else {
+                document.getElementById("specificIcon").innerHTML = "arrow_drop_up";
+              }
+            });
+          });
+        </script>
+
+        <div class="row">
+          <div class="col"> <a class="waves-effect waves-light btn">Rubric</a> </div>
+          <div class="right-align" style="margin: .5rem 0 1rem 0"> <a class="waves-effect waves-light btn">Finish Reviewing</a> </div>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col"> <a class="waves-effect waves-light btn">Rubric</a> </div>
-        <div class="right-align" style="padding: 0.75rem"> <a class="waves-effect waves-light btn">Finish Reviewing</a> </div>
 
-      </div>
+
     </div>
 
   </div>
