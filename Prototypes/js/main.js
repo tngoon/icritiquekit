@@ -159,22 +159,16 @@ function checkComments() {
 		$("#need-actionable").hide();
 		$("#need-justify").show();
 		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
 	} else if(!actcheck.checked && justcheck.checked) {
 		$("#open-default").hide();
 		$("#need-actionable").show();
 		$("#need-justify").hide();
 		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
 	} else if(actcheck.checked && speccheck.checked && justcheck.checked) {
 		$("#open-default").hide();
 		$("#need-actionable").hide();
 		$("#need-justify").hide();
 		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger btn-warning');
-		$("#submit-comment").addClass('btn-success');
 		$("#complete").show();
 	} 
 }
@@ -192,51 +186,25 @@ function ShowHideDiv() {
 		$("#need-actionable").hide();
 		$("#need-justify").hide();
 		$("#act-justify").show();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
 	} else if(actcheck.checked && !justcheck.checked) {
 		$("#open-default").hide();
 		$("#need-actionable").hide();
 		$("#need-justify").show();
 		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
 	} else if(!actcheck.checked && justcheck.checked) {
 		$("#open-default").hide();
 		$("#need-actionable").show();
 		$("#need-justify").hide();
 		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
 	} else if(actcheck.checked && speccheck.checked && justcheck.checked) {
 		$("#open-default").hide();
 		$("#need-actionable").hide();
 		$("#need-justify").hide();
 		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger btn-warning');
-		$("#submit-comment").addClass('btn-success');
 		$("#complete").show();
 	}
 
-	var checked = [];
-	if(speccheck.checked) {
-		var x = 1;
-	} else {
-		var x = 0
-	}
-	if(actcheck.checked) {
-		var y = 1;
-	} else {
-		var y = 0;
-	} if(justcheck.checked) {
-		var z = 1;
-	} else {
-		var z = 0;
-	}
-
-	checked.push(x,y,z);
-	console.log(checked);
-	socket.emit('category clicked', {condition: "critiquekit", categories: checked, cookie_val: cookie_val})
+	socket.emit('category clicked', {condition: "critiquekit", cookie_val: cookie_val})
 }
 
 //store comments as JSON
@@ -252,33 +220,6 @@ function submitComments() {
 
 	if(allComments) {
 		obj=JSON.parse(allComments)
-	}
-
-	if(input.length != 0 && input[0] != "") {
-		for (var i=0; i<input.length; i++) {			
-			if(/\S/.test(input[i])) {
-				Comment['comment'] = $.trim(input[i]);
-
-				if(speccheck.checked && actcheck.checked && justcheck.checked) {
-					Comment['category'] = 111;
-				} else if(speccheck.checked && !actcheck.checked && !justcheck.checked) {
-					Comment['category'] = 100;
-				} else if(speccheck.checked && actcheck.checked) {
-					Comment['category']= 110;
-				} else if(speccheck.checked && justcheck.checked) {
-					Comment['category']= 101;
-				} else if(!speccheck.checked && actcheck.checked && !justcheck.checked) {
-					Comment['category']= 010;
-				} else if(!speccheck.checked && !actcheck.checked && justcheck.checked) {
-					Comment['category']= 001;
-				} else if(!speccheck.checked && actcheck.checked && justcheck.checked) {
-					Comment['category']= 011;
-				} else {
-					Comment['category']= 0;
-				}
-			}			
-		}
-		
 	} else {
 		alert("You can't submit an empty comment!");
 	}
@@ -327,30 +268,4 @@ function hideComments() {
 
 	socket.emit('hid comments', {condition: "critiquekit", cookie_val: cookie_val})
 }
-
-//filter suggestions based on what user is typing
-// function filterSuggestions() {
-// 	var input = document.getElementById("search-bar");
-// 	var box = document.getElementById("dynasuggestions");
-// 	var list = box.getElementsByTagName("li");
-// 	var filter = input.value.toUpperCase();
-// 	// var timeout = null;
-
-// 	for (i=0; i<list.length; i++) {
-// 		a=list[i].getElementsByTagName("a")[0];
-// 		if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-// 			list[i].style.display= "";
-// 			// list[i].parentNode.insertBefore(list[i], list[i].previousSibling);
-// 		} else {
-// 			list[i].style.display = "none";
-// 		}
-// 	}
-// }
-
-function loadDesign() {
-	document.getElementById("design1").style.display="none";
-	document.getElementById("design2").style.display="block";
-	socket.emit('next design', {condition:"critiquekit", cookie_val: cookie_val});
-}
-
 
