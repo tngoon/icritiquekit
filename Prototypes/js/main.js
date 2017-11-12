@@ -15,6 +15,7 @@ $(function() {
 	$("#indicators").load("indicators.html");
 	$('#dynasuggestions').load("dynasuggestions.html");
 	$('#help-modal').load("help.html");
+  $('#rubric').load("rubric.html");
 });
 
 $(function () {
@@ -70,6 +71,20 @@ $(function() {
 	$('body').on('keydown', "#comment-text", function() {
 		$("#submitted-comments").hide();
 	})
+})
+
+$(function() {
+  $(document).ready(function() {
+    $("#rubricbtn").click(function() {
+      $("#rubric").toggle();
+      $("#indicators").toggle();
+      if ($("#rubric").is(':hidden')) {
+        document.getElementById("rubricbtn").innerHTML = "Rubric";
+      } else {
+        document.getElementById("rubricbtn").innerHTML = "Suggestions";
+      }
+    });
+  });
 })
 
 //form validation to ensure consent form is clicked
