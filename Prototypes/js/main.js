@@ -38,9 +38,8 @@ $(function () {
 //reset page w/o reloading when submit and cancel buttons hit
 $(function() {
 	$('body').on('click', "#submit-comment", function() {
-		$("#comment-text").val('');
+		$("#feedback").val('');
 		$('input:checkbox').prop('checked', false);
-		$("#open-default").show();
 		$("#complete").hide();
 		$("#need-actionable").hide();
 		$("#need-justify").hide();
@@ -53,9 +52,8 @@ $(function() {
 
 $(function() {
 	$('body').on('click', "#cancel-comment", function() {
-		$("#comment-text").val('');
+		$("#feedback").val('');
 		$('input:checkbox').prop('checked', false);
-		$("#open-default").show();
 		$("#complete").hide();
 		$("#need-actionable").hide();
 		$("#need-justify").hide();
@@ -79,7 +77,7 @@ function validateForm() {
 	if(document.getElementById("consent_yes").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
 		socket.emit('consent', {cookie_val: cookie_val, consent:true});
-		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: true});	
+		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: true});
 	} else if (document.getElementById("consent_no").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
 		socket.emit('consent', {cookie_val: cookie_val, consent:false});
@@ -89,9 +87,9 @@ function validateForm() {
 
 // copy text of suggestion button to textbox
 function copyText(x) {
-	var currentTxt = document.getElementById("comment-text").value;
+	var currentTxt = document.getElementById("feedback").value;
 	var submittedComment = x.innerHTML;
-	document.getElementById("comment-text").value = currentTxt + " " + submittedComment;
+	document.getElementById("feedback").value = currentTxt + " " + submittedComment;
 	//if suggestion clicked, move to top of list
 	$("li").click(function() {
   		$(this).parent().prepend($(this));
@@ -114,102 +112,35 @@ function copyText(x) {
 
 //check for characteristics of comments
 function checkComments() {
-	var text = $("#comment-text").val();
+	var text = $("#feedback").val();
 	var wordlength = text.split(' ').length;
 	var words = text.split(' ');
-	
+
 	if(wordlength < 5) {
 		$("#speccheck").prop('checked', false);
+    document.getElementById("speccheck").innerHTML = "check_box_outline_blank";
 	} else if (wordlength > 5) {
-		$("#speccheck").prop('checked', true);
-		$("#open-default").hide();
-		$("#complete").hide();
+    document.getElementById("speccheck").innerHTML = "check_box";
 	} else {
-		$("#open-default").hide();
-		$("#speccheck").prop('checked', false)
+		document.getElementById("speccheck").innerHTML = "check_box_outline_blank";
 	};
-		
+
 	if(text.match(/(maybe|try|should|would|make|use|consider|remove|use|add|please)/gi)) {
-		$('#actcheck').prop('checked', true);
-		$('#open-default').hide();
-		$('#need-actionable').hide();
-		$('#act-justify').hide();		
-	} 
+		document.getElementById("actcheck").innerHTML = "check_box";
+	} else {
+    document.getElementById("actcheck").innerHTML = "check_box_outline_blank";
+  }
+
 	if(text.match(/(because|so|might|just)/gi)) {
-		$('#justcheck').prop('checked', true);
-		$("#need-justify").hide();
-		$('#act-justify').hide();
-	}
-
-	//checkboxes
-	var speccheck = document.getElementById("speccheck");
-	var actcheck = document.getElementById("actcheck");
-	var justcheck = document.getElementById("justcheck");
-
-	//show/hide divs based on checkboxes
-	if(speccheck.checked && !actcheck.checked && !justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").hide();
-		$("#act-justify").show();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
-	} else if(actcheck.checked && !justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").show();
-		$("#act-justify").hide();
-	} else if(!actcheck.checked && justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").show();
-		$("#need-justify").hide();
-		$("#act-justify").hide();
-	} else if(actcheck.checked && speccheck.checked && justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").hide();
-		$("#act-justify").hide();
-		$("#complete").show();
-	} 
-}
-
-// show and hide different suggestions based on checkboxes
-function ShowHideDiv() {
-
-	//checkboxes
-	var speccheck = document.getElementById("speccheck");
-	var actcheck = document.getElementById("actcheck");
-	var justcheck = document.getElementById("justcheck");
-
-	if(speccheck.checked && !actcheck.checked && !justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").hide();
-		$("#act-justify").show();
-	} else if(actcheck.checked && !justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").show();
-		$("#act-justify").hide();
-	} else if(!actcheck.checked && justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").show();
-		$("#need-justify").hide();
-		$("#act-justify").hide();
-	} else if(actcheck.checked && speccheck.checked && justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").hide();
-		$("#act-justify").hide();
-		$("#complete").show();
-	}
-
-	socket.emit('category clicked', {condition: "critiquekit", cookie_val: cookie_val})
+		document.getElementById("justcheck").innerHTML = "check_box";
+	} else {
+    document.getElementById("justcheck").innerHTML = "check_box_outline_blank";
+  }
 }
 
 //store comments as JSON
 function submitComments() {
-	var input = $('#comment-text').val().split(/\n/);
+	var input = $('#feedback').val().split(/\n/);
 	var allComments = sessionStorage.getItem("allComments");
 	var Comment = {};
 	var obj = [];
@@ -245,7 +176,6 @@ function submitComments() {
 //show submitted comments
 function showComments() {
 	$("#submitted-comments").show();
-	$("#open-default").hide();
 	$("#need-actionable").hide();
 	$("#need-justify").hide();
 	$("#act-justify").hide();
@@ -260,7 +190,6 @@ function showComments() {
 //hide submitted comments
 function hideComments() {
 	$("#submitted-comments").hide();
-	$("#open-default").show();
 
 	// Toggle buttons
 	$("#view-comments").show();
@@ -268,4 +197,3 @@ function hideComments() {
 
 	socket.emit('hid comments', {condition: "critiquekit", cookie_val: cookie_val})
 }
-

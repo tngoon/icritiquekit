@@ -14,7 +14,7 @@ const server = express()
 	    	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	    	next();
 		})
-		.use(express.static(__dirname + '/public'))
+		.use(express.static(__dirname))
 		.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 function updateJSON(file, obj) {
@@ -53,7 +53,7 @@ const io = socketIO(server);
 // 					"design_id": data.design_id});
 // 	updateJSON(log_file, logs);
 // }
- 
+
 
 io.on('connection', function(socket) {
 	var address = socket.handshake.headers['x-forwarded-for'];
@@ -100,7 +100,7 @@ io.on('connection', function(socket) {
 
   		// save to user data
   		user_data[data.cookie_val].comments.push({"comment": data.comment,
-  									"category": data.category, 
+  									"category": data.category,
   									"condition": data.condition});
   		updateJSON(user_file, user_data);
 
