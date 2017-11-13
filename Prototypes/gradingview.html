@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css" media="screen,projection" />
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<nav>
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo left">CritiqueKit</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Assignments</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<body>
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
+
+
+  <div class="row"></div>
+
+  <div class="row">
+    <div class="col s8">
+      <iframe id="design1" width='100%' height='1000px' src="../public/docs/prototype_d3.pdf"></iframe>
+    </div>
+
+    <div class="col s4">
+
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="feedback" class="materialize-textarea"></textarea>
+          <label for="feedback">Feedback</label>
+        </div>
+        <div class="col "> <a class="waves-effect waves-light btn">Attach</a> </div>
+        <div class="right-align" style="padding: 0.75rem"> <a class="waves-effect waves-light btn">Submit</a> </div>
+      </div>
+
+        <div class="col s12 section">
+          <h5>Justified  <i class="material-icons">check_box_outline_blank</i> <a class="btn-floating" id="hideJustify"><i class="material-icons" id= "justifyIcon">arrow_drop_up</i></a> </h5>
+        </div>
+
+        <div class="collection" id="justify_suggestion">
+          <a href="#" class="collection-item">Use more white space to better call out and space elements on the page.</a>
+          <a href="#" class="collection-item">Reduce the clutter a bit, and this will be a polished prototype.</a>
+          <a href="#" class="collection-item">Make sure all features are easily understood.</a>
+          <a href="#" class="collection-item">The prototype should more directly relate to your specific point of view.</a>
+          <a href="#" class="collection-item">Each prototype should diverge more to explore different ideas.</a>
+          <a href="#" class="collection-item">Add some margins around the page elements to give them some padding.</a>
+          <a href="#" class="collection-item">You should include all interactions for all pages, especially from the home page.</a>
+          <a href="#" class="collection-item">Prototype should stand out from other similar apps with a similar purpose to better relate to your unique point of view.</a>
+          <a href="#" class="collection-item">It might be useful to break up the information into separate pages on the prototype.</a>
+        </div>
+
+        <script>
+          $(document).ready(function() {
+            $("#hideJustify").click(function() {
+              $("#justify_suggestion").toggle();
+              if ($("#justify_suggestion_suggestion").is(':hidden')) {
+                document.getElementById("justifyIcon").innerHTML = "arrow_drop_down";
+              } else {
+                document.getElementById("justifyIcon").innerHTML = "arrow_drop_up";
+              }
+            });
+          });
+        </script>
+
+        <div class="col s12 section">
+          <h5>Actionable  <i class="material-icons">check_box_outline_blank</i> <a class="btn-floating" id="hideAction"><i class="material-icons" id= "actionIcon">arrow_drop_up</i></a> </h5>
+        </div>
+
+        <div class="collection" id="action_suggestion">
+          <a href="#" class="collection-item">Use more white space to better call out and space elements on the page.</a>
+          <a href="#" class="collection-item">Reduce the clutter a bit, and this will be a polished prototype.</a>
+          <a href="#" class="collection-item">Make sure all features are easily understood.</a>
+          <a href="#" class="collection-item">The prototype should more directly relate to your specific point of view.</a>
+          <a href="#" class="collection-item">Each prototype should diverge more to explore different ideas.</a>
+          <a href="#" class="collection-item">Add some margins around the page elements to give them some padding.</a>
+          <a href="#" class="collection-item">You should include all interactions for all pages, especially from the home page.</a>
+          <a href="#" class="collection-item">Prototype should stand out from other similar apps with a similar purpose to better relate to your unique point of view.</a>
+          <a href="#" class="collection-item">It might be useful to break up the information into separate pages on the prototype.</a>
+        </div>
+
+        <script>
+          $(document).ready(function() {
+            $("#hideAction").click(function() {
+              $("#action_suggestion").toggle();
+              if ($("#action_suggestion").is(':hidden')) {
+                document.getElementById("actionIcon").innerHTML = "arrow_drop_down";
+              } else {
+                document.getElementById("actionIcon").innerHTML = "arrow_drop_up";
+              }
+            });
+          });
+        </script>
+
+
+        <div class="col s12 section">
+          <h5>Specific  <i class="material-icons">check_box_outline_blank</i> <a class="btn-floating" id="hideSpecific"><i class="material-icons" id= "specificIcon">arrow_drop_up</i></a> </h5>
+        </div>
+
+        <div class="collection" id="specific_suggestion">
+          <a href="#" class="collection-item">Use more white space to better call out and space elements on the page.</a>
+          <a href="#" class="collection-item">Reduce the clutter a bit, and this will be a polished prototype.</a>
+          <a href="#" class="collection-item">Make sure all features are easily understood.</a>
+          <a href="#" class="collection-item">The prototype should more directly relate to your specific point of view.</a>
+          <a href="#" class="collection-item">Each prototype should diverge more to explore different ideas.</a>
+          <a href="#" class="collection-item">Add some margins around the page elements to give them some padding.</a>
+          <a href="#" class="collection-item">You should include all interactions for all pages, especially from the home page.</a>
+          <a href="#" class="collection-item">Prototype should stand out from other similar apps with a similar purpose to better relate to your unique point of view.</a>
+          <a href="#" class="collection-item">It might be useful to break up the information into separate pages on the prototype.</a>
+        </div>
+
+        <script>
+          $(document).ready(function() {
+            $("#hideSpecific").click(function() {
+              $("#specific_suggestion").toggle();
+              if ($("#specific_suggestion").is(':hidden')) {
+                document.getElementById("specificIcon").innerHTML = "arrow_drop_down";
+              } else {
+                document.getElementById("specificIcon").innerHTML = "arrow_drop_up";
+              }
+            });
+          });
+        </script>
+
+        <div class="row">
+          <div class="col"> <a class="waves-effect waves-light btn">Rubric</a> </div>
+          <div class="right-align" style="margin: .5rem 0 1rem 0"> <a class="waves-effect waves-light btn">Finish Reviewing</a> </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+  </div>
+
+
+  <div class="row">
+
+  </div>
+
+
+</body>
+
+</html>
