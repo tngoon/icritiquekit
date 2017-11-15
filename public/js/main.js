@@ -15,6 +15,7 @@ $(function() {
 	$("#indicators").load("indicators.html");
 	$('#dynasuggestions').load("dynasuggestions.html");
 	$('#help-modal').load("help.html");
+  $('#rubric').load("rubric.html");
 });
 
 $(function () {
@@ -38,9 +39,8 @@ $(function () {
 //reset page w/o reloading when submit and cancel buttons hit
 $(function() {
 	$('body').on('click', "#submit-comment", function() {
-		$("#comment-text").val('');
+		$("#feedback").val('');
 		$('input:checkbox').prop('checked', false);
-		$("#open-default").show();
 		$("#complete").hide();
 		$("#need-actionable").hide();
 		$("#need-justify").hide();
@@ -53,9 +53,8 @@ $(function() {
 
 $(function() {
 	$('body').on('click', "#cancel-comment", function() {
-		$("#comment-text").val('');
+		$("#feedback").val('');
 		$('input:checkbox').prop('checked', false);
-		$("#open-default").show();
 		$("#complete").hide();
 		$("#need-actionable").hide();
 		$("#need-justify").hide();
@@ -74,12 +73,26 @@ $(function() {
 	})
 })
 
+$(function() {
+  $(document).ready(function() {
+    $("#rubricbtn").click(function() {
+      $("#rubric").toggle();
+      $("#indicators").toggle();
+      if ($("#rubric").is(':hidden')) {
+        document.getElementById("rubricbtn").innerHTML = "Rubric";
+      } else {
+        document.getElementById("rubricbtn").innerHTML = "Suggestions";
+      }
+    });
+  });
+})
+
 //form validation to ensure consent form is clicked
 function validateForm() {
 	if(document.getElementById("consent_yes").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
 		socket.emit('consent', {cookie_val: cookie_val, consent:true});
-		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: true});	
+		Cookies.set('critiquekit-cookie', {cookie_val: cookie_val, consent: true});
 	} else if (document.getElementById("consent_no").checked) {
 		document.getElementById("consent-button").classList.remove("disabled");
 		socket.emit('consent', {cookie_val: cookie_val, consent:false});
@@ -89,9 +102,9 @@ function validateForm() {
 
 // copy text of suggestion button to textbox
 function copyText(x) {
-	var currentTxt = document.getElementById("comment-text").value;
+	var currentTxt = document.getElementById("feedback").value;
 	var submittedComment = x.innerHTML;
-	document.getElementById("comment-text").value = currentTxt + " " + submittedComment;
+	document.getElementById("feedback").value = currentTxt + " " + submittedComment;
 	//if suggestion clicked, move to top of list
 	$("li").click(function() {
   		$(this).parent().prepend($(this));
@@ -114,134 +127,35 @@ function copyText(x) {
 
 //check for characteristics of comments
 function checkComments() {
-	var text = $("#comment-text").val();
+	var text = $("#feedback").val();
 	var wordlength = text.split(' ').length;
 	var words = text.split(' ');
-	
+
 	if(wordlength < 5) {
 		$("#speccheck").prop('checked', false);
+    document.getElementById("speccheck").innerHTML = "check_box_outline_blank";
 	} else if (wordlength > 5) {
-		$("#speccheck").prop('checked', true);
-		$("#open-default").hide();
-		$("#complete").hide();
+    document.getElementById("speccheck").innerHTML = "check_box";
 	} else {
-		$("#open-default").hide();
-		$("#speccheck").prop('checked', false)
+		document.getElementById("speccheck").innerHTML = "check_box_outline_blank";
 	};
-		
+
 	if(text.match(/(maybe|try|should|would|make|use|consider|remove|use|add|please)/gi)) {
-		$('#actcheck').prop('checked', true);
-		$('#open-default').hide();
-		$('#need-actionable').hide();
-		$('#act-justify').hide();		
-	} 
+		document.getElementById("actcheck").innerHTML = "check_box";
+	} else {
+    document.getElementById("actcheck").innerHTML = "check_box_outline_blank";
+  }
+
 	if(text.match(/(because|so|might|just)/gi)) {
-		$('#justcheck').prop('checked', true);
-		$("#need-justify").hide();
-		$('#act-justify').hide();
-	}
-
-	//checkboxes
-	var speccheck = document.getElementById("speccheck");
-	var actcheck = document.getElementById("actcheck");
-	var justcheck = document.getElementById("justcheck");
-
-	//show/hide divs based on checkboxes
-	if(speccheck.checked && !actcheck.checked && !justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").hide();
-		$("#act-justify").show();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
-	} else if(actcheck.checked && !justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").show();
-		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
-	} else if(!actcheck.checked && justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").show();
-		$("#need-justify").hide();
-		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
-	} else if(actcheck.checked && speccheck.checked && justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").hide();
-		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger btn-warning');
-		$("#submit-comment").addClass('btn-success');
-		$("#complete").show();
-	} 
-}
-
-// show and hide different suggestions based on checkboxes
-function ShowHideDiv() {
-
-	//checkboxes
-	var speccheck = document.getElementById("speccheck");
-	var actcheck = document.getElementById("actcheck");
-	var justcheck = document.getElementById("justcheck");
-
-	if(speccheck.checked && !actcheck.checked && !justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").hide();
-		$("#act-justify").show();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
-	} else if(actcheck.checked && !justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").show();
-		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
-	} else if(!actcheck.checked && justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").show();
-		$("#need-justify").hide();
-		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger');
-		$("#submit-comment").addClass('btn-warning');
-	} else if(actcheck.checked && speccheck.checked && justcheck.checked) {
-		$("#open-default").hide();
-		$("#need-actionable").hide();
-		$("#need-justify").hide();
-		$("#act-justify").hide();
-		$("#submit-comment").removeClass('btn-danger btn-warning');
-		$("#submit-comment").addClass('btn-success');
-		$("#complete").show();
-	}
-
-	var checked = [];
-	if(speccheck.checked) {
-		var x = 1;
+		document.getElementById("justcheck").innerHTML = "check_box";
 	} else {
-		var x = 0
-	}
-	if(actcheck.checked) {
-		var y = 1;
-	} else {
-		var y = 0;
-	} if(justcheck.checked) {
-		var z = 1;
-	} else {
-		var z = 0;
-	}
-
-	checked.push(x,y,z);
-	console.log(checked);
-	socket.emit('category clicked', {condition: "critiquekit", categories: checked, cookie_val: cookie_val})
+    document.getElementById("justcheck").innerHTML = "check_box_outline_blank";
+  }
 }
 
 //store comments as JSON
 function submitComments() {
-	var input = $('#comment-text').val().split(/\n/);
+	var input = $('#feedback').val().split(/\n/);
 	var allComments = sessionStorage.getItem("allComments");
 	var Comment = {};
 	var obj = [];
@@ -252,33 +166,6 @@ function submitComments() {
 
 	if(allComments) {
 		obj=JSON.parse(allComments)
-	}
-
-	if(input.length != 0 && input[0] != "") {
-		for (var i=0; i<input.length; i++) {			
-			if(/\S/.test(input[i])) {
-				Comment['comment'] = $.trim(input[i]);
-
-				if(speccheck.checked && actcheck.checked && justcheck.checked) {
-					Comment['category'] = 111;
-				} else if(speccheck.checked && !actcheck.checked && !justcheck.checked) {
-					Comment['category'] = 100;
-				} else if(speccheck.checked && actcheck.checked) {
-					Comment['category']= 110;
-				} else if(speccheck.checked && justcheck.checked) {
-					Comment['category']= 101;
-				} else if(!speccheck.checked && actcheck.checked && !justcheck.checked) {
-					Comment['category']= 010;
-				} else if(!speccheck.checked && !actcheck.checked && justcheck.checked) {
-					Comment['category']= 001;
-				} else if(!speccheck.checked && actcheck.checked && justcheck.checked) {
-					Comment['category']= 011;
-				} else {
-					Comment['category']= 0;
-				}
-			}			
-		}
-		
 	} else {
 		alert("You can't submit an empty comment!");
 	}
@@ -304,7 +191,6 @@ function submitComments() {
 //show submitted comments
 function showComments() {
 	$("#submitted-comments").show();
-	$("#open-default").hide();
 	$("#need-actionable").hide();
 	$("#need-justify").hide();
 	$("#act-justify").hide();
@@ -319,7 +205,6 @@ function showComments() {
 //hide submitted comments
 function hideComments() {
 	$("#submitted-comments").hide();
-	$("#open-default").show();
 
 	// Toggle buttons
 	$("#view-comments").show();
@@ -327,30 +212,3 @@ function hideComments() {
 
 	socket.emit('hid comments', {condition: "critiquekit", cookie_val: cookie_val})
 }
-
-//filter suggestions based on what user is typing
-// function filterSuggestions() {
-// 	var input = document.getElementById("search-bar");
-// 	var box = document.getElementById("dynasuggestions");
-// 	var list = box.getElementsByTagName("li");
-// 	var filter = input.value.toUpperCase();
-// 	// var timeout = null;
-
-// 	for (i=0; i<list.length; i++) {
-// 		a=list[i].getElementsByTagName("a")[0];
-// 		if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-// 			list[i].style.display= "";
-// 			// list[i].parentNode.insertBefore(list[i], list[i].previousSibling);
-// 		} else {
-// 			list[i].style.display = "none";
-// 		}
-// 	}
-// }
-
-function loadDesign() {
-	document.getElementById("design1").style.display="none";
-	document.getElementById("design2").style.display="block";
-	socket.emit('next design', {condition:"critiquekit", cookie_val: cookie_val});
-}
-
-
