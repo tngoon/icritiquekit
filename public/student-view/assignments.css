@@ -1,0 +1,44 @@
+body h1{
+	font-size: 4vw;
+  	color: #47525E;
+}
+
+body a {
+	font-size: 2.5vw;
+}
+
+body h4 {
+	font-size: 2vw;
+	margin-left: 1vw;
+	margin-right: 1vw;
+}
+
+body h5 {
+	font-size: 2vw;
+	font-weight: 1;
+	color: rgb(83, 86, 88);
+	margin-left: 1vw;
+	margin-right: 1vw;
+}
+
+body div.row {
+	margin-top: 0px;
+}
+
+.assignment {
+	margin: 0;
+	padding: 0;
+}
+
+#upcoming {
+	margin-top: 50px;
+}
+
+.submit-button {
+	margin-left: auto;
+	margin-right: 10px;
+}
+
+.scrollable {
+	height: 45%;
+}

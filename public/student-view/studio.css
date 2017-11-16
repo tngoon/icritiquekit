@@ -1,0 +1,79 @@
+header {
+  color: #47525E;
+  font-family: Arvo;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 5vw;
+}
+
+header h6 {
+  font-size: 1.7vw;
+  padding-bottom: 2vh;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+#icon-labels {
+	box-shadow: 0px 3px 5px rgba(74, 74, 74, 0.5);
+}
+
+#icon-labels img {
+	height: 4vw;
+	width: 4vw;
+}
+
+#AZ {
+	position: absolute;
+	padding-left: 23.5vw;
+	padding-right: 0;
+}
+#TA {
+	position: absolute;
+	padding-left: 40vw;
+	padding-right: 0;
+}
+#Place {
+	position: absolute;
+	padding-left: 59vw;
+}
+#Time {
+	position: absolute;
+	padding-left:75vw;
+}
+#Seats {
+	padding-left: 91vw;
+}
+
+#studios h1 {
+	text-align: center;
+	font-size: 4vw;
+	font-weight: 900;
+	padding-right: 4vw;
+}
+
+#studios h2 {
+	text-align: right;
+	font-size: 2.5vw;
+	font-weight: 500;
+	padding-right: 4vw;
+}
+
+#studios h3 {
+	font-size: 2.5vw;
+	font-weight: 400;
+	padding-left: 2vw;
+}
+
+#studios h4 {
+	text-align: center;
+	font-size: 2.5vw;
+	font-weight: 200;
+	padding-left: 2vw;
+	padding-right: 2vw;
+}
