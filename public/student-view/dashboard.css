@@ -1,3 +1,7 @@
+header {
+	height: 32vh;
+}
+
 header h1{
 	font-size: 4.5vw;
   	color: #47525E;
@@ -37,4 +41,8 @@ header div.row {
 
 input {
 	visibility: hidden;
+}
+
+.scrollable {
+	height: 57vh;
 }
