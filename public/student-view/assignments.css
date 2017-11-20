@@ -41,5 +41,6 @@ body div.row {
 }
 
 .scrollable {
-	height: 45%;
+	margin-top: 3px;
+	height: 90vh;
 }
