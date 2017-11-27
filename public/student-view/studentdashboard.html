@@ -19,30 +19,23 @@
 </nav>
 
 <header>
-	<div class="row valign-wrapper">
-		<div class="col">
+	<div class="row">
+		<div class="col s3">
 			<h1>Due Next</h1>
 		</div>
 		<div class="col s9">
-			<div class="card-panel horizontal valign-wrapper row">
-				<a href="http://d.ucsd.edu/class/intro-hci/2016/assignments/A1/" class="col s5">A1: Design Thinking</a>
-				<h5>Due</h5>
-				<h4 class="col s4">Thursday 1/7 11:59 PM</h4>
-				<button class="btn-large waves-effect light-blue" id="submit-btn" type="submit" name="action" onclick="promptUpload();">Submit</button></div>
-				<button class="btn-large waves-effect orange" id="resubmit-btn" type="submit" name="action" onclick="promptUpload();">Resubmit</button></div>
+			<div class="card-panel valign-wrapper row">
+				<div class="col s7"><a href="http://d.ucsd.edu/class/intro-hci/2016/assignments/A1/">A1: Design Thinking</a></div>
+				<div class="col s1"><h5>Due</h5></div>
+				<div class="col s6"><h4>Thursday 1/7 11:59 PM</h4></div>
+				<div class="submit-button col"><button data-target="submit-modal" class="btn-large modal-trigger waves-effect light-blue" id="submit-btn">Submit</button></div>
 			</div>
 		</div>
 	</div>
 
-	<input type="file" id="fileupload">
-
 </header>
 
 <body>
-	<!--Import jQuery before materialize.js-->
-	<script type="text/javascript" 	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" 	src="../../materialize/js/materialize.min.js"></script>
-
 	<div class="divider"></div>
 	<div class="scrollable" id="custom-scrollbar">
 		<div class="row">
@@ -97,8 +90,36 @@
 	</div>
 	<div class="divider"></div>
 
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" 	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" 	src="../../materialize/js/materialize.min.js"></script>
 	<script type="text/javascript" src="submit.js"></script>
 
 </body>
+
+<!-- Submission Modal -->
+<div id="submit-modal" class="modal bottom-sheet">
+	<div class="modal-content row container">
+		<div class="input-field col s4">
+			<input id="pid" type="text" class="validate">
+			<label for="pid">PID</label>
+		</div>
+		<form action="#">
+			<div class="file-field input-field col s6 push-s2">
+				<div class="btn">
+					<span>Choose File</span>
+					<input type="file">
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text">
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="modal-footer">
+		<div class="waves-effect waves-light green btn">Upload</div>
+	</div>
+</div>
 
 </html>
