@@ -1,56 +1,10 @@
-<!--Navbar-->
-<nav class="navbar navbar-default navbar-static-top navbar-inverse">
-  <ul class="nav navbar-nav">
-    <li>
-      <a href="" id="site_title" style="color: #ffffff; font-style: normal; font-size: 16px">CritiqueKit</a>
-    </li>
-  </ul>
-  <ul class="nav navbar-nav navbar-right">
-    <li class="navbar-right">
-      <a id="logout-button" href="index.html" style="color: #ffffff">
-        Logout
-      </a>
-    </li>
-    <li class="navbar-right">
-      <a id="help-button" href="help.html" data-toggle="modal" data-target='#help-modal' style="color: #ffffff">
-        <span class="fa fa-question-circle"></span> Help
-      </a>
-    </li>
-    <li class="navbar-right">
-      <a id="done-button" href="done.html" data-toggle="modal" data-target='#done-modal' style="color: #ffffff">
-        <span class="fa fa-check-circle"></span> I'm done!
-      </a>
-    </li>
-    <li class="navbar-right">
-      <a id="next_design" data-target='#design2' onclick="loadDesign()" style="color: #ffffff">Next Design</a>
-    </li>
-  </ul>
+<nav>
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo left">CritiqueKit</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="TAlanding.html">Assignments</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
 </nav>
-<!--Help Modal link-->
-<div class="modal fade" id="help-modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content"></div>
-  </div>
-</div>
-<!--Done Modal link-->
-<div class="modal fade" id="done-modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content"></div>
-  </div>
-</div>
-<!--Final Modal link-->
-<div class="modal fade" id="final-modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Thanks for using CritiqueKit!</h4>
-      </div>
-      <div class="modal-body">
-        <p>Thank you for participating in this study. Please contact your experimenter for further instructions and debriefing.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="finishFeedback()">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
