@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignments</title>
+
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css" media="screen,projection" />
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!--<script src="js/main.js"></script>-->
+  <script src="js/socket.io.js"></script>
+  <script src="js/cookies.js"></script>
+  <script src="js/main.js"></script>
+
+
+</head>
+
+<body onload="parseAssignmentJSON()">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+      $('#modal1').modal('open');
+    });
+    $('#modal1').modal('open');
+  </script>
+
+
+  <div id="navbar-container"></div>
+
+  <div id="main-container">
+
+     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
+    </div>
+
+
+    <div id="showTable"></div>
+
+
+
+  </div>
+</body>
+
+</html>
