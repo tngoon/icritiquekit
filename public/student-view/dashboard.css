@@ -40,6 +40,7 @@ header div.row {
 
 .scrollable {
 	height: 70vh;
+	width: 100vw;
 }
 
 .modal-footer {

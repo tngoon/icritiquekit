@@ -92,34 +92,36 @@
 
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript" 	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" 	src="../../materialize/js/materialize.min.js"></script>
-	<script type="text/javascript" src="submit.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script type="text/javascript" src="./submit.js"></script>
 
 </body>
 
 <!-- Submission Modal -->
-<div id="submit-modal" class="modal bottom-sheet">
-	<div class="modal-content row container">
-		<div class="input-field col s4">
-			<input id="pid" type="text" class="validate">
-			<label for="pid">PID</label>
-		</div>
-		<form action="#">
+<form action="/upload" method="post">
+	<div id="submit-modal" class="modal bottom-sheet">
+		<div class="modal-content row container">
+			<div class="input-field col s4">
+				<input name="pid" id="pid" type="text" class="validate" pattern="A........" maxlength="9" title="PID should be of the form: A########" required>
+				<label for="pid">PID</label>
+			</div>
 			<div class="file-field input-field col s6 push-s2">
 				<div class="btn">
 					<span>Choose File</span>
-					<input type="file">
+					<input name="assignment" type="file" required>
 				</div>
 				<div class="file-path-wrapper">
-					<input class="file-path validate" type="text">
+					<input name="assignment-name" class="file-path validate" type="text">
 				</div>
 			</div>
-		</form>
+		</div>
+		<div class="modal-footer">
+			<button class="waves-effect waves-light green btn">
+				<input type="submit" value="Upload">
+			</button>
+		</div>
 	</div>
-
-	<div class="modal-footer">
-		<div class="waves-effect waves-light green btn">Upload</div>
-	</div>
-</div>
+</form>
 
 </html>

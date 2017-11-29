@@ -1,3 +1,8 @@
+$(document).ready(function () {
+	// Allows the Submission Modal to animate
+	$('.modal').modal();
+});
+
 function promptUpload() {
 	$('#fileupload').trigger('click');
 	setTimeout(function () {
@@ -16,7 +21,6 @@ function toggleResubmitButton() {
 	document.getElementById("resubmit-btn").style.visibility = "visible";
 }
 
-$(document).ready(function () {
-	// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-	$('.modal').modal();
-});
+function uploadFile() {
+
+}

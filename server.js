@@ -1,5 +1,6 @@
 var http=require('http');
-var express=require('express');
+var express = require('express');
+var bodyParser = require('body-parser')
 var jsonfile=require('jsonfile');
 var fs = require('fs');
 // var request = require('request');
@@ -9,18 +10,27 @@ const path = require('path');
 
 const INDEX = path.join(__dirname, '/public');
 const server = express()
-		.all('/', function(req, res, next) {
-	    	res.header("Access-Control-Allow-Origin", "*");
-	    	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	    	next();
-		})
-		.use(express.static(__dirname + '/public'))
-		.listen(PORT, () => console.log(`Listening on ${PORT}`));
+	.all('/', function(req, res, next) {
+    	res.header("Access-Control-Allow-Origin", "*");
+		res.header("Access-Control-Allow-Headers","X-Requested-With");
+    	next();
+	})
+	.use(express.static(__dirname + '/public'))
+	.use(bodyParser.urlencoded())
+	.post("/upload", function (req, res, next) {
+		processForm(req);
+		res.end()
+	})
+	.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 function updateJSON(file, obj) {
 	jsonfile.writeFile(file, obj, {spaces: 4}, function (err) {
 		console.error(err);
 	});
+}
+
+function processForm(req) {
+	console.log(req.body);
 }
 
 var sockets = {};
@@ -53,7 +63,7 @@ const io = socketIO(server);
 // 					"design_id": data.design_id});
 // 	updateJSON(log_file, logs);
 // }
- 
+
 
 io.on('connection', function(socket) {
 	var address = socket.handshake.headers['x-forwarded-for'];
@@ -100,7 +110,7 @@ io.on('connection', function(socket) {
 
   		// save to user data
   		user_data[data.cookie_val].comments.push({"comment": data.comment,
-  									"category": data.category, 
+  									"category": data.category,
   									"condition": data.condition});
   		updateJSON(user_file, user_data);
 
