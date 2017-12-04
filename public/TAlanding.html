@@ -18,7 +18,7 @@
   <script src="js/socket.io.js"></script>
   <script src="js/cookies.js"></script>
   <script src="js/main.js"></script>
-
+  <script src="js/TALanding.js"></script>
 
 </head>
 
@@ -26,28 +26,26 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
 
-  <script>
-    $(document).ready(function() {
-      // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-      $('#modal1').modal('open');
-    });
-    $('#modal1').modal('open');
-  </script>
-
 
   <div id="navbar-container"></div>
 
   <div id="main-container">
 
-     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
     <div id="modal1" class="modal">
       <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field">
+              <input placeholder="Your TA ID" id="TAID" type="text" class="validate">
+              <label for="TAID">TA ID</label>
+            </div>
+          </div>
+        </form>
+
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#" onclick="submitID()" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
       </div>
     </div>
 

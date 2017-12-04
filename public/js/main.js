@@ -125,6 +125,7 @@ function copyText(x) {
   var currentTxt = document.getElementById("feedback").value;
   var submittedComment = x.innerHTML;
   document.getElementById("feedback").value = currentTxt + " " + submittedComment;
+  $('#feedback').trigger('autoresize');
   //if suggestion clicked, move to top of list
   $("li").click(function() {
     $(this).parent().prepend($(this));
