@@ -8,7 +8,10 @@ $(document).ready(function() {
 function submitID() {
   var ID = $("#TAID").val();
 
-  $.getJSON("../json/StudentList.JSON", function(studnetList)){
+  socket.emit('requestStudentList');
+  socket.on('studentList', function(data) {
+    studentList = data;
+    
     var col = [];
     for (var i = 0; i < studentList.length; i++) {
       for (var key in studentList[i]) {
@@ -41,7 +44,7 @@ function submitID() {
     var divContainer = document.getElementById("showTable2");
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
-  }
+  });
 
 
 }

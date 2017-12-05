@@ -2,6 +2,7 @@ var http=require('http');
 var express=require('express');
 var jsonfile=require('jsonfile');
 var fs = require('fs');
+var studentList = require('studentList.JSON');
 // var request = require('request');
 var socketIO = require('socket.io');
 const PORT = process.env.PORT || 8080;
@@ -53,7 +54,7 @@ const io = socketIO(server);
 // 					"design_id": data.design_id});
 // 	updateJSON(log_file, logs);
 // }
- 
+
 
 io.on('connection', function(socket) {
 	var address = socket.handshake.headers['x-forwarded-for'];
@@ -100,7 +101,7 @@ io.on('connection', function(socket) {
 
   		// save to user data
   		user_data[data.cookie_val].comments.push({"comment": data.comment,
-  									"category": data.category, 
+  									"category": data.category,
   									"condition": data.condition});
   		updateJSON(user_file, user_data);
 
@@ -145,5 +146,9 @@ io.on('connection', function(socket) {
 						"condition": data.condition,
 						"user": data.cookie_val})
 	})
+
+  socket.on('requestStudentList', function() {
+    socket.emit('studentList', studentList);
+  });
 
 });
