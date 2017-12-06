@@ -1,6 +1,7 @@
 body h1{
-	font-size: 4vw;
-  	color: #47525E;
+	font-size: 3vw;
+	color: #47525E;
+	margin-bottom: 0;
 }
 
 body a {
@@ -40,5 +41,6 @@ body div.row {
 }
 
 .scrollable {
-	height: 45%;
+	margin-top: 3px;
+	height: 90vh;
 }
