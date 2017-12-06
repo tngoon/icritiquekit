@@ -1,21 +1,30 @@
-{
+[{
   "Student ID": "A13342434",
   "Student Name": "Jack F.",
   "Assigned TA": "01"
-}, {
+}
+,{
   "Student ID": "A13342234",
   "Student Name": "May F.",
   "Assigned TA": "01"
-}, {
+}
+,{
   "Student ID": "A13346734",
   "Student Name": "Jack G.",
   "Assigned TA": "02"
-},{
+}
+,{
   "Student ID": "A12346734",
   "Student Name": "Jason G.",
   "Assigned TA": "02"
-},{
+}
+,{
   "Student ID": "A13352734",
   "Student Name": "Jack I.",
   "Assigned TA": "03"
-},
+}
+,{
+  "Student ID": "A12352734",
+  "Student Name": "Mary J.",
+  "Assigned TA": "03"
+}]

@@ -95,53 +95,21 @@ $(function() {
   });
 })
 
-//form validation to ensure consent form is clicked
-function validateForm() {
-  if (document.getElementById("consent_yes").checked) {
-    document.getElementById("consent-button").classList.remove("disabled");
-    socket.emit('consent', {
-      cookie_val: cookie_val,
-      consent: true
-    });
-    Cookies.set('critiquekit-cookie', {
-      cookie_val: cookie_val,
-      consent: true
-    });
-  } else if (document.getElementById("consent_no").checked) {
-    document.getElementById("consent-button").classList.remove("disabled");
-    socket.emit('consent', {
-      cookie_val: cookie_val,
-      consent: false
-    });
-    Cookies.set('critiquekit-cookie', {
-      cookie_val: cookie_val,
-      consent: false
-    });
-  }
-}
-
 // copy text of suggestion button to textbox
 function copyText(x) {
   var currentTxt = document.getElementById("feedback").value;
   var submittedComment = x.innerHTML;
   document.getElementById("feedback").value = currentTxt + " " + submittedComment;
   $('#feedback').trigger('autoresize');
-  //if suggestion clicked, move to top of list
-  $("li").click(function() {
-    $(this).parent().prepend($(this));
 
-    //check boxes if suggestion checked fits these categories
-    if ($(this).parent('#specific').length) {
-      $("#speccheck").prop('checked', true);
-    } else if ($(this).parent('#action').length) {
-      $("#actcheck").prop('checked', true);
-    } else if ($(this).parent('#justify').length) {
-      $("#justcheck").prop('checked', true);
-    } else if ($(this).parent('#actjust').length) {
-      $("#actcheck").prop('checked', true);
-      $("#justcheck").prop('checked', true);
-    }
-  });
+  //tick boxes depdning on which suggestion clicked
+  if ($(x).parent().attr('id') == "specific_suggestion") {
+    document.getElementById("speccheck").innerHTML = "check_box";
+  } else if ($(x).parent().attr('id') == "action_suggestion") {
+    document.getElementById("actcheck").innerHTML = "check_box";
+  } else if ($(x).parent().attr('id') == "justify_suggestion") {
+    document.getElementById("justcheck").innerHTML = "check_box";
+  }
 
   socket.emit("suggestion inserted", {
     condition: "critiquekit",
@@ -210,6 +178,8 @@ function submitComments() {
   }
   $("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
 
+  document.getElementById("feedback").value = "";
+
   socket.emit('comment submitted', {
     condition: Comment.condition,
     comment: Comment.comment,
@@ -267,7 +237,7 @@ function parseAssignmentJSON() {
       "Student Name": "Jack G.",
       "Assignment Number": "02",
       "Reviewed": "true"
-    },
+    }
 
   ]
 

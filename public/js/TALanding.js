@@ -7,11 +7,21 @@ $(document).ready(function() {
 
 function submitID() {
   var ID = $("#TAID").val();
+  console.log(ID);
 
   socket.emit('requestStudentList');
   socket.on('studentList', function(data) {
     studentList = data;
-    
+
+    console.log(data.length);
+  });
+}
+
+function parseTable(){
+  socket.emit('requestStudentList');
+  socket.on('studentList', function(data) {
+    studentList = data;
+
     var col = [];
     for (var i = 0; i < studentList.length; i++) {
       for (var key in studentList[i]) {
@@ -45,6 +55,4 @@ function submitID() {
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
   });
-
-
 }
