@@ -1,8 +1,9 @@
 var http=require('http');
 var express = require('express');
-var bodyParser = require('body-parser')
+var formidable = require('formidable');
 var jsonfile=require('jsonfile');
 var fs = require('fs');
+var submission = require('./save-submissions');
 // var request = require('request');
 var socketIO = require('socket.io');
 const PORT = process.env.PORT || 8080;
@@ -10,16 +11,15 @@ const path = require('path');
 
 const INDEX = path.join(__dirname, '/public');
 const server = express()
-	.all('/', function(req, res, next) {
-    	res.header("Access-Control-Allow-Origin", "*");
-		res.header("Access-Control-Allow-Headers","X-Requested-With");
-    	next();
+	.all('/', function (req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
+		res.header("Access-Control-Allow-Headers", "X-Requested-With");
+		next();
 	})
 	.use(express.static(__dirname + '/public'))
-	.use(bodyParser.urlencoded())
 	.post("/upload", function (req, res, next) {
-		processForm(req);
-		res.end()
+		submission.processForm(req, res);
+		res.end();
 	})
 	.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
@@ -27,10 +27,6 @@ function updateJSON(file, obj) {
 	jsonfile.writeFile(file, obj, {spaces: 4}, function (err) {
 		console.error(err);
 	});
-}
-
-function processForm(req) {
-	console.log(req.body);
 }
 
 var sockets = {};

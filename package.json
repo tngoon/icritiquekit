@@ -4,6 +4,7 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.15.4",
+    "express-fileupload": "^0.3.0",
     "jsonfile": "^3.0.1",
     "socket.io": "^2.0.3"
   },
