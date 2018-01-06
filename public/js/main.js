@@ -11,12 +11,12 @@ $(window).on('load', function() {
 
 $(function() {
   // load html files in correct divs
-  $("#navbar-container").load("navbar.html");
-  $("#indicators").load("indicators.html");
-  $('#dynasuggestions').load("dynasuggestions.html");
-  $('#help-modal').load("help.html");
-  $('#rubric').load("rubric.html");
-  $('#assignment-list').load("assignmentlist.html");
+  $("#navbar-container").load("./partials/navbar.html");
+  $("#indicators").load("./partials/indicators.html");
+  $('#dynasuggestions').load("./partials/dynasuggestions.html");
+  $('#help-modal').load("./partials/help.html");
+  $('#rubric').load("./partials/rubric.html");
+  $('#assignment-list').load("./partials/assignmentlist.html");
 });
 
 $(function() {
