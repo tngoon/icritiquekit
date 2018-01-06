@@ -3,43 +3,46 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<link rel="stylesheet" type="text/css" href="dashboard.css">
 
-	<!-- Compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" 	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" 	src="../lib/materialize/js/materialize.min.js"></script>
+
 </head>
 
-<nav>
-	<div class="nav-wrapper container">
-		<a href="#" class="brand-logo">CritiqueKit</a>
-		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li class="active"><a href="studentdashboard.html">Home</a></li>
-			<li><a href="assignments.html">Assignments</a></li>
-			<li><a href="studiosignup.html">Log Out</a></li>
-		</ul>
-	</div>
-</nav>
-
-<header>
-	<div class="row valign-wrapper">
-		<div class="col">
-			<h1>Due Next</h1>
-		</div>
-		<div class="col s9">
-			<div class="card-panel horizontal valign-wrapper row">
-				<a href="http://d.ucsd.edu/class/intro-hci/2016/assignments/A1/" class="col s5">A1: Design Thinking</a>
-				<h5>Due</h5>
-				<h4 class="col s4">Thursday 1/7 11:59 PM</h4>
-				<div class="submit-button"><button class="btn-large waves-effect waves-light blue" type="submit" name="action" onclick="document.location = 'submitview.html';">Submit</button></div>
-			</div>
-		</div>
-	</div>
-</header>
 
 <body>
-	<!--Import jQuery before materialize.js-->
-	<script type="text/javascript" 	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" 	src="../../materialize/js/materialize.min.js"></script>
+
+  <nav>
+  	<div class="nav-wrapper container">
+  		<a href="#" class="brand-logo">CritiqueKit</a>
+  		<ul id="nav-mobile" class="right hide-on-med-and-down">
+  			<li class="active"><a href="studentdashboard.html">Home</a></li>
+  			<li><a href="assignments.html">Assignments</a></li>
+  			<li><a href="studiosignup.html">Log Out</a></li>
+  		</ul>
+  	</div>
+  </nav>
+
+  <header>
+  	<div class="row valign-wrapper">
+  		<div class="col">
+  			<h1>Due Next</h1>
+  		</div>
+  		<div class="col s9">
+  			<div class="card-panel horizontal valign-wrapper row">
+  				<a href="http://d.ucsd.edu/class/intro-hci/2016/assignments/A1/" class="col s5">A1: Design Thinking</a>
+  				<h5>Due</h5>
+  				<h4 class="col s4">Thursday 1/7 11:59 PM</h4>
+  				<div class="submit-button"><button class="btn-large waves-effect waves-light blue" type="submit" name="action" onclick="document.location = 'submitview.html';">Submit</button></div>
+  			</div>
+  		</div>
+  	</div>
+  </header>
 
 	<div class="divider"></div>
+
 	<div class="scrollable" id="custom-scrollbar">
 		<div class="row">
 			<div class="col s12">
@@ -55,6 +58,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="col s12">
 				<div class="card-panel">
@@ -91,6 +95,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="divider"></div>
 
 </body>

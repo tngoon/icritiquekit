@@ -6,30 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CritiqueKit</title>
 
-  <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="./lib/materialize/css/materialize.min.css" media="screen,projection" />
 
-
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!--<script src="js/main.js"></script>-->
-  <script src="js/socket.io.js"></script>
-  <script src="js/cookies.js"></script>
-  <script src="js/main.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
+  <script type="text/javascript" src="./lib/materialize/js/materialize.min.js"></script>
 
-  <!--<script src="js/main.js"></script>
-	<script src="/js/socket.io.js"></script>
-	<script src="/js/cookies.js"></script>
-	<script src="/js/main.js"></script>-->
+  <script src="./lib/socket.io.js"></script>
+  <script src="./lib/cookies.js"></script>
+  <script src="js/main.js"></script>
 
 </head>
 
 <body>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
 
+  <!-- populated from navbar.html using jQuery magic in js/main.js -->
   <div id="navbar-container"></div>
 
   <div id="main-container">
@@ -53,8 +45,10 @@
           <div class="right-align" style="padding: 0.75rem"> <a class="waves-effect waves-light btn">Submit</a> </div>
         </div>
 
+        <!-- populated from navbar.html using jQuery magic in js/main.js -->
         <div id="indicators"></div>
 
+        <!-- populated from navbar.html using jQuery magic in js/main.js -->
         <div id="rubric" style="display: none"></div>
 
         <div class="row">
