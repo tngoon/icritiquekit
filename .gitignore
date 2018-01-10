@@ -1,5 +1,6 @@
 logs.json
 user_data.json
+node_modules/
 
 # Compiled class file
 *.class
