@@ -1,14 +1,22 @@
 var socketIO = require('socket.io');
+var jsonfile=require('jsonfile');
+
 var sockets = {};
 var logs = {"logs": []};
-var log_file = "logs.json";
+const log_file = "logs.json";
 var user_data = {};
-var user_file = "user_data.json";
+const user_file = "user_data.json";
 var comments = {};
 var comment_obj = [];
-var comments_file = "comments.json";
+const comments_file = "comments.json";
 var design_data = [];
-var design_file = "design_data.json"
+const design_file = "design_data.json"
+
+function updateJSON(file, obj) {
+	jsonfile.writeFile(file, obj, {spaces: 4}, function (err) {
+		console.error(err);
+	});
+}
 
 function initializeLogging(server) {
   const io = socketIO(server);
