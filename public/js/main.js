@@ -21,8 +21,8 @@ $(function() {
 
 $(function() {
   // Run on server
-  socket = io.connect('http://d.ucsd.edu', {
-    path: '/api/icritiquekit/socket.io',
+  socket = io.connect('localhost:8080', {
+    path: '/socket.io',
     secure: false
   })
 
