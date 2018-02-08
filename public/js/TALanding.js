@@ -13,7 +13,6 @@ function submitID() {
   socket.on('studentList', function(data) {
     studentList = data;
 
-    console.log(data.length);
   });
 }
 

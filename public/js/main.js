@@ -21,13 +21,13 @@ $(function() {
 
 $(function() {
   // Run on server
-  socket = io.connect('http://d.ucsd.edu', {
-    path: '/api/icritiquekit/socket.io',
-    secure: false
-  })
+  // socket = io.connect('http://d.ucsd.edu', {
+  //   path: '/api/icritiquekit/socket.io',
+  //   secure: false
+  // })
 
   // Test on localhost
-  //socket = io();
+  socket = io();
 
   // check for cookie
   if (Cookies.get('critiquekit-cookie') != undefined) {
