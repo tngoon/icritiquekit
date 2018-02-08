@@ -97,6 +97,7 @@ io.on('connection', function(socket) {
 		updateJSON(log_file, logs);
 	});
 
+/*
 	socket.on('comment submitted', function(data) {
 
   		// save to user data
@@ -113,6 +114,7 @@ io.on('connection', function(socket) {
 
 		updateJSON(log_file, logs);
 	});
+  */
 
 	socket.on('showed comments', function(data) {
 		logs.logs.push({"time": new Date().getTime(),

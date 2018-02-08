@@ -148,7 +148,7 @@ function checkComments() {
 
 //store comments as JSON
 function submitComments() {
-  var input = $('#feedback').val().split(/\n/);
+  var comment = document.getElementById("feedback").value
   var allComments = sessionStorage.getItem("allComments");
   var Comment = {};
   var obj = [];
@@ -157,7 +157,7 @@ function submitComments() {
   var actcheck = document.getElementById("actcheck");
   var justcheck = document.getElementById("justcheck");
 
-  if (allComments) {
+  if (comment.length != 0) {
     obj = JSON.parse(allComments)
   } else {
     alert("You can't submit an empty comment!");
