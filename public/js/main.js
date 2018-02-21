@@ -148,14 +148,70 @@ function checkComments() {
 
 //store comments as JSON
 function submitComments() {
-  var comment = document.getElementById("feedback").value
+
+  var comment = $("#feedback").val();
+
+  var spec = document.getElementById("speccheck").innerHTML;
+  var act = document.getElementById("actcheck").innerHTML;
+  var just = document.getElementById("justcheck").innerHTML;
+
+  if (spec == "check_box") {
+    var fs = require('fs')
+
+    fs.readFile('../json/specificComment.JSON', 'utf-8', function(err, data) {
+      if (err) throw err
+
+      var arrayOfObjects = JSON.parse(data)
+      arrayOfObjects.users.push({
+        comment: $("#feedback").val()
+      })
+      fs.writeFile('../json/specificComment.JSON', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+        if (err) throw err
+        console.log('Done!')
+      })
+    })
+  }
+
+  if (act == "check_box") {
+    var fs = require('fs')
+
+    fs.readFile('../json/actionComment.JSON', 'utf-8', function(err, data) {
+      if (err) throw err
+
+      var arrayOfObjects = JSON.parse(data)
+      arrayOfObjects.users.push({
+        comment: $("#feedback").val()
+      })
+      fs.writeFile('../json/actionComment.JSON', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+        if (err) throw err
+        console.log('Done!')
+      })
+    })
+  }
+
+  if (just == "check_box") {
+    var fs = require('fs')
+
+    fs.readFile('../json/justifiedComment.JSON', 'utf-8', function(err, data) {
+      if (err) throw err
+
+      var arrayOfObjects = JSON.parse(data)
+      arrayOfObjects.users.push({
+        comment: $("#feedback").val()
+      })
+      fs.writeFile('../json/justifiedComment.JSON', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+        if (err) throw err
+        console.log('Done!')
+      })
+    })
+  }
+
+
+
   var allComments = sessionStorage.getItem("allComments");
   var Comment = {};
   var obj = [];
 
-  var speccheck = document.getElementById("speccheck");
-  var actcheck = document.getElementById("actcheck");
-  var justcheck = document.getElementById("justcheck");
 
   if (comment.length != 0) {
     obj = JSON.parse(allComments)
