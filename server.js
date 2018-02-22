@@ -2,11 +2,14 @@ var http=require('http');
 var express=require('express');
 var jsonfile=require('jsonfile');
 var fs = require('fs');
-var studentList = require('./public/json/studentList.json');
 // var request = require('request');
 var socketIO = require('socket.io');
 const PORT = process.env.PORT || 8080;
 const path = require('path');
+
+// Load JSON files
+var commentsData = require('./public/json/comments.json');
+var studentList = require('./public/json/studentList.json');
 
 const INDEX = path.join(__dirname, '/public');
 const server = express()
@@ -33,7 +36,7 @@ var comments = {};
 var comment_obj = [];
 var comments_file = "comments.json";
 var design_data = [];
-var design_file = "design_data.json"
+var design_file = "design_data.json";
 
 const io = socketIO(server);
 
