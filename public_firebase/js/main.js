@@ -12,6 +12,8 @@
   firebase.initializeApp(config);
 </script>
 
+var database = firebase.database();
+
 $(function() {
   // load html files in correct divs
   $("#navbar-container").load("navbar.html");
