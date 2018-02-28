@@ -1,0 +1,18 @@
+[
+    {
+        "comment" : "The feedback will go here. For the category field, the first bit is specific, the second is actionable, and the third is justified.",
+        "category" : "111"
+    },
+    {
+        "comment" : "Some of the prototype's interface seems limited and missing key interactions.",
+        "category" : "100"
+    },
+    {
+        "comment" : "Use more white space to better call out and space elements on the page.",
+        "category" : "111"
+    },
+    {
+        "comment" : "When items are not well-aligned, the page seems cluttered.",
+        "category" : "101"
+    }
+]

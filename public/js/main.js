@@ -155,10 +155,13 @@ function submitComments() {
   var act = document.getElementById("actcheck").innerHTML;
   var just = document.getElementById("justcheck").innerHTML;
 
+      //foo is now loaded.
+
+
   if (spec == "check_box") {
-    var fs = require('fs')
 
     fs.readFile('../json/specificComment.JSON', 'utf-8', function(err, data) {
+
       if (err) throw err
 
       var arrayOfObjects = JSON.parse(data)
@@ -173,7 +176,6 @@ function submitComments() {
   }
 
   if (act == "check_box") {
-    var fs = require('fs')
 
     fs.readFile('../json/actionComment.JSON', 'utf-8', function(err, data) {
       if (err) throw err
@@ -190,7 +192,6 @@ function submitComments() {
   }
 
   if (just == "check_box") {
-    var fs = require('fs')
 
     fs.readFile('../json/justifiedComment.JSON', 'utf-8', function(err, data) {
       if (err) throw err

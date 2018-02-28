@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignments</title>
+
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css" media="screen,projection" />
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!--<script src="js/main.js"></script>-->
+  <script src="js/socket.io.js"></script>
+  <script src="js/cookies.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/TALanding.js"></script>
+
+</head>
+
+<body onload="parseTable()">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
+
+
+  <div id="navbar-container"></div>
+
+  <div id="main-container">
+
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field">
+              <input placeholder="Your TA ID" id="TAID" type="text" class="validate">
+              <label for="TAID">TA ID</label>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <a href="#" onclick="submitID()" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
+      </div>
+    </div>
+
+
+    <div id="showTable"></div>
+    <div id="showTable2"></div>
+
+
+
+  </div>
+</body>
+
+</html>
