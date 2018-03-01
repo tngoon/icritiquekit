@@ -1,18 +1,16 @@
-<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDP0C5kLZ37Gt7lhoEAsQ5dQ1pXgCYRSPM",
-    authDomain: "critiquekit-2df57.firebaseapp.com",
-    databaseURL: "https://critiquekit-2df57.firebaseio.com",
-    projectId: "critiquekit-2df57",
-    storageBucket: "critiquekit-2df57.appspot.com",
-    messagingSenderId: "1014909116725"
-  };
-  firebase.initializeApp(config);
-</script>
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyDP0C5kLZ37Gt7lhoEAsQ5dQ1pXgCYRSPM",
+  authDomain: "critiquekit-2df57.firebaseapp.com",
+  databaseURL: "https://critiquekit-2df57.firebaseio.com",
+  projectId: "critiquekit-2df57",
+  storageBucket: "critiquekit-2df57.appspot.com",
+  messagingSenderId: "1014909116725"
+};
+firebase.initializeApp(config);
 
-var database = firebase.database();
+
+var db = firebase.firestore();
 
 $(function() {
   // load html files in correct divs
@@ -91,12 +89,6 @@ function copyText(x) {
   } else if ($(x).parent().attr('id') == "justify_suggestion") {
     document.getElementById("justcheck").innerHTML = "check_box";
   }
-
-  socket.emit("suggestion inserted", {
-    condition: "critiquekit",
-    comment_text: submittedComment,
-    cookie_val: cookie_val
-  });
 }
 
 //check for characteristics of comments
@@ -135,96 +127,45 @@ function submitComments() {
   var spec = document.getElementById("speccheck").innerHTML;
   var act = document.getElementById("actcheck").innerHTML;
   var just = document.getElementById("justcheck").innerHTML;
+  var found = false;
+
+  var query = db.collection("comments").where("comment", "==", comment);
+
+  console.log(query);
 
 
-  var fs = require('fs');
+  if (found != true) {
+    if (spec == "check_box" && act != "check_box" && just != "check_box") {
 
-  if (spec == "check_box") {
-
-    fs.readFile('../json/comments.JSON', 'utf-8', function(err, data) {
-
-      if (err) throw err
-
-      var arrayOfObjects = JSON.parse(data)
-      arrayOfObjects.users.push({
-        comment: $("#feedback").val(),
-        category: "specific"
+      db.collection("comments").add({
+        comment: comment,
+        actionable: false,
+        justified: false,
+        specific: true
       })
-      fs.writeFile('../json/commonts.JSON', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
-        if (err) throw err
-        console.log('Done!')
+
+    } else if (spec == "check_box" && act == "check_box" && just != "check_box") {
+
+      db.collection("comments").add({
+        comment: comment,
+        actionable: true,
+        justified: false,
+        specific: true
       })
-    })
-  }
 
-  if (act == "check_box") {
-
-    fs.readFile('../json/comments.JSON', 'utf-8', function(err, data) {
-      if (err) throw err
-
-      var arrayOfObjects = JSON.parse(data)
-      arrayOfObjects.users.push({
-        comment: $("#feedback").val()
-      })
-      fs.writeFile('../json/comments.JSON', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
-        if (err) throw err
-        console.log('Done!')
-      })
-    })
-  }
-
-  if (just == "check_box") {
-
-    fs.readFile('../json/comments.JSON', 'utf-8', function(err, data) {
-      if (err) throw err
-
-      var arrayOfObjects = JSON.parse(data)
-      arrayOfObjects.users.push({
-        comment: $("#feedback").val()
-      })
-      fs.writeFile('../json/comments.JSON', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
-        if (err) throw err
-        console.log('Done!')
-      })
-    })
+    }
   }
 
 
 
-  var allComments = sessionStorage.getItem("allComments");
-  var Comment = {};
-  var obj = [];
-
-
-  if (comment.length != 0) {
-    obj = JSON.parse(allComments)
-  } else {
+  if (comment.length == 0) {
     alert("You can't submit an empty comment!");
   }
 
-  Comment['condition'] = "critiquekit";
-  obj.push(Comment);
-  console.log(Comment);
-  sessionStorage.setItem("allComments", JSON.stringify(obj));
-
-  var item = JSON.parse(sessionStorage.getItem("allComments"));
-  console.log(item);
-  var submitted = '';
-
-  for (i = 0; i < item.length; i++) {
-    // console.log(item[i].comment);
-    submitted = item[i].comment + '<hr>'
-  }
-  $("#submitted-comments").append('<b>' + 'Comment: ' + '</b>' + submitted);
 
   document.getElementById("feedback").value = "";
 
-  socket.emit('comment submitted', {
-    condition: Comment.condition,
-    comment: Comment.comment,
-    category: Comment.category,
-    cookie_val: cookie_val
-  })
+
 }
 
 //show submitted comments
@@ -237,11 +178,6 @@ function showComments() {
   // Toggle buttons
   $("#view-comments").hide();
   $("#hide-comments").show();
-
-  socket.emit('showed comments', {
-    condition: "critiquekit",
-    cookie_val: cookie_val
-  })
 }
 
 //hide submitted comments
@@ -252,10 +188,6 @@ function hideComments() {
   $("#view-comments").show();
   $("#hide-comments").hide();
 
-  socket.emit('hid comments', {
-    condition: "critiquekit",
-    cookie_val: cookie_val
-  })
 }
 
 function parseAssignmentJSON() {
