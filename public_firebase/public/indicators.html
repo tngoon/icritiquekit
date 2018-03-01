@@ -3,20 +3,12 @@
 </div>
 
 <div class="collection" id="specific_suggestion" style="display: none">
-  <a href="#" onclick="copyText(this)" class="collection-item">Use more white space to better call out and space elements on the page.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Reduce the clutter a bit, and this will be a polished prototype.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Make sure all features are easily understood.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">The prototype should more directly relate to your specific point of view.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Each prototype should diverge more to explore different ideas.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Add some margins around the page elements to give them some padding.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">You should include all interactions for all pages, especially from the home page.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Prototype should stand out from other similar apps with a similar purpose to better relate to your unique point of view.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">It might be useful to break up the information into separate pages on the prototype.</a>
 </div>
 
 <script>
   $(document).ready(function() {
     $("#hideSpecific").click(function() {
+      loadSpecificSuggestions();
       $("#specific_suggestion").toggle();
       if ($("#specific_suggestion").is(':hidden')) {
         document.getElementById("specificIcon").innerHTML = "arrow_drop_down";
@@ -32,20 +24,12 @@
 </div>
 
 <div class="collection" id="action_suggestion" style="display: none">
-  <a href="#" onclick="copyText(this)" class="collection-item">Use more white space to better call out and space elements on the page.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Reduce the clutter a bit, and this will be a polished prototype.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Make sure all features are easily understood.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">The prototype should more directly relate to your specific point of view.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Each prototype should diverge more to explore different ideas.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Add some margins around the page elements to give them some padding.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">You should include all interactions for all pages, especially from the home page.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Prototype should stand out from other similar apps with a similar purpose to better relate to your unique point of view.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">It might be useful to break up the information into separate pages on the prototype.</a>
 </div>
 
 <script>
   $(document).ready(function() {
     $("#hideAction").click(function() {
+      loadActionableSuggestions();
       $("#action_suggestion").toggle();
       if ($("#action_suggestion").is(':hidden')) {
         document.getElementById("actionIcon").innerHTML = "arrow_drop_down";
@@ -61,20 +45,12 @@
 </div>
 
 <div class="collection" id="justify_suggestion" style="display: none" >
-  <a href="#" onclick="copyText(this)" class="collection-item">Use more white space to better call out and space elements on the page.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Reduce the clutter a bit, and this will be a polished prototype.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Make sure all features are easily understood.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">The prototype should more directly relate to your specific point of view.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Each prototype should diverge more to explore different ideas.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Add some margins around the page elements to give them some padding.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">You should include all interactions for all pages, especially from the home page.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Prototype should stand out from other similar apps with a similar purpose to better relate to your unique point of view.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">It might be useful to break up the information into separate pages on the prototype.</a>
 </div>
 
 <script>
   $(document).ready(function() {
     $("#hideJustify").click(function() {
+      loadJustifiedSuggestions();
       $("#justify_suggestion").toggle();
       if ($("#justify_suggestion").is(':hidden')) {
         document.getElementById("justifyIcon").innerHTML = "arrow_drop_down";

@@ -299,3 +299,55 @@ function parseAssignmentJSON() {
   divContainer.appendChild(table);
 
 }
+
+// Load "Specific" suggestions from database
+function loadSpecificSuggestions() {
+  loadSuggestions("specific", "specific_suggestion");
+}
+
+// Load "Actionable" suggestions from database
+function loadActionableSuggestions() {
+  loadSuggestions("actionable", "action_suggestion");
+}
+
+// Load "Justified" suggestions from database
+function loadJustifiedSuggestions() {
+  loadSuggestions("justified", "justify_suggestion");
+}
+
+function loadSuggestions(type, id) {
+  var suggestionContainer = document.getElementById(id);
+  suggestionContainer.innerHTML = "";
+
+  var commentsRef = db.collection("comments").where(type, "==", true)
+    .get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        var suggestion = createSuggestion(doc.get("comment"));
+        suggestionContainer.appendChild(suggestion);
+      });
+    })
+    .catch(function (error) {
+      console.log("Error getting documents: ", error);
+    });
+}
+
+function createSuggestion(comment) {
+  var suggestion = document.createElement("a");
+
+  var href = document.createAttribute("href");
+  href.value = "#";
+  suggestion.setAttributeNode(href);
+
+  var onclick = document.createAttribute("onclick");
+  onclick.value = "copyText(this)";
+  suggestion.setAttributeNode(onclick);
+
+  var classAtt = document.createAttribute("class");
+  classAtt.value = "collection-item";
+  suggestion.setAttributeNode(classAtt);
+
+  suggestion.textContent = comment;
+
+  return suggestion;
+}
