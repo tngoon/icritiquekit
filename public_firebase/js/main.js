@@ -127,41 +127,94 @@ function submitComments() {
   var spec = document.getElementById("speccheck").innerHTML;
   var act = document.getElementById("actcheck").innerHTML;
   var just = document.getElementById("justcheck").innerHTML;
-  var found = false;
-
-  var query = db.collection("comments").where("comment", "==", comment);
-
-  console.log(query);
-
-
-  if (found != true) {
-    if (spec == "check_box" && act != "check_box" && just != "check_box") {
-
-      db.collection("comments").add({
-        comment: comment,
-        actionable: false,
-        justified: false,
-        specific: true
-      })
-
-    } else if (spec == "check_box" && act == "check_box" && just != "check_box") {
-
-      db.collection("comments").add({
-        comment: comment,
-        actionable: true,
-        justified: false,
-        specific: true
-      })
-
-    }
-  }
-
-
 
   if (comment.length == 0) {
     alert("You can't submit an empty comment!");
-  }
+  } else {
 
+    db.collection("comments").where("comment", "==", comment)
+      .get()
+      .then(function(querySnapshot) {
+
+        if (querySnapshot.empty == true) {
+          console.log('no documents found');
+
+
+          if (spec == "check_box" && act != "check_box" && just != "check_box") {
+
+            db.collection("comments").add({
+              comment: comment,
+              actionable: false,
+              justified: false,
+              specific: true
+            })
+
+          } else if (spec == "check_box" && act == "check_box" && just != "check_box") {
+
+            db.collection("comments").add({
+              comment: comment,
+              actionable: true,
+              justified: false,
+              specific: true
+            })
+
+          } else if (spec == "check_box" && act == "check_box" && just == "check_box") {
+
+            db.collection("comments").add({
+              comment: comment,
+              actionable: true,
+              justified: true,
+              specific: true
+            })
+
+          } else if (spec != "check_box" && act == "check_box" && just != "check_box") {
+
+            db.collection("comments").add({
+              comment: comment,
+              actionable: true,
+              justified: false,
+              specific: false
+            })
+
+          } else if (spec != "check_box" && act == "check_box" && just == "check_box") {
+
+            db.collection("comments").add({
+              comment: comment,
+              actionable: true,
+              justified: true,
+              specific: false
+            })
+
+          } else if (spec != "check_box" && act != "check_box" && just == "check_box") {
+
+            db.collection("comments").add({
+              comment: comment,
+              actionable: false,
+              justified: true,
+              specific: false
+            })
+
+          } else if (spec == "check_box" && act != "check_box" && just == "check_box") {
+
+            db.collection("comments").add({
+              comment: comment,
+              actionable: false,
+              justified: true,
+              specific: true
+            })
+
+          }
+
+        } else {
+          querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+          });
+        }
+
+      });
+
+  }
 
   document.getElementById("feedback").value = "";
 
