@@ -1,85 +1,53 @@
-<div id="open-default">
-	<p class="need-suggestion" style="color: #000000">Provide feedback on something specific you thought was done well or should be improved. Need some suggestions?</p>
-	<p style="font-size: 14px"><b>Well Done:</b></p>
-	<ul id="welldone" class="base base-scroll">
-		<li><a href="#" onclick="copyText(this)">I like that navigation through the prototype is simple.</a></li>
-		<li><a href="#" onclick="copyText(this)">The idea is creative and interesting to explore.</a></li>
-		<li><a href="#" onclick="copyText(this)">I like that there is a lot of functionality in this prototype.</a></li>
-		<li><a href="#" onclick="copyText(this)">I like the overall visual design of the prototype.</a></li>
-		<li><a href="#" onclick="copyText(this)">The layout is clean and kept within a grid.</a></li>
-	</ul>
-	<br>
-	<p style="font-size: 14px"><b>For Improvement:</b></p>
-	<ul id="forimprove" class=" base base-scroll">
-		<li><a href="#" onclick="copyText(this)">It's a bit difficult to understand the purpose of the prototype at first look.</a></li>
-		<li><a href="#" onclick="copyText(this)">I wish the page contained a bit less at once.</a></li>
-		<li><a href="#" onclick="copyText(this)">I wish the navigation stayed static while scrolling.</a></li>
-		<li><a href="#" onclick="copyText(this)">The flow of the app is a bit confusing.</a></li>
-		<li><a href="#" onclick="copyText(this)">I wish there were more interactions shown in the prototype.</a></li>
-	</ul>
+<div class="row" id="need-suggestion" style="display: none">
+  <div class="card light-blue darken-2">
+    <div class="card-content white-text">
+      <p id="need-specific">Please make your comment <b>specific</b>. Need some suggestions?</p>
+      <p id="need-actionable">Please make your comment <b>actionable</b>. Need some suggestions?</p>
+      <p id="need-justified">Please make your comment <b>justified</b>. Need some suggestions?</p>
+    </div>
+    <div class="card-action">
+      <a href="#" id="need-specific-link">Specific</a>
+      <a href="#" id="need-actionable-link">Actionable</a>
+      <a href="#" id="need-justified-link">Justified</a>
+    </div>
+  </div>
 </div>
 
-<!-- <div id="need-specific" style="display: none">
-	<p class="warntext">Please make your comment more <b>specific</b>. Need some suggestions?</p>
-	<ul id="specific" class="scroll-box">
-		<li><a href="#" onclick="copyText(this)">Some of the prototype's interface seems limited and missing key interactions.</a></li>
-		<li><a href="#" onclick="copyText(this)">I like that the top navigation is simple throughout.</a></li>
-		<li><a href="#" onclick="copyText(this)">I like that the prototype contains many enough detail to understand its purpose.</a></li>
-		<li><a href="#" onclick="copyText(this)">Good use of grid layout to keep elements aligned.</a></li>
-		<li><a href="#" onclick="copyText(this)">User can tell what they can do with the app in this prototype.</a></li>
-		<li><a href="#" onclick="copyText(this)">Good use of filters for relevant details.</a></li>
-		<li><a href="#" onclick="copyText(this)">The page is very busy and contains too much at once.</a></li>
-	</ul>
-</div> -->
+<script>
+  $(document).ready(function() {
+    $("#need-specific-link").click(function() {
+      $("#specific_suggestion").show();
+      if ($("#specific_suggestion").is(':hidden')) {
+        document.getElementById("specificIcon").innerHTML = "arrow_drop_down";
+      } else {
+        document.getElementById("specificIcon").innerHTML = "arrow_drop_up";
+      }
+    });
+  });
+</script>
 
-<div id="need-actionable" style="display: none">
-	<p class="warntext">Please make your comment <b>actionable</b>. Need some suggestions?</p>
-	<ul id="action" class="scroll-box">
-		<li><a href="#" onclick="copyText(this)">Use more white space to better call out and space elements on the page.</a></li>
-		<li><a href="#" onclick="copyText(this)">Reduce the clutter a bit, and this will be a polished prototype.</a></li>
-		<li><a href="#" onclick="copyText(this)">Make sure all features are easily understood.</a></li>
-		<li><a href="#" onclick="copyText(this)">The prototype should more directly relate to your specific point of view.</a></li>
-		<li><a href="#" onclick="copyText(this)">Each prototype should diverge more to explore different ideas.</a></li>
-		<li><a href="#" onclick="copyText(this)">Add some margins around the page elements to give them some padding.</a></li>
-		<li><a href="#" onclick="copyText(this)">You should include all interactions for all pages, especially from the home page.</a></li>
-		<li><a href="#" onclick="copyText(this)">Prototype should stand out from other similar apps with a similar purpose to better relate to your unique point of view.</a></li>
-		<li><a href="#" onclick="copyText(this)">It might be useful to break up the information into separate pages on the prototype.</a></li>
-	</ul>
-</div>
+<script>
+  $(document).ready(function() {
+    $("#need-actionable-link").click(function() {
+      $("#action_suggestion").show();
+      if ($("#action_suggestion").is(':hidden')) {
+        document.getElementById("actionIcon").innerHTML = "arrow_drop_down";
+      } else {
+        document.getElementById("actionIcon").innerHTML = "arrow_drop_up";
+      }
+    });
+  });
+</script>
 
-<div class="collection" id="justify_suggestion">
-  <a href="#" onclick="copyText(this)" class="collection-item">Use more white space to better call out and space elements on the page.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Reduce the clutter a bit, and this will be a polished prototype.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Make sure all features are easily understood.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">The prototype should more directly relate to your specific point of view.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Each prototype should diverge more to explore different ideas.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Add some margins around the page elements to give them some padding.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">You should include all interactions for all pages, especially from the home page.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">Prototype should stand out from other similar apps with a similar purpose to better relate to your unique point of view.</a>
-  <a href="#" onclick="copyText(this)" class="collection-item">It might be useful to break up the information into separate pages on the prototype.</a>
-</div>
-
-<div id="need-justify" style="display: none">
-	<p class="warntext">Please make your comment <b>justified</b>. Need some suggestions?</p>
-	<ul id="justify" class="scroll-box">
-		<li><a href="#" onclick="copyText(this)">In general, the user should be able to know what each of the features mean without much guidance.</a></li>
-		<li><a href="#" onclick="copyText(this)">Because it seems like it's missing important interactions, a functional application would be difficult to implement.</a></li>
-		<li><a href="#" onclick="copyText(this)">Interactions should be well-suited to a mobile screen.</a></li>
-		<li><a href="#" onclick="copyText(this)">When items are not well-aligned, the page seems cluttered.</a></li>
-		<li><a href="#" onclick="copyText(this)">Most relevant info should be above the fold (so the user doesn't have to scroll).</a></li>
-		<li><a href="#" onclick="copyText(this)">More important info should have be in larger text to make it stand out more.</a></li>
-	</ul>
-</div>
-
-<div id="act-justify" style="display:none">
-	<p class="warntext">Please make your comment <b>actionable and justified</b>. Need some suggestions?</p>
-	<ul id="actjust" class="scroll-box">
-		<li><a href="#" onclick="copyText(this)">Information seems a bit cramped. Maybe use a standard grid layout or add more spacing between items.</a></li>
-		<li><a href="#" onclick="copyText(this)">It's hard to know where to look first and to know which info is most important. Perhaps utilizing different font weights and text decorations could help with emphasizing relevant information.</a></li>
-		<li><a href="#" onclick="copyText(this)">The navigation should remain consistent throughout the prototype so the user can easily find their way.</a></li>
-		<li><a href="#" onclick="copyText(this)">For a mobile screen, there's a lot of information. It would be better to reduce this or better separate it onto separate pages or links.</a></li>
-		<li><a href="#" onclick="copyText(this)">User should know what each of the aspects of the prototype means. Use clear language and visuals to show this.</a></li>
-		<li><a href="#" onclick="copyText(this)">The main page is too textual: think of a more visual representation to show positive interactions.</a></li>
-		<li><a href="#" onclick="copyText(this)">It might be useful to include a search function for users to filter information.</a></li>
-	</ul>
-</div>
+<script>
+  $(document).ready(function() {
+    $("#need-justified-link").click(function() {
+      $("#justify_suggestion").show();
+      if ($("#justify_suggestion").is(':hidden')) {
+        document.getElementById("justifyIcon").innerHTML = "arrow_drop_down";
+      } else {
+        document.getElementById("justifyIcon").innerHTML = "arrow_drop_up";
+      }
+    });
+  });
+</script>
