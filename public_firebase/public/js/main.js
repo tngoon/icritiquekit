@@ -11,6 +11,37 @@ firebase.initializeApp(config);
 
 var db = firebase.firestore();
 
+initApp = function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var displayName = user.displayName;
+      var email = user.email;
+      var emailVerified = user.emailVerified;
+      var photoURL = user.photoURL;
+      var uid = user.uid;
+      var phoneNumber = user.phoneNumber;
+      var providerData = user.providerData;
+      user.getIdToken().then(function(accessToken) {
+        $("#log-in").hide()
+        $("#log-out").show()
+        document.getElementById('account-details').textContent = "Signed in as:" + displayName
+      });
+    } else {
+      // User is signed out.
+      document.getElementById('account-details').textContent = "User not Logged in"
+      $("#log-out").hide()
+      $("#log-in").show()
+    }
+  }, function(error) {
+    console.log(error);
+  });
+};
+
+window.addEventListener('load', function() {
+  initApp()
+});
+
 $(function() {
   // load html files in correct divs
   $("#navbar-container").load("navbar.html");
@@ -32,6 +63,14 @@ $(function() {
       } else {
         document.getElementById("rubricbtn").innerHTML = "Suggestions";
       }
+    });
+
+    $("#log-out").click(function() {
+      firebase.auth().signOut().then(function() {
+        console.log('Signed Out');
+      }, function(error) {
+        console.error('Sign Out Error', error);
+      });
     });
   });
 })
@@ -82,7 +121,7 @@ function checkComments() {
     document.getElementById("justcheck").innerHTML = "check_box_outline_blank";
   }
 
-  if (wordlength > 0){
+  if (wordlength > 0) {
     showSuggestions();
   }
 
@@ -111,11 +150,23 @@ function showSuggestions() {
     $("#need-actionable-link").show();
   }
 
-  if (just!= "check_box") {
+  if (just != "check_box") {
     $("#need-justified").show();
     $("#need-justified-link").show();
   }
 
+}
+
+function getUserID() {
+  var user = firebase.auth().currentUser;
+
+  if (user) {
+    // User is signed in.
+    return user.uid;
+  } else {
+    // No user is signed in.
+    return "null";
+  }
 }
 
 //store comments as JSON
@@ -126,6 +177,7 @@ function submitComments() {
   var spec = document.getElementById("speccheck").innerHTML;
   var act = document.getElementById("actcheck").innerHTML;
   var just = document.getElementById("justcheck").innerHTML;
+  var userID = getUserID();
 
   if (comment.length == 0) {
     alert("You can't submit an empty comment!");
@@ -142,6 +194,7 @@ function submitComments() {
           if (spec == "check_box" && act != "check_box" && just != "check_box") {
 
             db.collection("comments").add({
+              user_id: userID,
               comment: comment,
               actionable: false,
               justified: false,
@@ -151,6 +204,7 @@ function submitComments() {
           } else if (spec == "check_box" && act == "check_box" && just != "check_box") {
 
             db.collection("comments").add({
+              user_id: userID,
               comment: comment,
               actionable: true,
               justified: false,
@@ -160,6 +214,7 @@ function submitComments() {
           } else if (spec == "check_box" && act == "check_box" && just == "check_box") {
 
             db.collection("comments").add({
+              user_id: userID,
               comment: comment,
               actionable: true,
               justified: true,
@@ -169,6 +224,7 @@ function submitComments() {
           } else if (spec != "check_box" && act == "check_box" && just != "check_box") {
 
             db.collection("comments").add({
+              user_id: userID,
               comment: comment,
               actionable: true,
               justified: false,
@@ -178,6 +234,7 @@ function submitComments() {
           } else if (spec != "check_box" && act == "check_box" && just == "check_box") {
 
             db.collection("comments").add({
+              user_id: userID,
               comment: comment,
               actionable: true,
               justified: true,
@@ -187,6 +244,7 @@ function submitComments() {
           } else if (spec != "check_box" && act != "check_box" && just == "check_box") {
 
             db.collection("comments").add({
+              user_id: userID,
               comment: comment,
               actionable: false,
               justified: true,
@@ -196,6 +254,7 @@ function submitComments() {
           } else if (spec == "check_box" && act != "check_box" && just == "check_box") {
 
             db.collection("comments").add({
+              user_id: userID,
               comment: comment,
               actionable: false,
               justified: true,
@@ -220,65 +279,11 @@ function submitComments() {
   document.getElementById("actcheck").innerHTML = "check_box_outline_blank";
   document.getElementById("justcheck").innerHTML = "check_box_outline_blank";
   $("dynasuggestions").hide();
+  $("#need-suggestion").hide()
 
 }
 
-function parseAssignmentJSON() {
-  var studentList = [{
-      "Student ID": "A13342434",
-      "Student Name": "Jack F.",
-      "Assignment Number": "02",
-      "Reviewed": "true"
-    },
-    {
-      "Student ID": "A13342234",
-      "Student Name": "May F.",
-      "Assignment Number": "02",
-      "Reviewed": "false"
-    },
-    {
-      "Student ID": "A13346734",
-      "Student Name": "Jack G.",
-      "Assignment Number": "02",
-      "Reviewed": "true"
-    }
 
-  ]
-
-  var col = [];
-  for (var i = 0; i < studentList.length; i++) {
-    for (var key in studentList[i]) {
-      if (col.indexOf(key) === -1) {
-        col.push(key);
-      }
-    }
-  }
-
-  var table = document.createElement("table");
-
-  var tr = table.insertRow(-1);
-
-  for (var i = 0; i < col.length; i++) {
-    var th = document.createElement("th"); // TABLE HEADER.
-    th.innerHTML = col[i];
-    tr.appendChild(th);
-  }
-
-  for (var i = 0; i < studentList.length; i++) {
-
-    tr = table.insertRow(-1);
-
-    for (var j = 0; j < col.length; j++) {
-      var tabCell = tr.insertCell(-1);
-      tabCell.innerHTML = studentList[i][col[j]];
-    }
-  }
-
-  var divContainer = document.getElementById("showTable");
-  divContainer.innerHTML = "";
-  divContainer.appendChild(table);
-
-}
 
 // Load "Specific" suggestions from database
 function loadSpecificSuggestions() {
@@ -301,13 +306,13 @@ function loadSuggestions(type, id) {
 
   var commentsRef = db.collection("comments").where(type, "==", true)
     .get()
-    .then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
         var suggestion = createSuggestion(doc.get("comment"));
         suggestionContainer.appendChild(suggestion);
       });
     })
-    .catch(function (error) {
+    .catch(function(error) {
       console.log("Error getting documents: ", error);
     });
 }
