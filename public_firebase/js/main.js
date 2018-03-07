@@ -295,6 +295,8 @@ function loadJustifiedSuggestions() {
   loadSuggestions("justified", "justify_suggestion");
 }
 
+// Load suggestions from database based on type (specific, actionable, or justified)
+// and place into the div container with specified id
 function loadSuggestions(type, id) {
   var suggestionContainer = document.getElementById(id);
   suggestionContainer.innerHTML = "";
