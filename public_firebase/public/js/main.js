@@ -25,6 +25,7 @@ initApp = function() {
       user.getIdToken().then(function(accessToken) {
         $("#log-in").hide()
         $("#log-out").show()
+        loadUserComment()
         document.getElementById('account-details').textContent = "Signed in as:" + displayName
       });
     } else {
@@ -32,6 +33,7 @@ initApp = function() {
       document.getElementById('account-details').textContent = "User not Logged in"
       $("#log-out").hide()
       $("#log-in").show()
+      document.getElementById("userComments").innerHTML = ""
     }
   }, function(error) {
     console.log(error);
@@ -48,18 +50,20 @@ $(function() {
   $("#indicators").load("indicators.html");
   $('#dynasuggestions').load("dynasuggestions.html");
   $('#help-modal').load("help.html");
-  $('#rubric').load("rubric.html");
+  $('#usercomments').load("usercomment.html");
   $('#assignment-list').load("assignmentlist.html");
+
 });
 
 
 $(function() {
   $(document).ready(function() {
     $("#rubricbtn").click(function() {
-      $("#rubric").toggle();
+      loadUserComment();
+      $("#usercomments").toggle();
       $("#indicators").toggle();
-      if ($("#rubric").is(':hidden')) {
-        document.getElementById("rubricbtn").innerHTML = "Rubric";
+      if ($("#usercomments").is(':hidden')) {
+        document.getElementById("rubricbtn").innerHTML = "Your Comments";
       } else {
         document.getElementById("rubricbtn").innerHTML = "Suggestions";
       }
@@ -72,6 +76,18 @@ $(function() {
         console.error('Sign Out Error', error);
       });
     });
+
+
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+        // User is signed in.
+      document.getElementById('account-details').textContent = "Signed in as:" + user.displayName
+    } else {
+      // No user is signed in.
+      document.getElementById('account-details').textContent = "User not Logged in"
+    }
+
   });
 })
 
@@ -306,7 +322,25 @@ function loadSuggestions(type, id) {
   var suggestionContainer = document.getElementById(id);
   suggestionContainer.innerHTML = "";
 
-  var commentsRef = db.collection("comments").where(type, "==", true)
+  var commentsRef = db.collection("comments").where(type, "==", true).where("user_id", "==", "null")
+    .get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        var suggestion = createSuggestion(doc.get("comment"));
+        suggestionContainer.appendChild(suggestion);
+      });
+    })
+    .catch(function(error) {
+      console.log("Error getting documents: ", error);
+    });
+}
+
+function loadUserComment() {
+  var suggestionContainer = document.getElementById("userComments");
+  suggestionContainer.innerHTML = "";
+  var userID = getUserID();
+
+  var commentsRef = db.collection("comments").where("user_id", "==", userID)
     .get()
     .then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
