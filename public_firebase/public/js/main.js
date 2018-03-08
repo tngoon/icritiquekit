@@ -81,7 +81,7 @@ $(function() {
     var user = firebase.auth().currentUser;
 
     if (user) {
-        // User is signed in.
+      // User is signed in.
       document.getElementById('account-details').textContent = "Signed in as:" + user.displayName
     } else {
       // No user is signed in.
@@ -338,17 +338,19 @@ function loadUserComment() {
   suggestionContainer.innerHTML = "";
   var userID = getUserID();
 
-  var commentsRef = db.collection("comments").where("user_id", "==", userID)
-    .get()
-    .then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-        var suggestion = createSuggestion(doc.get("comment"));
-        suggestionContainer.appendChild(suggestion);
+  if (userID != "null") {
+    var commentsRef = db.collection("comments").where("user_id", "==", userID)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          var suggestion = createSuggestion(doc.get("comment"));
+          suggestionContainer.appendChild(suggestion);
+        });
+      })
+      .catch(function(error) {
+        console.log("Error getting documents: ", error);
       });
-    })
-    .catch(function(error) {
-      console.log("Error getting documents: ", error);
-    });
+  }
 }
 
 function createSuggestion(comment) {
