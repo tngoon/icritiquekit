@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<style>
+	#index-banner {
+		background: #0288d1;
+	}
+	#light-text {
+		font-weight: lighter;
+	}
+	#logo-container {
+		font-weight: 700;
+		padding-left: 20px;
+	}
+	#logo {
+		font-weight: 700;
+	}
+	#demo-button {
+		font-size: large;
+		font-weight: 500;
+		border-radius: 5px;
+	}
+	#specific {
+		font-style: italic;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	}
+	#actionable {
+		font-weight: bold;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	}
+	#justified {
+		text-decoration: underline;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	}
+	#top-shadow {
+		box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.25);
+	}
+	#footer {
+		font-weight: bold;
+	}
+	.question {
+		font-weight: 400;
+	}
+	div p a:hover {
+		text-decoration: underline;
+	}
+	#footer:hover {
+		text-decoration: underline;
+	}
+	p {
+		font-size: large;
+	}
+</style>
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link href="materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+	<title>CritiqueKit</title>
+</head>
+
+<body>
+	<div class="navbar-fixed">
+		<nav class="grey lighten-5 z-depth-3" role="navigation">
+			<div class="nav-wrapper"><a id="logo-container" href="#" class="brand-logo blue-text text-darken-2">CritiqueKit</a>
+				<ul class="right hide-on-med-and-down">
+					<li><a class="light-blue-text text-darken-2">Sign Up</a></li>
+					<li><a class="waves-effect waves-light light-blue darken-2 btn">Login</a></li>
+				</ul>
+
+				<ul id="nav-mobile" class="side-nav">
+					<li><a href="#">Navbar Link</a></li>
+				</ul>
+					<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+			</div>
+		</nav>
+	</div>
+
+	<div class="section no-pad-bot" id="index-banner">
+		<div class="container" id="landing">
+			<br><br>
+			<h1 class="header center white-text" id="light-text">A Mixed-Initiative, Real-Time Interface For Improving Feedback</h1>
+			<div class="row center">
+				<h5 class="header col s12 light"></h5>
+			</div>
+			<div class="row center">
+				<a href="index.html" id="demo-button" class="btn-large waves-effect waves-light yellow darken-2 blue-text text-darken-2 z-depth-3">Try the Demo</a>
+			</div>
+			<br>
+
+			<div class="row center">
+				<div class="col s12 m4">
+					<h3 class="green-text text-lighten-3" id="specific"><i class="material-icons green-lighten-1 medium">check	</i>Specific</h3>
+				</div>
+				<div class="col s12 m4">
+					<h3 class="red-text text-lighten-3" id="actionable"><i class="material-icons red-lighten-2 medium">check	</i>Actionable</h3>
+				</div>
+				<div class="col s12 m4">
+					<h3 class="purple-text text-lighten-3" id="justified"><i class="material-icons purple-lighten-2 medium">check	</i>Justified</h3>
+				</div>
+			</div>
+			<br>
+		</div>
+	</div>
+
+<div class="divider"></div>
+
+	<div id="top-shadow">
+		<div class="container">
+			<div class="section">
+
+				<div class="row">
+					<h4 class="question grey-text text-darken-2">What is <a id="logo" class="brand-logo blue-text text-darken-2">CritiqueKit</a>?</h4>
+					<p class="light">CritiqueKit is a system and tool that helps students give better feedback to peers. Feedback is a critical part of learning, especially in creative domains. However, good feedback is rare because it is time-consuming to give and people are not consistently skilled at providing it. This project uses technological interventions such as task structuring and just-in-time guidance to help people give better feedback. We are actively developing an online peer feedback system for use in both online and in-person classrooms that embodies these techniques.</p>
+				</div>
+
+				<br>
+
+				<div class="row">
+					<h4 class="question grey-text text-darken-2">How does <a id="logo"class="brand-logo blue-text text-darken-2">CritiqueKit</a> work?</h4>
+					<p class="light">The system utilizes three key features to process each individual feedback:</p>
+				</div>
+
+				<!--   Icon Section   -->
+				<div class="row">
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center light-blue-text"><i class="material-icons">cached</i></h2>
+							<h5 class="center">Reusing</h5>
+
+							<p class="light center">Our <i>recommendation engine</i> reuses prior feedback and provides dynamic suggestions to the user, in real-time.</p>
+						</div>
+					</div>
+
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center light-blue-text"><i class="material-icons">low_priority</i></h2>
+							<h5 class="center">Reducing</h5>
+
+							<p class="light center">Our <i>text processor</i> reduces submitted feedback to be useful in a general context.</p>
+						</div>
+					</div>
+
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center light-blue-text"><i class="material-icons">restore_page</i></h2>
+							<h5 class="center">Retraining</h5>
+
+							<p class="light center">Our <i>feedback classifier</i> retrains the system about what type of feedback is useful, in real-time.</p>
+						</div>
+					</div>
+				</div>
+
+				<p class="light">CritiqueKit exploits the fact that novices often make similar errors, leading reviewers to reuse the same feedback on many different submissions. It takes advantage of all prior feedback, and classiﬁes feedback as the reviewer types it. CritiqueKit continually updates the corpus of feedback with new comments that are added, and it guides reviewers to improve their feedback, and thus the entire corpus, over time.</p>
+
+				<br>
+
+				<div class="row">
+					<h4 class="question grey-text text-darken-2">Where can I learn more?</h4>
+					<p class="light">Check out <a href="http://cseweb.ucsd.edu/~cafraser/CritiqueKit_Demo.pdf" id"paper-link">our paper</a> for a more detailed and technical description.</p>
+				</div>
+
+			</div>
+			<br><br>
+		</div>
+	</div>
+	<!--
+	<div class="container">
+		<div class="row">
+			<div class="col l6 s12">
+				<h5 class="white-text">Company Bio</h5>
+				<p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+			</div>
+			<div class="col l3 s12">
+				<h5 class="white-text">Settings</h5>
+					<ul>
+						<li><a class="white-text" href="#!">Link 1</a></li>
+						<li><a class="white-text" href="#!">Link 2</a></li>
+						<li><a class="white-text" href="#!">Link 3</a></li>
+						<li><a class="white-text" href="#!">Link 4</a></li>
+					</ul>
+			</div>
+			<div class="col l3 s12">
+				<h5 class="white-text">Connect</h5>
+					<ul>
+						<li><a class="white-text" href="#!">Link 1</a></li>
+						<li><a class="white-text" href="#!">Link 2</a></li>
+						<li><a class="white-text" href="#!">Link 3</a></li>
+						<li><a class="white-text" href="#!">Link 4</a></li>
+					</ul>
+			</div>
+		</div>
+	</div>
+		-->
+	<footer class="page-footer orange">
+		<div class="footer-copyright">
+			<div class="container white-text">
+			Made at <a class="blue-text text-darken-3" id="footer" href="https://designlab.ucsd.edu">The Design Lab, UC San Diego</a>
+			</div>
+		</div>
+	</footer>
+
+
+
+		<!--Import jQuery before materialize.js-->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="materialize/js/init.js"></script>
+</body>
+
+</html>

@@ -131,7 +131,7 @@ function checkComments() {
     document.getElementById("actcheck").innerHTML = "check_box_outline_blank";
   }
 
-  if (text.match(/(because|so|might|just)/gi)) {
+  if (text.match(/(because|so|might|just|to)/gi)) {
     document.getElementById("justcheck").innerHTML = "check_box";
   } else {
     document.getElementById("justcheck").innerHTML = "check_box_outline_blank";
@@ -316,6 +316,8 @@ function loadJustifiedSuggestions() {
   loadSuggestions("justified", "justify_suggestion");
 }
 
+// Load suggestions from database based on type (specific, actionable, or justified)
+// and place into the div container with specified id
 function loadSuggestions(type, id) {
   var suggestionContainer = document.getElementById(id);
   suggestionContainer.innerHTML = "";
