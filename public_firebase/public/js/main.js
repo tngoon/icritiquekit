@@ -115,7 +115,7 @@ function checkComments() {
     document.getElementById("actcheck").innerHTML = "check_box_outline_blank";
   }
 
-  if (text.match(/(because|so|might|just)/gi)) {
+  if (text.match(/(because|so|might|just|to)/gi)) {
     document.getElementById("justcheck").innerHTML = "check_box";
   } else {
     document.getElementById("justcheck").innerHTML = "check_box_outline_blank";
