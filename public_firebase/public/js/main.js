@@ -210,6 +210,7 @@ function submitComments() {
           if (spec == "check_box" && act != "check_box" && just != "check_box") {
 
             db.collection("comments").add({
+              freq: 0,
               user_id: userID,
               comment: comment,
               actionable: false,
@@ -220,6 +221,7 @@ function submitComments() {
           } else if (spec == "check_box" && act == "check_box" && just != "check_box") {
 
             db.collection("comments").add({
+              freq: 0,
               user_id: userID,
               comment: comment,
               actionable: true,
@@ -230,6 +232,7 @@ function submitComments() {
           } else if (spec == "check_box" && act == "check_box" && just == "check_box") {
 
             db.collection("comments").add({
+              freq: 0,
               user_id: userID,
               comment: comment,
               actionable: true,
@@ -240,6 +243,7 @@ function submitComments() {
           } else if (spec != "check_box" && act == "check_box" && just != "check_box") {
 
             db.collection("comments").add({
+              freq: 0,
               user_id: userID,
               comment: comment,
               actionable: true,
@@ -250,6 +254,7 @@ function submitComments() {
           } else if (spec != "check_box" && act == "check_box" && just == "check_box") {
 
             db.collection("comments").add({
+              freq: 0,
               user_id: userID,
               comment: comment,
               actionable: true,
@@ -260,6 +265,7 @@ function submitComments() {
           } else if (spec != "check_box" && act != "check_box" && just == "check_box") {
 
             db.collection("comments").add({
+              freq: 0,
               user_id: userID,
               comment: comment,
               actionable: false,
@@ -270,6 +276,7 @@ function submitComments() {
           } else if (spec == "check_box" && act != "check_box" && just == "check_box") {
 
             db.collection("comments").add({
+              freq: 0,
               user_id: userID,
               comment: comment,
               actionable: false,
@@ -282,7 +289,21 @@ function submitComments() {
         } else {
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
+
+            console.log(doc.id, " => ", doc.data().freq);
+            if (doc.data().freq == null) {
+              var docRef = db.collection("comments").doc(doc.id);
+              return docRef.update({
+                freq: 0
+              })
+            } else {
+              var currNo = doc.get("freq");
+              currNo++;
+              var docRef = db.collection("comments").doc(doc.id);
+              return docRef.update({
+                freq: currNo
+              })
+            }
           });
         }
 
@@ -321,18 +342,30 @@ function loadJustifiedSuggestions() {
 function loadSuggestions(type, id) {
   var suggestionContainer = document.getElementById(id);
   suggestionContainer.innerHTML = "";
+  var comments = [];
 
   var commentsRef = db.collection("comments").where(type, "==", true).where("user_id", "==", "null")
     .get()
     .then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-        var suggestion = createSuggestion(doc.get("comment"));
-        suggestionContainer.appendChild(suggestion);
+        comments.push({comment:doc.get("comment"), freq:doc.get("freq")})
+        //var suggestion = createSuggestion(doc.get("comment"));
+        //suggestionContainer.appendChild(suggestion);
       });
+
+      comments.sort(function(a,b) {return b.freq-a.freq});
+      for (i = 0; i < comments.length; i++) {
+        var suggestion = createSuggestion(comments[i].comment);
+        suggestionContainer.appendChild(suggestion);
+      }
     })
     .catch(function(error) {
       console.log("Error getting documents: ", error);
     });
+
+
+
+
 }
 
 function loadUserComment() {
