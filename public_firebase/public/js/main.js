@@ -117,24 +117,38 @@ function checkComments() {
   var words = text.split(' ');
 
   if (wordlength < 5) {
-    $("#speccheck").prop('checked', false);
     document.getElementById("speccheck").innerHTML = "check_box_outline_blank";
+    document.getElementById("specText").style.color = "red";
+    document.getElementById("specText").innerHTML = "Not Specific";
   } else if (wordlength > 5) {
+    console.log("hi");
     document.getElementById("speccheck").innerHTML = "check_box";
+    document.getElementById("specText").style.color = "green";
+    document.getElementById("specText").innerHTML = "Specific";
   } else {
     document.getElementById("speccheck").innerHTML = "check_box_outline_blank";
+    document.getElementById("specText").style.color = "red";
+    document.getElementById("specText").innerHTML = "Not Specific";
   };
 
   if (text.match(/(maybe|try|should|would|make|use|consider|remove|use|add|please|reduce)/gi)) {
     document.getElementById("actcheck").innerHTML = "check_box";
+    document.getElementById("actText").style.color = "green";
+    document.getElementById("actText").innerHTML = "Actionable";
   } else {
     document.getElementById("actcheck").innerHTML = "check_box_outline_blank";
+    document.getElementById("actText").style.color = "red";
+    document.getElementById("actText").innerHTML = "Not Actionable";
   }
 
   if (text.match(/(because|so|might|just|to)/gi)) {
     document.getElementById("justcheck").innerHTML = "check_box";
+    document.getElementById("justText").style.color = "green";
+    document.getElementById("justText").innerHTML = "Justified";
   } else {
     document.getElementById("justcheck").innerHTML = "check_box_outline_blank";
+    document.getElementById("justText").style.color = "red";
+    document.getElementById("justText").innerHTML = "Not Justified";
   }
 
   if (wordlength > 0) {
