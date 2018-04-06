@@ -11,6 +11,10 @@ firebase.initializeApp(config);
 
 var db = firebase.firestore();
 
+// Get a reference to the storage service, which is used to create references in the storage bucket
+var storage = firebase.storage();
+var rootRef = storage.ref();
+
 initApp = function() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -407,3 +411,33 @@ function createSuggestion(comment) {
 
   return suggestion;
 }
+
+function fileUpload() {
+  var fileInput = document.getElementById("fileUpload");
+  var file = fileInput.files[0];
+  var fileName = file.name;
+  var fileRef = rootRef.child(fileName);
+
+  var uploadTask = fileRef.put(file);
+  uploadTask.on("state_changed", function(snapshot) {
+    //alert("Uploaded " + file.name);
+  }, function(error) {
+    alert(error);
+  }, function() {
+    var downloadURL = uploadTask.snapshot.downloadURL;
+
+    var iFrame = document.getElementById("design1");
+    iFrame.setAttribute("src", downloadURL);
+  });
+}
+
+function loadURL() {
+  var url = document.getElementById("url").value;
+  var iFrame = document.getElementById("design1");
+  iFrame.setAttribute("src", url);
+}
+
+// Initialize modals
+$(document).ready(function () {
+  $('.modal').modal();
+});
