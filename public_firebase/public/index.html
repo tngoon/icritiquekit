@@ -9,20 +9,16 @@
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css" media="screen,projection"/>
+
   <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!--<script src="js/main.js"></script>-->
   <script src="./js/main.js"></script>
-
 </head>
 
 <body>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
-
   <div id="navbar-container"></div>
 
   <div id="main-container">
@@ -75,6 +71,7 @@
             <textarea id="feedback" onkeyup="checkComments()" class="materialize-textarea"></textarea>
             <label for="feedback text-light-blue darken-2">Feedback</label>
           </div>
+
           <div class="col s4">
             <p style="color:red;" id="specText">Not Specific</p>
           </div>
@@ -84,7 +81,8 @@
           <div class="col s4">
             <p style="color:red;" id="justText">Not Justified</p>
           </div>
-          <div class="col"> <a class="waves-effect waves-light btn light-blue darken-2">Attach</a> </div>
+
+          <div class="col"><a class="waves-effect waves-light btn modal-trigger blue darken-2" href="#uploadModal">Upload...</a></div>
           <div class="right-align" style="padding: 0.75rem"> <a class="waves-effect waves-light btn light-blue darken-2" onclick="submitComments()">Submit</a> </div>
         </div>
 
@@ -104,6 +102,32 @@
     </div>
 
   </div>
+
+  <!-- Upload Modal -->
+  <div id="uploadModal" class="modal">
+    <div class="modal-content">
+      <h4>Upload a File or Choose a URL</h4>
+      <br><br><br>
+      <div class="row">
+        <div class="col s6">
+          <input type="file" id="fileUpload" onchange="fileUpload()">
+        </div>
+        <div class="col s6">
+          <a class="waves-effect waves-light btn modal-close light-blue darken-2" onclick="loadURL()">Choose URL</a>
+          <div class="input-field col s6">
+            <input id="url" type="text">
+            <label for="url">URL</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
 </body>
 
 </html>
