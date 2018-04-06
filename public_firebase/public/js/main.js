@@ -58,6 +58,8 @@ $(function() {
 
 $(function() {
   $(document).ready(function() {
+    $('.modal').modal();
+    $('#helpModal1').modal('open');
     $("#rubricbtn").click(function() {
       loadUserComment();
       $("#usercomments").toggle();
@@ -121,7 +123,6 @@ function checkComments() {
     document.getElementById("specText").style.color = "red";
     document.getElementById("specText").innerHTML = "Not Specific";
   } else if (wordlength > 5) {
-    console.log("hi");
     document.getElementById("speccheck").innerHTML = "check_box";
     document.getElementById("specText").style.color = "green";
     document.getElementById("specText").innerHTML = "Specific";
@@ -368,7 +369,7 @@ function loadSuggestions(type, id) {
       });
 
       comments.sort(function(a,b) {return b.freq-a.freq});
-      for (i = 0; i < comments.length; i++) {
+      for (i = 0; i < 5; i++) {
         var suggestion = createSuggestion(comments[i].comment);
         suggestionContainer.appendChild(suggestion);
       }

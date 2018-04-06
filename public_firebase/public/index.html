@@ -31,6 +31,37 @@
 
     <div id="account-details"></div>
 
+    <div id="helpModal1" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Welcome to CritiqueKit!</h4>
+        <p>Your goal is to try to make sure your feedback fits the three categories of:
+          <b>Specific</b>, <b>Actionable</b>, and <b>Justified</b> for the most helpful and complete feedback.</p>
+        <p>To help you get started, you can select the feedback suggestions in the suggestions box in the feedback sidebar,
+          which will copy the suggestions directly into the feedback textbox.</p>
+        <img class="help-img" src="assets/index.png" align="middle" style="height: 75%; max-width: 100%;  "></img>
+      </div>
+      <div class="modal-footer">
+        <a href="#helpModal2" class="modal-trigger modal-action modal-close waves-effect waves-green btn-flat ">Next</a>
+      </div>
+    </div>
+
+    <div id="helpModal2" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Welcome to CritiqueKit!</h4>
+        <p>As you provide your feedback, the checkboxes and indicator text will automatically check if CritiqueKit detects that your comment
+          contains any of the characteristics.</p>
+        <p>If your feedback doesn't fit a certain characteristic, CritiqueKit will provide you with feedback suggestions
+          provided from others to help you complete your comment.</p>
+        <p>Once your feedback fits all the characteristics, your comment will be considered complete,
+          and the all three indicators will turn green.</p></br>
+        <img class="help-img" src="assets/indicators.png" align="middle" style="height: 75%; max-width: 100%;  "></img>
+      </div>
+      <div class="modal-footer">
+        <a href="#helpModal1" class="modal-trigger modal-action modal-close waves-effect waves-green btn-flat ">Previous</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Done</a>
+      </div>
+    </div>
+
     <div class="row">
 
       <div class="col s8">
@@ -65,7 +96,7 @@
 
         <div class="row">
           <div class="col"> <a class="waves-effect waves-light btn light-blue darken-2 " id="rubricbtn">Your Comments</a> </div>
-          <!--<div class="right-align" style="margin: .5rem 0 1rem 0"> <a class="waves-effect waves-light btn light-blue darken-2">Finish Reviewing</a> </div>-->
+          <div class="right-align" style="padding: 0.75rem"> <a class="waves-effect waves-light btn light-blue darken-2 modal-trigger" href="#helpModal1">Help</a> </div>
         </div>
 
       </div>
