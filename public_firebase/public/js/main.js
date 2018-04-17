@@ -121,42 +121,49 @@ function checkComments() {
   var text = $("#feedback").val();
   var wordlength = text.split(' ').length;
   var words = text.split(' ');
+  var check = false;
 
   if (wordlength < 5) {
     document.getElementById("speccheck").innerHTML = "check_box_outline_blank";
     document.getElementById("specText").style.color = "red";
-    document.getElementById("specText").innerHTML = "Not Specific";
+    document.getElementById("specTextCheck").innerHTML = "check_box_outline_blank";
+    check = true;
   } else if (wordlength > 5) {
     document.getElementById("speccheck").innerHTML = "check_box";
     document.getElementById("specText").style.color = "green";
-    document.getElementById("specText").innerHTML = "Specific";
+    document.getElementById("specTextCheck").innerHTML = "check_box";
   } else {
     document.getElementById("speccheck").innerHTML = "check_box_outline_blank";
     document.getElementById("specText").style.color = "red";
-    document.getElementById("specText").innerHTML = "Not Specific";
+    document.getElementById("specTextCheck").innerHTML = "check_box_outline_blank";
+    check = true;
   };
 
   if (text.match(/(maybe|try|should|would|make|use|consider|remove|use|add|please|reduce)/gi)) {
     document.getElementById("actcheck").innerHTML = "check_box";
     document.getElementById("actText").style.color = "green";
-    document.getElementById("actText").innerHTML = "Actionable";
+    document.getElementById("actTextCheck").innerHTML = "check_box";
   } else {
     document.getElementById("actcheck").innerHTML = "check_box_outline_blank";
     document.getElementById("actText").style.color = "red";
-    document.getElementById("actText").innerHTML = "Not Actionable";
+    document.getElementById("actTextCheck").innerHTML = "check_box_outline_blank";
+    check = true;
+
   }
 
   if (text.match(/(because|so|might|just|to)/gi)) {
     document.getElementById("justcheck").innerHTML = "check_box";
     document.getElementById("justText").style.color = "green";
-    document.getElementById("justText").innerHTML = "Justified";
+    document.getElementById("justTextCheck").innerHTML = "check_box";
   } else {
     document.getElementById("justcheck").innerHTML = "check_box_outline_blank";
     document.getElementById("justText").style.color = "red";
-    document.getElementById("justText").innerHTML = "Not Justified";
+    document.getElementById("justTextCheck").innerHTML = "check_box_outline_blank";
+    check = true;
+
   }
 
-  if (wordlength > 0) {
+  if (check == true) {
     showSuggestions();
   }
 
@@ -170,6 +177,7 @@ function showSuggestions() {
   $("#need-specific-link").hide();
   $("#need-actionable-link").hide();
   $("#need-justified-link").hide();
+  loadDynamicSuggestions();
 
   var spec = document.getElementById("speccheck").innerHTML;
   var act = document.getElementById("actcheck").innerHTML;
@@ -343,22 +351,28 @@ function submitComments() {
 
 // Load "Specific" suggestions from database
 function loadSpecificSuggestions() {
-  loadSuggestions("specific", "specific_suggestion");
+  loadSuggestions("specific", "specific_suggestion", 5);
 }
 
 // Load "Actionable" suggestions from database
 function loadActionableSuggestions() {
-  loadSuggestions("actionable", "action_suggestion");
+  loadSuggestions("actionable", "action_suggestion", 5);
 }
 
 // Load "Justified" suggestions from database
 function loadJustifiedSuggestions() {
-  loadSuggestions("justified", "justify_suggestion");
+  loadSuggestions("justified", "justify_suggestion", 5);
+}
+
+function loadDynamicSuggestions() {
+  loadSuggestions("specific","dynamic_suggestion", 1)
+  loadSuggestions("actionable","dynamic_suggestion", 1)
+  loadSuggestions("justified","dynamic_suggestion", 1)
 }
 
 // Load suggestions from database based on type (specific, actionable, or justified)
 // and place into the div container with specified id
-function loadSuggestions(type, id) {
+function loadSuggestions(type, id, numElements) {
   var suggestionContainer = document.getElementById(id);
   suggestionContainer.innerHTML = "";
   var comments = [];
@@ -373,7 +387,7 @@ function loadSuggestions(type, id) {
       });
 
       comments.sort(function(a,b) {return b.freq-a.freq});
-      for (i = 0; i < 5; i++) {
+      for (i = 0; i < numElements; i++) {
         var suggestion = createSuggestion(comments[i].comment);
         suggestionContainer.appendChild(suggestion);
       }
