@@ -116,8 +116,19 @@ function copyText(x) {
   checkComments();
 }
 
-//check for characteristics of comments
-function checkComments() {
+// Check the text written in the "feedback" text field when a key is pressed
+document.getElementById("feedback").onkeyup = function (keyPressed) {
+  checkComments(keyPressed);
+}
+
+// Check for characteristics of comments
+function checkComments(keyPressed) {
+
+  // Check if keypressed was the spacebar
+  if (!(keyPressed.keyCode === 32 || keyPressed.key === " ")) {
+    return;
+  }
+
   var text = $("#feedback").val();
   var wordlength = text.split(' ').length;
   var words = text.split(' ');
