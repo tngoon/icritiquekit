@@ -116,60 +116,74 @@ function copyText(x) {
   checkComments();
 }
 
-//check for characteristics of comments
-function checkComments() {
+// Check the text written in the "feedback" text field when a key is pressed
+document.getElementById("feedback").onkeyup = function (keyPressed) {
+  checkComments(keyPressed);
+}
+
+// Check for characteristics of comments
+function checkComments(keyPressed) {
+
+  // Check if keypressed was the spacebar or backspace
+  if (!(keyPressed.keyCode === 32 || keyPressed.keyCode === 8)) {
+    return;
+  }
+
   var text = $("#feedback").val();
   var wordlength = text.split(' ').length;
   var words = text.split(' ');
-  var check = false;
+  var needSuggestion = false;
+  var isSpecific = false;
+  var isActionable = false;
+  var isJustified = false;
 
-  if (wordlength < 5) {
-    document.getElementById("speccheck").innerHTML = "check_box_outline_blank";
-    document.getElementById("specText").style.color = "red";
-    document.getElementById("specTextCheck").innerHTML = "check_box_outline_blank";
-    check = true;
-  } else if (wordlength > 5) {
+  if (wordlength > 5) {
     document.getElementById("speccheck").innerHTML = "check_box";
     document.getElementById("specText").style.color = "green";
     document.getElementById("specTextCheck").innerHTML = "check_box";
+    isSpecific = true;
   } else {
     document.getElementById("speccheck").innerHTML = "check_box_outline_blank";
     document.getElementById("specText").style.color = "red";
     document.getElementById("specTextCheck").innerHTML = "check_box_outline_blank";
-    check = true;
-  };
+    needSuggestion = true;
+  }
 
   if (text.match(/(maybe|try|should|would|make|use|consider|remove|use|add|please|reduce)/gi)) {
     document.getElementById("actcheck").innerHTML = "check_box";
     document.getElementById("actText").style.color = "green";
     document.getElementById("actTextCheck").innerHTML = "check_box";
+    isActionable = true;
   } else {
     document.getElementById("actcheck").innerHTML = "check_box_outline_blank";
     document.getElementById("actText").style.color = "red";
     document.getElementById("actTextCheck").innerHTML = "check_box_outline_blank";
-    check = true;
-
+    needSuggestion = true;
   }
 
   if (text.match(/(because|so|might|just|to)/gi)) {
     document.getElementById("justcheck").innerHTML = "check_box";
     document.getElementById("justText").style.color = "green";
     document.getElementById("justTextCheck").innerHTML = "check_box";
+    isJustified = true;
   } else {
     document.getElementById("justcheck").innerHTML = "check_box_outline_blank";
     document.getElementById("justText").style.color = "red";
     document.getElementById("justTextCheck").innerHTML = "check_box_outline_blank";
-    check = true;
+    needSuggestion = true;
 
   }
 
-  if (check == true) {
+  if (needSuggestion == true) {
     showSuggestions();
+  } else if (isSpecific && isActionable && isJustified) {
+    $("#need-suggestion").hide();
+    $("#complete-comment").show();
   }
-
 }
 
 function showSuggestions() {
+  $("#complete-comment").hide();
   $("#need-suggestion").show();
   $("#need-specific").hide();
   $("#need-actionable").hide();
@@ -343,8 +357,8 @@ function submitComments() {
   document.getElementById("actcheck").innerHTML = "check_box_outline_blank";
   document.getElementById("justcheck").innerHTML = "check_box_outline_blank";
   $("dynasuggestions").hide();
-  $("#need-suggestion").hide()
-
+  $("#need-suggestion").hide();
+  $("#complete-comment").hide();
 }
 
 
