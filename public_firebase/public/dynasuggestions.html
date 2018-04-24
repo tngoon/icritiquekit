@@ -3,9 +3,8 @@
 <div class="row" id="need-suggestion" style="display: none">
   <div class="card light-blue darken-2">
     <div class="card-content white-text">
-      <p id="need-specific">Please make your feedback more <b>specific</b>.</p>
-      <p id="need-actionable">Please make your feedback more <b>actionable</b>.</p>
-      <p id="need-justified">Please make your feedback more <b>justified</b>.</p>
+      <p>Here are some suggestions based on your current comment:</p>
+      <div class="collection" id="dynamic_suggestion"></div>
       <br>
       <p>Click below to see some suggestions.</p>
     </div>
@@ -30,6 +29,7 @@
 <script>
   $(document).ready(function() {
     $("#need-specific-link").click(function() {
+      loadSpecificSuggestions();
       $("#specific_suggestion").show();
       if ($("#specific_suggestion").is(':hidden')) {
         document.getElementById("specificIcon").innerHTML = "arrow_drop_down";
@@ -43,6 +43,7 @@
 <script>
   $(document).ready(function() {
     $("#need-actionable-link").click(function() {
+      loadActionableSuggestions();
       $("#action_suggestion").show();
       if ($("#action_suggestion").is(':hidden')) {
         document.getElementById("actionIcon").innerHTML = "arrow_drop_down";
@@ -56,6 +57,7 @@
 <script>
   $(document).ready(function() {
     $("#need-justified-link").click(function() {
+      loadJustifiedSuggestions();
       $("#justify_suggestion").show();
       if ($("#justify_suggestion").is(':hidden')) {
         document.getElementById("justifyIcon").innerHTML = "arrow_drop_down";
