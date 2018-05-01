@@ -175,14 +175,25 @@ function checkComments(keyPressed) {
   }
 
   if (needSuggestion == true) {
-    showSuggestions();
+    showSuggestions(isSpecific, isActionable, isJustified);
+    var currText = "Please make your comment more: "
+    if (!isSpecific) {
+      currText += "Specific ";
+    }
+    if (!isActionable) {
+      currText += "Actionable ";
+    }
+    if (!isJustified) {
+      currText += "Justified ";
+    }
+    document.getElementById("makeCommentMore").innerHTML = currText;
   } else if (isSpecific && isActionable && isJustified) {
     $("#need-suggestion").hide();
     $("#complete-comment").show();
   }
 }
 
-function showSuggestions() {
+function showSuggestions(isSpecific, isActionable, isJustified) {
   $("#complete-comment").hide();
   $("#need-suggestion").show();
   $("#need-specific").hide();
@@ -191,7 +202,7 @@ function showSuggestions() {
   $("#need-specific-link").hide();
   $("#need-actionable-link").hide();
   $("#need-justified-link").hide();
-  loadDynamicSuggestions();
+  loadDynamicSuggestions(isSpecific, isActionable, isJustified);
 
   var spec = document.getElementById("speccheck").innerHTML;
   var act = document.getElementById("actcheck").innerHTML;
@@ -365,28 +376,34 @@ function submitComments() {
 
 // Load "Specific" suggestions from database
 function loadSpecificSuggestions() {
-  loadSuggestions("specific", "specific_suggestion", 5);
+  loadSuggestions("specific", "specific_suggestion", 5, false);
 }
 
 // Load "Actionable" suggestions from database
 function loadActionableSuggestions() {
-  loadSuggestions("actionable", "action_suggestion", 5);
+  loadSuggestions("actionable", "action_suggestion", 5, false);
 }
 
 // Load "Justified" suggestions from database
 function loadJustifiedSuggestions() {
-  loadSuggestions("justified", "justify_suggestion", 5);
+  loadSuggestions("justified", "justify_suggestion", 5, false);
 }
 
-function loadDynamicSuggestions() {
-  loadSuggestions("specific","dynamic_suggestion", 1)
-  loadSuggestions("actionable","dynamic_suggestion", 1)
-  loadSuggestions("justified","dynamic_suggestion", 1)
+function loadDynamicSuggestions(isSpecific, isActionable, isJustified) {
+  if(!isSpecific) {
+    loadSuggestions("specific","dynamic_suggestion", 1, true)
+  }
+  if (!isActionable) {
+    loadSuggestions("actionable","dynamic_suggestion", 1, true)
+  }
+  if (!isJustified) {
+    loadSuggestions("justified","dynamic_suggestion", 1, true)
+  }
 }
 
 // Load suggestions from database based on type (specific, actionable, or justified)
 // and place into the div container with specified id
-function loadSuggestions(type, id, numElements) {
+function loadSuggestions(type, id, numElements, random) {
   var suggestionContainer = document.getElementById(id);
   suggestionContainer.innerHTML = "";
   var comments = [];
@@ -402,8 +419,13 @@ function loadSuggestions(type, id, numElements) {
 
       comments.sort(function(a,b) {return b.freq-a.freq});
       for (i = 0; i < numElements; i++) {
-        var suggestion = createSuggestion(comments[i].comment);
-        suggestionContainer.appendChild(suggestion);
+        if (random) {
+          var suggestion = createSuggestion(comments[Math.floor(Math.random() * comments.length)].comment);
+          suggestionContainer.appendChild(suggestion);
+        } else {
+          var suggestion = createSuggestion(comments[i].comment);
+          suggestionContainer.appendChild(suggestion);
+        }
       }
     })
     .catch(function(error) {
