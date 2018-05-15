@@ -75,17 +75,7 @@ $(function() {
       }
     });
 
-    $("#log-out").click(function() {
-      firebase.auth().signOut().then(function() {
-        console.log('Signed Out');
-      }, function(error) {
-        console.error('Sign Out Error', error);
-      });
-    });
-
-
     var user = firebase.auth().currentUser;
-
     if (user) {
       // User is signed in.
       document.getElementById('account-details').textContent = "Signed in as:" + user.displayName
@@ -96,6 +86,14 @@ $(function() {
 
   });
 })
+
+function logOut() {
+  firebase.auth().signOut().then(function() {
+    console.log('Signed Out');
+  }, function(error) {
+    console.error('Sign Out Error', error);
+  });
+}
 
 // copy text of suggestion button to textbox
 function copyText(x) {
