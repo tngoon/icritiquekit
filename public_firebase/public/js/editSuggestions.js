@@ -66,6 +66,7 @@ $(function() {
   $(document).ready(function() {
     $("#navbar-container").load("navbar.html");
     $('.modal').modal();
+    loadSuggestions();
     $("#log-out").click(function() {
       firebase.auth().signOut().then(function() {
         console.log('Signed Out');
@@ -80,6 +81,7 @@ $(function() {
     var isInstructor = false;
 
     firebase.auth().onAuthStateChanged(function(user) {
+
       if (user) {
         // User is signed in.
         var docRef = db.collection("users").doc(user.uid);
@@ -88,7 +90,7 @@ $(function() {
               console.log("Document data:", doc.data());
               isInstructor = doc.data()["instructor"];
               if (isInstructor) {
-
+                $("#allSuggestions").show()
               } else {
                 $('#modal1').modal('open');
               }
@@ -101,10 +103,55 @@ $(function() {
         });
       } else {
         // No user is signed in.
+        $('#modal2').modal('open');
+        $("#allSuggestions").hide()
       }
     });
 
-
-
   });
 })
+
+function createSuggestion(comment) {
+  var suggestion = document.createElement("a");
+
+  var href = document.createAttribute("href");
+  href.value = "#";
+  suggestion.setAttributeNode(href);
+
+  var onclick = document.createAttribute("onclick");
+  onclick.value = "copyText(this)";
+  suggestion.setAttributeNode(onclick);
+
+  var classAtt = document.createAttribute("class");
+  classAtt.value = "collection-item";
+  suggestion.setAttributeNode(classAtt);
+
+  suggestion.textContent = comment;
+
+  return suggestion;
+}
+
+function loadSuggestions() {
+  var suggestionContainer = document.getElementById("allSuggestions");
+  suggestionContainer.innerHTML = "";
+  var comments = [];
+
+  var commentsRef = db.collection("comments")
+    .get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        comments.push({comment:doc.get("comment"), freq:doc.get("freq")})
+        //var suggestion = createSuggestion(doc.get("comment"));
+        //suggestionContainer.appendChild(suggestion);
+      });
+
+      for (i = 0; i < comments.length; i++) {
+        var suggestion = createSuggestion(comments[i].comment);
+        suggestionContainer.appendChild(suggestion);
+      }
+    })
+    .catch(function(error) {
+      console.log("Error getting documents: ", error);
+    });
+
+}

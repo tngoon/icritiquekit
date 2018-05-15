@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Edit Comments</title>
+  <title>Edit Suggestions</title>
 
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,7 +17,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="./materialize/js/materialize.min.js"></script>
-  <script src="./js/TALanding.js"></script>
+  <script src="./js/editSuggestions.js"></script>
 
 </head>
 
@@ -38,7 +38,22 @@
         </form>
       </div>
       <div class="modal-footer">
-        <a href="#" onclick="submitID()" class="modal-action modal-close waves-effect waves-green btn-flat ">Okay</a>
+        <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat ">Okay</a>
+      </div>
+    </div>
+
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+
+        <form class="col s12">
+          <div class="row">
+            <h4>Error</h4>
+            <p>Please sign in to access this page</p>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat ">Okay</a>
       </div>
     </div>
 
@@ -46,10 +61,10 @@
     <div class="container">
       <div class="row">
       <div class="col s12 section">
-          <h5>All Comments</h5>
+          <h5>All Suggestions</h5>
       </div>
 
-      <div class="collection" id="specific_suggestion" style="display: none">
+      <div class="collection" id="allSuggestions" style="display: none">
       </div>
     </div><!-- Page Content goes here -->
 

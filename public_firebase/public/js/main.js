@@ -430,9 +430,6 @@ function loadSuggestions(type, id, numElements, random) {
       console.log("Error getting documents: ", error);
     });
 
-
-
-
 }
 
 function loadUserComment() {
