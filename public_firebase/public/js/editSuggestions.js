@@ -111,7 +111,7 @@ $(function() {
   });
 })
 
-function createSuggestion(comment) {
+function createSuggestion(comment, id) {
   var suggestion = document.createElement("a");
 
   var href = document.createAttribute("href");
@@ -119,8 +119,12 @@ function createSuggestion(comment) {
   suggestion.setAttributeNode(href);
 
   var onclick = document.createAttribute("onclick");
-  onclick.value = "copyText(this)";
+  onclick.value = "editComment(this)";
   suggestion.setAttributeNode(onclick);
+
+  var dataid = document.createAttribute("data-id");
+  dataid.value = id;
+  suggestion.setAttributeNode(dataid);
 
   var classAtt = document.createAttribute("class");
   classAtt.value = "collection-item";
@@ -135,23 +139,57 @@ function loadSuggestions() {
   var suggestionContainer = document.getElementById("allSuggestions");
   suggestionContainer.innerHTML = "";
   var comments = [];
+  var ids = [];
 
   var commentsRef = db.collection("comments")
     .get()
     .then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
         comments.push({comment:doc.get("comment"), freq:doc.get("freq")})
+        ids.push(doc.id);
         //var suggestion = createSuggestion(doc.get("comment"));
         //suggestionContainer.appendChild(suggestion);
       });
 
       for (i = 0; i < comments.length; i++) {
-        var suggestion = createSuggestion(comments[i].comment);
+        var suggestion = createSuggestion(comments[i].comment, ids[i]);
         suggestionContainer.appendChild(suggestion);
       }
     })
     .catch(function(error) {
       console.log("Error getting documents: ", error);
     });
+
+}
+
+function editComment(curr) {
+  var comment = curr.innerHTML;
+  var id = curr.dataset.id;
+
+  document.getElementById("editComment").value = comment;
+  document.getElementById("editComment").dataset.id = id;
+
+  $('#modal3').modal('open');
+
+}
+
+function submitChange() {
+  var changedComment = document.getElementById("editComment").value;
+  var id = document.getElementById("editComment").dataset.id;
+  var docRef = db.collection("comments").doc(id);
+
+  return docRef.update({
+    comment: changedComment
+  })
+  .then(function() {
+      console.log("Document successfully updated!");
+      document.getElementById("editComment").value = "";
+      document.getElementById("editComment").dataset.id = "";
+      loadSuggestions();
+  })
+  .catch(function(error) {
+      // The document probably doesn't exist.
+      console.error("Error updating document: ", error);
+  });
 
 }
