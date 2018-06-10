@@ -111,6 +111,7 @@ $(function() {
   });
 })
 
+//create comments
 function createSuggestion(comment, id) {
   var suggestion = document.createElement("a");
 
@@ -135,6 +136,7 @@ function createSuggestion(comment, id) {
   return suggestion;
 }
 
+//load all the comments
 function loadSuggestions() {
   var suggestionContainer = document.getElementById("allSuggestions");
   suggestionContainer.innerHTML = "";
@@ -162,6 +164,7 @@ function loadSuggestions() {
 
 }
 
+//function to edit the comment
 function editComment(curr) {
   var comment = curr.innerHTML;
   var id = curr.dataset.id;
@@ -173,6 +176,7 @@ function editComment(curr) {
 
 }
 
+//apply change and submit to firebase
 function submitChange() {
   var changedComment = document.getElementById("editComment").value;
   var id = document.getElementById("editComment").dataset.id;

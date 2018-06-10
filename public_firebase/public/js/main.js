@@ -15,6 +15,7 @@ var db = firebase.firestore();
 var storage = firebase.storage();
 var rootRef = storage.ref();
 
+//called when page is loaded
 initApp = function() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -75,6 +76,7 @@ $(function() {
       }
     });
 
+    //get current user
     var user = firebase.auth().currentUser;
     if (user) {
       // User is signed in.
@@ -87,6 +89,7 @@ $(function() {
   });
 })
 
+// log out
 function logOut() {
   firebase.auth().signOut().then(function() {
     console.log('Signed Out');
@@ -191,6 +194,7 @@ function checkComments(keyPressed) {
   }
 }
 
+//show suggestions box
 function showSuggestions(isSpecific, isActionable, isJustified) {
   $("#complete-comment").hide();
   $("#need-suggestion").show();
@@ -223,6 +227,7 @@ function showSuggestions(isSpecific, isActionable, isJustified) {
 
 }
 
+//get the current user id
 function getUserID() {
   var user = firebase.auth().currentUser;
 
@@ -235,7 +240,7 @@ function getUserID() {
   }
 }
 
-//store comments as JSON
+//store comments to firebase
 function submitComments() {
 
   var comment = $("#feedback").val();
@@ -387,6 +392,7 @@ function loadJustifiedSuggestions() {
   loadSuggestions("justified", "justify_suggestion", 5, false);
 }
 
+//load suggestions
 function loadDynamicSuggestions(isSpecific, isActionable, isJustified) {
   if(!isSpecific) {
     loadSuggestions("specific","dynamic_suggestion", 1, true)
@@ -432,6 +438,7 @@ function loadSuggestions(type, id, numElements, random) {
 
 }
 
+// load user specific comment
 function loadUserComment() {
   var suggestionContainer = document.getElementById("userComments");
   suggestionContainer.innerHTML = "";
@@ -452,6 +459,7 @@ function loadUserComment() {
   }
 }
 
+//create a comment element in html page
 function createSuggestion(comment) {
   var suggestion = document.createElement("a");
 
@@ -472,6 +480,7 @@ function createSuggestion(comment) {
   return suggestion;
 }
 
+//upload file module
 function fileUpload() {
   var fileInput = document.getElementById("fileUpload");
   var file = fileInput.files[0];
